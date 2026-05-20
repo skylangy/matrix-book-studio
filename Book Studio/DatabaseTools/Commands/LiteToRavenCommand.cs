@@ -20,7 +20,7 @@ public class LiteDbToRavenDbCommand(
 
     private readonly string _bookFolder = @"G:\Audio Books";
     private readonly string _imageFolder = @"C:\Users\Andy\Documents\Books\My Books\封面\png";
-    private readonly string _dbFolder = @"D:\Code\GitLab\matrix-book-studio\DatabaseTools\Data\";
+    private readonly string _dbFolder = Path.Combine(AppContext.BaseDirectory, "..", "..", "DatabaseTools", "Data");
     private readonly JsonSerializerOptions _deserializeOptions = new() { PropertyNameCaseInsensitive = true };
 
     public string Name => "lite-to-raven";

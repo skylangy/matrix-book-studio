@@ -1,37 +1,45 @@
-# matrix-book-studio (personal fork)
+# Matrix Book Studio
 
-Audio book / matrix studio monorepo: **Book Studio** (.NET 9 + Angular 20) and **Matrix Audio**.
+全栈有声书 / 图书制作平台：支持图书管理、语音合成、影片合成与音频业务。
 
-Originally from [GitLab andylang/matrix-book-studio](https://gitlab.com/andylang/matrix-book-studio). This copy is configured for local development on Windows.
+## 技术栈
 
-## Quick start
+| 模块 | 技术 |
+|------|------|
+| Book Studio 后端 | ASP.NET Core 9、SignalR、RavenDB |
+| Book Studio 前端 | Angular 20、Bootstrap、Highcharts、Monaco Editor |
+| Matrix Audio | .NET 9、Stripe 支付集成 |
+| 基础设施 | Docker（RavenDB、Redis）、Edge TTS 脚本 |
 
-See [LOCAL_SETUP.md](LOCAL_SETUP.md).
+## 功能概览
 
-1. Start **Docker Desktop**
-2. `docker compose -f "Book Studio/docker-compose.dev.yml" up -d`
-3. Copy `Book Studio/MatrixBook.Server/appsettings.Local.json.example` → `appsettings.Local.json` and edit paths
-4. `cd "Book Studio/MatrixBook.Server"` → `dotnet run --launch-profile https`
+- **Book Studio**：图书库、章节编辑、Azure/Edge 语音合成、字幕与视频导出
+- **Matrix Audio**：音频服务、订阅与支付
+- **工具链**：PDF 提取、字幕脚本、库同步、系统托盘
 
-- Swagger: https://localhost:7110/swagger  
-- UI (Angular via SPA proxy): https://localhost:8090  
+## 本地运行
 
-## Publish to your GitHub
+详见 [LOCAL_SETUP.md](LOCAL_SETUP.md)。
 
 ```powershell
-cd E:\matrix-book-studio\matrix-book-studio-main
-git init
-git add .
-git commit -m "Initial personal fork with local dev setup"
-
-# Create empty repo on GitHub (e.g. matrix-book-studio), then:
-git remote add origin https://github.com/skylangy/matrix-book-studio.git
-git branch -M main
-git push -u origin main
+cd "Book Studio"
+docker compose -f docker-compose.dev.yml up -d
+cd MatrixBook.Server
+dotnet run --launch-profile https
 ```
 
-Do not commit `appsettings.Local.json` or real API keys. Use `appsettings.example.json` / `appsettings.Local.json.example` as templates.
+- API / Swagger：https://localhost:7110/swagger  
+- 前端（开发）：https://localhost:8090  
 
-## License
+## 项目结构
 
-Respect the original project license if present; this fork is for personal use unless you add explicit licensing.
+```
+Book Studio/          # 主业务：Server + Angular Client
+Matrix Audio/         # 音频与支付服务
+Scripts/              # Python / 浏览器 / TTS 辅助脚本
+SpeechHub/            # 语音相关服务
+```
+
+## 配置说明
+
+复制 `Book Studio/MatrixBook.Server/appsettings.Local.json.example` 为 `appsettings.Local.json`，按本机路径填写书籍目录与 API 密钥。示例配置见 `appsettings.example.json`。
