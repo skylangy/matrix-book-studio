@@ -1,0 +1,41 @@
+.post-details {
+    & .img-fluid {
+        width: 100%;
+        height: auto;
+        max-height: 280px;
+    }
+
+    & .post-view {
+        padding: 2rem;
+
+    }
+
+    & .title {
+        margin-bottom: 1rem;
+    }
+
+    & .meta {
+        margin-bottom: 1.5rem;
+    }
+
+    & .content {
+        margin-bottom: 1rem;
+
+    }
+}
+
+.post-card {
+    max-height: 480px;
+    overflow: hidden;
+
+    & .card-text {
+        max-height: 240px;
+        overflow: hidden;
+    }
+
+    & .card-title {
+        font-size: 1.25rem;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+}

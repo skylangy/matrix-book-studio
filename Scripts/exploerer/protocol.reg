@@ -1,0 +1,12 @@
+Windows Registry Editor Version 5.00
+
+[HKEY_CLASSES_ROOT\matrix-book]
+@="URL:Matrix-Book Protocol"
+"URL Protocol"=""
+
+[HKEY_CLASSES_ROOT\matrix-book\shell]
+
+[HKEY_CLASSES_ROOT\matrix-book\shell\open]
+
+[HKEY_CLASSES_ROOT\matrix-book\shell\open\command]
+@="explorer.exe \"%1\""

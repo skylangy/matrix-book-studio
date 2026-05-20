@@ -1,0 +1,121 @@
+.tag-editor {
+    display: flex;
+    flex-direction: column;
+    color: var(--body-color);
+    width: 100%;
+    cursor: text;
+
+    & .tags {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        vertical-align: middle;
+        margin: 0;
+        list-style: none;
+        margin: 0 0 .25rem 0;
+    }
+
+    & .input-host {
+        background-color: var(--body-bg);
+        border-radius: var(--bs-border-radius);
+        border: 1px solid var(--bs-border-color);
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+
+        & input {
+            border: none;
+            box-shadow: none;
+            outline: none;
+            background-color: transparent;
+            padding: .25rem .25rem .5rem .25rem;
+            margin: 0;
+            width: 100%;
+            max-width: inherit;
+            color: var(--body-color);
+        }
+
+        & .btn-dropdown {
+            background: transparent;
+            border: none;
+        }
+    }
+
+    &.form-control input::-moz-placeholder {
+        color: #777;
+        opacity: 1;
+    }
+
+    &.form-control input:-ms-input-placeholder {
+        color: #777;
+    }
+
+    &.form-control input::-webkit-input-placeholder {
+        color: #777;
+    }
+
+    & input:focus {
+        border: none;
+        box-shadow: none;
+    }
+
+    & .badge {
+        margin: .25rem;
+        color: var(--tag-item-color);
+        background-color: var(--tag-item-bg);
+        padding: .35rem;
+        border-radius: var(--bs-border-radius-sm);
+        border: 1px solid var(--tag-item-border-color);
+
+        &.primary {
+            background-color: var(--primary);
+            border-color: var(--primary);
+        }
+
+        &.secondary {
+            background-color: var(--secondary);
+            border-color: var(--secondary);
+        }
+
+        &.success {
+            background-color: var(--success);
+            border-color: var(--success);
+        }
+
+        &.warning {
+            background-color: var(--warning);
+            border-color: var(--warning);
+        }
+
+        &.danger {
+            background-color: var(--danger);
+            border-color: var(--danger);
+        }
+
+        &.info {
+            background-color: var(--info);
+            border-color: var(--info);
+        }
+    }
+
+    & .badge [data-role="remove"] {
+        margin-left: .5rem;
+        cursor: pointer;
+
+        &:after {
+            content: "×";
+            padding: 0 .25rem .15rem;
+            background-color: rgba(0, 0, 0, 0.1);
+            border-radius: 50%;
+            font-size: 13px
+        }
+
+        &:hover:after {
+            background-color: rgba(0, 0, 0, 0.62);
+        }
+
+        &:hover:active {
+            box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+        }
+    }
+}

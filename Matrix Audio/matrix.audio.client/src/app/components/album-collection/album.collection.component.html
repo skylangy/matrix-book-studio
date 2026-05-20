@@ -1,0 +1,123 @@
+@switch (cardLayout) {
+@case ("compact") {
+<div class="card album-compact collection-card">
+    @defer(on viewport){
+    <img [src]="placeholder" mtxLazyLoadImage="{{albumCollection?.image | image}}"
+        class="card-img-top object-fit-fill image-blur" alt="{{albumCollection?.name}}">
+    } @placeholder {
+    <div class="card-img-top"></div>
+    }
+    <div class="album-main card-img-overlay">
+        <div class="album-title">
+            <a routerLink="/public/album-collection/{{albumCollection?.id}}">
+                <h5 class="card-title">{{albumCollection?.name}}</h5>
+            </a>
+        </div>
+
+        <div class="album-content flex-fill flex-grow-1">
+            <div class="card-text mt-1 mb-1" [innerHTML]="albumCollection?.description | summary:80"></div>
+        </div>
+
+        <div class="album-action d-flex justify-content-between align-items-center">
+            <div>
+                <div class="text-body-secondary me-2" title="Episods"><i class="bi bi-files"></i>
+                    {{albumCollection?.count}}
+                </div>
+            </div>
+
+            <div>
+
+            </div>
+        </div>
+    </div>
+</div>
+}
+@case ('horizontal') {
+<div class="card album-horizon">
+    <div class="row g-0">
+        <div class="col-4">
+            @defer(on viewport){
+            <img class="album-img img-fluid rounded-start object-fit-fill" [src]="placeholder"
+                mtxLazyLoadImage="{{albumCollection?.image | image}}" alt="{{albumCollection?.name}}">
+            } @placeholder {
+            <div class="album-img img-fluid rounded-start"></div>
+            }
+        </div>
+        <div class="col-8">
+            <div class="album-main">
+                <a class="album-title" routerLink="/public/album-collection/{{albumCollection?.id}}">
+                    <h5 class="card-title">{{albumCollection?.name}}</h5>
+                </a>
+
+                <div class="album-author d-flex justify-content-between">
+                    <div class="text-body-secondary me-2">
+
+                    </div>
+                    <div>
+                        <div class="text-body-secondary album-date small">{{albumCollection?.dateCreated |
+                            date:'yyyy-MM-dd'}}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="album-content mt-2 text-body-secondary"
+                    [innerHTML]="albumCollection?.description | summary:200 | toHtml">
+                </div>
+
+                <div class="album-action d-flex justify-content-between align-items-center">
+                    <div class="d-flex justify-content-start">
+                        <div class="text-body-secondary me-2" title="Episods"><i class="bi bi-files"></i>
+                            {{albumCollection?.count}}
+                        </div>
+
+                    </div>
+                    <!-- <button class="icon-button lg-xx" title="Play" (click)="playAlbumCollection()">
+                        <i class="bi bi-play-circle"></i>
+                    </button> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+}
+@default {
+<div class="card album-card">
+    @defer(on viewport){
+    <img [src]="placeholder" mtxLazyLoadImage="{{albumCollection?.image | image}}" class="card-img-top"
+        alt="{{albumCollection?.name}}">
+    } @placeholder {
+    <div class="card-img-top"></div>
+    }
+    <div class="album-main">
+        <div class="album-title d-flex justify-content-between">
+            <a routerLink="/public/album-collection/{{albumCollection?.id}}">
+                <div class="albumn-title">{{albumCollection?.name}}</div>
+            </a>
+            <div class="text-body-secondary albumCollection-date small">{{albumCollection?.dateCreated |
+                date:'yyyy-MM-dd'}} </div>
+        </div>
+
+        <div class="album-author d-flex justify-content-start">
+            <div class="text-body-secondary me-2 small">
+
+            </div>
+        </div>
+
+        <div class="album-content card-text mt-1 mb-1" [innerHTML]="albumCollection?.description | summary: 60"></div>
+
+        <div class="album-acttion d-flex justify-content-between align-items-center">
+            <div class="d-flex justify-content-start">
+                <div class="text-body-secondary me-2" title=""><i class="bi bi-files"></i>
+                    {{albumCollection?.count}}
+                </div>
+            </div>
+            <div class="align-items-center">
+                <!-- <button class="icon-button lg" title="Add to favorite"><i class="bi bi-heart"></i></button>
+                <button class="icon-button lg" title="Add to my playlist"><i class="bi bi-plus-square"></i></button>
+                <button class="icon-button lg" title="Play" (click)="playAlbumCollection()"><i
+                        class="bi bi-play-circle"></i></button> -->
+            </div>
+        </div>
+    </div>
+</div>
+}}

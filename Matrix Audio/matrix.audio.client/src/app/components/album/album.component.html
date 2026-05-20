@@ -1,0 +1,151 @@
+@switch (cardLayout) {
+@case ("compact") {
+<div class="card album-compact">
+    @defer(on viewport){
+    <img [src]="placeholder" mtxLazyLoadImage="{{album?.imageWideSplash || album?.imageWideSplash| image}}"
+        (error)="onImgError($event)" class="card-img-top object-fit-fill image-blur" alt="{{album?.title}}">
+    } @placeholder {
+    <div class="card-img-top"></div>
+    }
+    <div class="album-main card-img-overlay">
+
+        <div class="album-title">
+            <a routerLink="/public/album/{{album?.id}}">
+                <h5 class="card-title">{{album?.title}}</h5>
+            </a>
+        </div>
+
+        <div class="album-author d-flex justify-content-between">
+            <div class="text-body-secondary me-2">
+                <a routerLink="/public/author/{{album?.artistId}}"> {{album?.artistName}}</a>
+            </div>
+            <div>
+                <div class="text-body-secondary album-date">{{album?.dateCreated | date:'yyyy-MM-dd'}} </div>
+            </div>
+        </div>
+
+        <div class="album-content flex-fill flex-grow-1">
+            <div class="card-text mt-1 mb-1" [innerHTML]="album?.description | summary:80"></div>
+        </div>
+
+        <div class="album-action d-flex justify-content-between align-items-center">
+            <div>
+                <div class="text-body-secondary me-2" title="Episods"><i class="bi bi-files"></i>
+                    {{album?.episodeCount}}
+                </div>
+            </div>
+
+            <div>
+                <button class="icon-button lg-x" title="Play" (click)="playAlbum()"><i
+                        class="bi bi-play-circle"></i></button>
+                @if(showRemoveFromPlaylist){
+                <button class="icon-button lg-x" title="Remove from play plan" (click)="removeFromPlaylist()">
+                    <i class="bi bi-trash"></i>
+                </button>
+                }
+                @if(showUnfavorite){
+                <button class="icon-button lg-x" title="Unfavoirte" (click)="unfavoriteAlbum()">
+                    <i class="bi bi-trash"></i>
+                </button>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+}
+@case ('horizontal') {
+<div class="card album-horizon">
+    <div class="row g-0">
+        <div class="col-4">
+            @defer(on viewport){
+            <img class="album-img img-fluid rounded-start object-fit-fill" [src]="placeholder"
+                (error)="onImgError($event)"
+                mtxLazyLoadImage="{{album?.imageSquareSplash || album?.imageWideSplash | image}}"
+                alt="{{album?.title}}">
+            } @placeholder {
+            <div class="album-img img-fluid rounded-start"></div>
+            }
+        </div>
+        <div class="col-8">
+            <div class="album-main">
+                <a class="album-title" routerLink="/public/album/{{album?.id}}">
+                    <h5 class="card-title">{{album?.title}}</h5>
+                </a>
+
+                <div class="album-author d-flex justify-content-between">
+                    <div class="text-body-secondary me-2">
+                        <a routerLink="/public/author/{{album?.artistId}}"> {{album?.artist?.name}}</a>
+                    </div>
+                    <div>
+                        <div class="text-body-secondary album-date small">{{album?.dateCreated | date:'yyyy-MM-dd'}}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="album-content mt-2 text-body-secondary"
+                    [innerHTML]="album?.description | summary:200 | toHtml">
+                </div>
+
+                <div class="album-action d-flex justify-content-between align-items-center">
+                    <div class="d-flex justify-content-start">
+                        <div class="text-body-secondary me-2" title="Episods"><i class="bi bi-files"></i>
+                            {{album?.episodeCount}}
+                        </div>
+
+                        @if(album?.playCount){
+                        <div class="text-body-secondary me-2" title="Play count">
+                            <i class="bi bi-collection-play"></i> {{album?.playCount}}
+                        </div>
+                        }
+                    </div>
+                    <button class="icon-button lg-xx" title="Play" (click)="playAlbum()">
+                        <i class="bi bi-play-circle"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+}
+@default {
+<div class="card album-card">
+    @defer(on viewport){
+    <img [src]="placeholder" mtxLazyLoadImage="{{album?.imageSquareSplash || album?.imageWideSplash | image}}"
+        (error)="onImgError($event)" class="card-img-top" alt="{{album?.title}}">
+    } @placeholder {
+    <div class="card-img-top"></div>
+    }
+    <div class="album-main">
+        <div class="album-title d-flex justify-content-between">
+            <a routerLink="/public/album/{{album?.id}}">
+                <div class="album-title">{{album?.title}}</div>
+            </a>
+            <div class="text-body-secondary album-date small">{{album?.dateCreated | date:'yyyy-MM-dd'}} </div>
+        </div>
+
+        <div class="album-author d-flex justify-content-start">
+            <div class="text-body-secondary me-2 small">
+                <a routerLink="/public/author/{{album?.artistId}}"> {{album?.artist?.name}}</a>
+            </div>
+        </div>
+
+        <div class="album-content card-text mt-1 mb-1" [innerHTML]="album?.description | summary: 60"></div>
+
+        <div class="album-acttion d-flex justify-content-between align-items-center">
+            <div class="d-flex justify-content-start">
+                <div class="text-body-secondary me-2" title="Episods"><i class="bi bi-files"></i>
+                    {{album?.episodeCount}}
+                </div>
+                <div class="text-body-secondary me-2" title="Downloads"><i class="bi bi-cloud-arrow-down"></i>
+                    {{album?.downloadCount}} </div>
+            </div>
+            <div class="align-items-center">
+                <button class="icon-button lg" title="Add to favorite"><i class="bi bi-heart"></i></button>
+                <button class="icon-button lg" title="Add to my playlist"><i class="bi bi-plus-square"></i></button>
+                <button class="icon-button lg" title="Play" (click)="playAlbum()"><i
+                        class="bi bi-play-circle"></i></button>
+            </div>
+        </div>
+    </div>
+</div>
+}}

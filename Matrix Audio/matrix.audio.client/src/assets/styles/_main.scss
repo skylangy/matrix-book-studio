@@ -1,0 +1,167 @@
+body,
+html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    // overflow: hidden;
+}
+
+.app-logo {
+    width: 32px;
+
+    &.sm {
+        width: 24px;
+    }
+}
+
+.no-padding {
+    padding: 0;
+}
+
+.no-margin {
+    margin: 0;
+}
+
+.no-border {
+    border: none;
+}
+
+.no-radius {
+    border-radius: 0;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+.hand {
+    cursor: pointer;
+}
+
+.img-fill {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    height: 100%;
+    width: 100%;
+
+    & img {
+        flex-shrink: 0;
+        min-width: 100%;
+        min-height: 100%;
+    }
+}
+
+.fs-200 {
+    font-size: 200%;
+}
+
+.fs-150 {
+    font-size: 150%;
+}
+
+.fs-50 {
+    font-size: 50%;
+}
+
+.fs-60 {
+    font-size: 60%;
+}
+
+.fs-75 {
+    font-size: 75%;
+}
+
+.fs-80 {
+    font-size: 80%;
+}
+
+.fs-90 {
+    font-size: 90%;
+}
+
+.banner-container {
+    background: linear-gradient(to right, #000000, #000000);
+
+    & .img-banner {
+        max-height: 10rem;
+
+    }
+}
+
+.min-size-200px {
+    min-width: 200px;
+}
+
+.bi-fw {
+    width: 24px;
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.badge-sm {
+    font-size: 0.6em;
+    padding: 0.2em 0.5em .3em .5em;
+}
+
+.cursor-default {
+    cursor: default;
+}
+
+a {
+    &.disabled {
+        pointer-events: none;
+        color: var(--bs-link-disabled) !important;
+        opacity: 0.5;
+        text-decoration: none;
+        cursor: default;
+    }
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: gray;
+    font-style: italic;
+    font-size: 13px;
+    opacity: 0.8;
+}
+
+.page-link {
+    cursor: pointer;
+}
+
+.grippy {
+    content: '....';
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    overflow: hidden;
+    line-height: 5px;
+    padding: 3px 4px;
+    vertical-align: middle;
+    margin-top: -.7em;
+    margin-right: .3em;
+    font-size: 12px;
+    font-family: sans-serif;
+    letter-spacing: 2px;
+    color: #cccccc;
+    text-shadow: 1px 0 1px black;
+    cursor: move;
+
+    &::after {
+        content: '.. .. .. ..';
+    }
+}
+
+@media (min-width:767.98px) {
+    .app-logo-container {
+        display: none;
+    }
+}

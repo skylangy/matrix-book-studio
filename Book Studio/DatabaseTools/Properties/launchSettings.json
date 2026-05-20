@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "DatabaseTools": {
+      "commandName": "Project",
+      "commandLineArgs": "lite-to-raven"
+    }
+  }
+}

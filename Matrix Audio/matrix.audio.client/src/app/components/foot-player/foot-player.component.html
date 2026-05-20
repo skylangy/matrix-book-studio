@@ -1,0 +1,90 @@
+<div class="player-bottom full-player">
+    <div class="left">
+        @if(audioPlayer.canPlay){
+        <a routerLink="/public/episode/{{albumId}}/{{episodeId}}">
+            <div class="album-info">
+                <img [src]="audioPlayer.episode?.album?.imageSquareSplash || audioPlayer.episode?.album?.imageWideSplash| image"
+                    class="flex-shrink-0 me-3 album-avatar" alt="{{audioPlayer.episode?.title}}">
+                <div class="w-100">
+                    <h6 class="album-name">
+                        <div class="scroll-name" [ngClass]="{'scroll': audioPlayer.isPlaying}">
+                            {{audioPlayer.episode?.title}}</div>
+                    </h6>
+                    <h6 class="album-author">{{audioPlayer.episode?.album?.artist?.name}}</h6>
+                </div>
+            </div>
+        </a>
+        }
+    </div>
+
+    <div class="center">
+        <div class="player">
+            <div class="player-controls">
+                <button class="player-button sm" title="Previous" [disabled]="!audioPlayer.canGoPrev"
+                    (click)="playService.previous()">
+                    <i class="bi bi-chevron-bar-left"></i>
+                </button>
+                <mtx-toggle-button [isEnabled]="audioPlayer.canPlay" [isOn]="audioPlayer.isPlaying"
+                    offStatusIcon="bi bi-play" onStatusIcon="bi bi-pause text-success-emphasis"
+                    buttonStyle="player-button lg" title="Play" (statusChanged)="audioPlayer.playStatusChanged($event)">
+                </mtx-toggle-button>
+                <button class="player-button sm" title="Next" [disabled]="!audioPlayer.canGoNext"
+                    (click)="playService.next()">
+                    <i class="bi bi-chevron-bar-right"></i>
+                </button>
+            </div>
+            <div class="player-progress">
+                <span class="progress-label">{{audioPlayer.currentPosition | toTime}}</span>
+                <input type="range" class="form-range player-progress-bar" [max]="audioPlayer.duration"
+                    [disabled]="!audioPlayer.episode" [(ngModel)]="audioPlayer.currentPosition">
+                <span class="progress-label">{{audioPlayer.duration | toTime}}</span>
+            </div>
+
+            <div class="dropdown player-controls">
+                <a id="sleepDropdown" href="#" class="btn btn-secondary dropdown-toggle player-button sm"
+                    data-bs-toggle="dropdown" aria-expanded="false" data-bs-boundary="body">
+                    <i class="bi {{sleepIcon}}"></i>
+                </a>
+                <ul class="dropdown-menu shadow" aria-labelledby="sleepDropdown">
+                    @for (item of playerSetting.sleepSettings; track $index) {
+                    <li>
+                        <a class="dropdown-item text-decoration-none" (click)="setSleep(item)">
+                            <i class="bi bi-fw" [ngClass]="{'bi-check': item.selected}"></i> {{item.name}}
+                        </a>
+                    </li>
+                    }
+                </ul>
+            </div>
+
+            <div class="dropdown player-controls">
+                <a id="speedDropdown" href="#" class="btn btn-secondary dropdown-toggle player-button sm"
+                    data-bs-toggle="dropdown" aria-expanded="false" data-bs-boundary="body">
+                    <i class="bi {{speedIcon}}"></i>
+                </a>
+                <ul class="dropdown-menu shadow" aria-labelledby="speedDropdown">
+                    @for (item of playerSetting.speedSettings; track $index) {
+                    <li>
+                        <a class="dropdown-item text-decoration-none" (click)="setSpeed(item)">
+                            <i class="bi bi-fw" [ngClass]="{'bi-check': item.selected}"></i> {{item.name}}
+                        </a>
+                    </li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="right player">
+        <div class="player-controls">
+            <mtx-toggle-button [isEnabled]="audioPlayer.canPlay" offStatusIcon="bi bi-volume-up"
+                onStatusIcon="bi bi-volume-mute" buttonStyle="player-button" title="Volume"
+                (statusChanged)="toggleMute($event)">
+            </mtx-toggle-button>
+            <input type="range" class="form-range" min="0" max="100" [disabled]="!audioPlayer.episode"
+                [(ngModel)]="audioPlayer.volume">
+        </div>
+    </div>
+</div>
+
+
+<mtx-player [episode]="audioPlayer.episode"></mtx-player>

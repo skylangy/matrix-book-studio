@@ -1,0 +1,89 @@
+<mtx-admin-container>
+    <mtx-header-content header="Edit {{model?.title}}" [icon]="icon">
+
+        @if(model){
+        <form [formGroup]="dataForm" (ngSubmit)="onSubmit()" class="py-3">
+            <div class="row border-bottom pb-3 mb-3">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        @if(model){
+                        <span class="text-secondary">Date created: {{model.dateCreated! | date:'yyyy-MM-dd'}}</span>
+                        }
+                    </div>
+
+                    <div>
+                        <button type="button" class="btn btn-outline-secondary" (click)="back()">Back</button>
+                        <button type="submit" class="btn btn-primary ms-2">Save</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col col-md-8">
+                    <div class="form-group mb-3">
+                        <label for="title" class="form-label fs-5">Title</label>
+                        <input id="title" type="text" formControlName="title" class="form-control" />
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label for="description" class="form-label fs-5">Description</label>
+                        <textarea id="description" formControlName="description" class="form-control"
+                            rows="8"></textarea>
+                    </div>
+
+                    <div class="mb-2 fs-5">Episodes</div>
+                    <ul class="list-group mb-3">
+                        @for (item of model.episodes; track $index) {
+                        <li class="list-group-item d-flex justify-content-between">
+                            <div>{{item.title}}</div>
+                            <div class="text-muted text-secondary">{{item.duration | msToTime}}</div>
+                        </li>
+                        }
+                    </ul>
+                </div>
+
+                <div class="col col-md-4">
+                    <div class="mb-2">
+                        <label for="image" class="form-label">Splash</label>
+
+                        @if(model.imageWideSplash){
+                        <div class="card mb-3">
+                            <img id="image" [src]="model.imageWideSplash | image" class="img-fluid rounded"
+                                alt="Splash" />
+                        </div>
+                        }
+                    </div>
+
+                    <div class="mb-2">
+                        <label for="category" class="form-label">Category</label>
+                    </div>
+
+                    <div class="mb-2">
+                        <label for="tag" class="form-label">Tag</label>
+                    </div>
+
+                    <div class="mb-2">
+                        <ul class="list-group">
+                            @for (item of albumInfo; track $index) {
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <span>{{item.name}}</span>
+                                <span class="badge rounded-pill text-bg-secondary">{{item.value}}</span>
+                            </li>
+                            }
+                        </ul>
+                    </div>
+
+                    <div class="mb-2">
+                        <label for="tag" class="form-label">Level</label>
+                        <select class="form-select" id="bookLevel" formControlName="level">
+                            @for(level of levels; track level){
+                            <option value="{{level.value}}">{{level.name}}</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </form>
+        }
+    </mtx-header-content>
+</mtx-admin-container>

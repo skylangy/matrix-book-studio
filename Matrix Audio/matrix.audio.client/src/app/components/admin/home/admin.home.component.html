@@ -1,0 +1,17 @@
+<div class="container-fluid pt-2">
+    <div class="row">
+        <div class="col">
+            <mtx-header-content header="Overview" [icon]="icon">
+
+            </mtx-header-content>
+        </div>
+    </div>
+    <div class="row">
+        @for(info of infoList; track info){
+        <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
+            <mtx-info-card [title]="info.title" [info]="info.info" [moreLink]="info.link"
+                [icon]="info.icon"></mtx-info-card>
+        </div>
+        }
+    </div>
+</div>

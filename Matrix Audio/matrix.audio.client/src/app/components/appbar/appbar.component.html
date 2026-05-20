@@ -1,0 +1,12 @@
+<div class="appbar">
+    <div class="appbar-buttons">
+        @for (nav of navs; track $index) {
+        <a class="appbar-button" [routerLink]="nav.route" routerLinkActive="active">
+            <div class="button-content ">
+                <i class="icon bi bi-{{nav.icon}}"></i>
+                <span>{{nav.name}}</span>
+            </div>
+        </a>
+        }
+    </div>
+</div>

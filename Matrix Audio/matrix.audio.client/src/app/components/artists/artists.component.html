@@ -1,0 +1,39 @@
+@if(title){
+<div class="container-fluid mt-3">
+    <div class="row">
+        <h4 class="text-start col-sm-8">{{title}}</h4>
+        <div class=" col-sm-4">
+            <input type="search" class="form-control" placeholder="{{'Find a author'| translate}}..."
+                aria-label="Search" [(ngModel)]="searchText" (keydown.enter)="search()">
+        </div>
+    </div>
+</div>
+}
+@if(isLoading){
+<mtx-loading></mtx-loading>
+} @else {
+@switch (layout) {
+@case ('grid') {
+<div class="artists-grid">
+    @for (artist of artists; track $index) {
+    @if(!artist.isHidden){
+    @defer (on viewport) {
+    <mtx-artist [artist]="artist" [cardSize]="cardSize" (artistLoaded)="onArtistLoaded($event)"></mtx-artist>
+    } @placeholder {
+    <div class="artist-card"></div>
+    }}}
+</div>
+}
+@case ('horizontal') {
+<div class="d-flex overflow-x-auto">
+    @for (artist of artists; track $index) {
+    @if(!artist.isHidden){
+    @defer(on viewport){
+    <mtx-artist [artist]="artist" [cardSize]="cardSize" (artistLoaded)="onArtistLoaded($event)"></mtx-artist>
+    } @placeholder {
+    <div class="artist-card {{cardSize}}"></div>
+    }}}
+</div>
+}
+}
+}

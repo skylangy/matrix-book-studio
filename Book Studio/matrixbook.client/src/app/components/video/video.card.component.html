@@ -1,0 +1,121 @@
+@if(isVertical){
+<div class="card model-card">
+    <div class="row g-0">
+        <div class="col-md-5">
+            @if (hasImage) {
+            @defer(on viewport){
+            <a routerLink="edit/{{video.id}}" routerLinkActive="router-link-active" rel="noopener noreferrer"
+                title="Edit {{video.title}}">
+                <img [src]="getVideoImage()" class="img-fluid rounded-start h-100" alt="{{video.title}}">
+            </a>
+            } @placeholder {
+            <div></div>
+            }
+            } @else {
+            <a target="_blank" rel="noopener noreferrer" title="Edit Video">
+                <svg class="bd-placeholder-img card-img-top video-thumbnail" width="100%" viewBox="0 0 384 216"
+                    xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail"
+                    preserveAspectRatio="xMidYMid slice" focusable="false">
+                    <title>{{video.title}}</title>
+                    <rect width="100%" height="100%" fill="#55595c"></rect>
+                    <text x="50%" y="50%" fill="#eceeef" dy=".3em">{{video.title}}</text>
+                </svg>
+            </a>
+            }
+
+        </div>
+        <div class="col-md-7">
+            <div class="card-body model-card-horizontal">
+                <div>
+                    <h5 class="card-title model-title">{{video.title}}</h5>
+
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="text-body-secondary model-category me-2" title="Category">
+                            {{video.name}} {{video.category || 'Uncategorized'}}
+                        </div>
+                        <div class="text-body-secondary model-date" title="Date Created">{{video.dateCreated | date}}
+                        </div>
+                    </div>
+                </div>
+
+                <p class="card-text model-summary small light mt-1">{{video.content}}</p>
+
+                <div class="card-actions">
+                    <div class="btn-group">
+                        <a routerLink="edit/{{video.id}}" class="model-action-link me-2" title="Edit video">
+                            <i class="bi bi-pencil-square me-1"></i>Edit
+                        </a>
+
+                        <a (click)="deleteVideo(video.id)" class="model-action-link me-2" title="Edit video">
+                            <i class="bi bi-trash me-1"></i>Delete
+                        </a>
+                    </div>
+                    <small class="text-body-secondary" title="Date Updated">
+                        {{video.dateUpdated | date:'shortDate'}}
+                    </small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+} @else {
+<div class="card model-card shadow-sm ">
+    @if (hasImage) {
+    @defer(on viewport){
+    <a routerLink="edit/{{video.id}}" routerLinkActive="router-link-active" rel="noopener noreferrer"
+        title="Edit Video">
+        <img class="card-img-top video-thumbnail" [src]="getVideoImage()" alt="{{video.title}}"
+            (error)="handleImageError($event)">
+    </a>
+    } @placeholder {
+    <div></div>
+    }
+    } @else {
+    <a target="_blank" rel="noopener noreferrer" title="Edit Video">
+        <svg class="bd-placeholder-img card-img-top video-thumbnail" width="100%" viewBox="0 0 384 216"
+            xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail"
+            preserveAspectRatio="xMidYMid slice" focusable="false">
+            <title>{{video.title}}</title>
+            <rect width="100%" height="100%" fill="#55595c"></rect>
+            <text x="50%" y="50%" fill="#eceeef" dy=".3em">{{video.title}}</text>
+        </svg>
+    </a>
+    }
+
+    <div class="card-body">
+        <div class="d-flex justify-content-between">
+            <div class="model-title small" [title]="video.title">{{video.title}}</div>
+
+            <div class="text-body-secondary model-date" title="Date Created">{{video.dateCreated | date}}
+            </div>
+        </div>
+        <div class="d-flex justify-content-between mb-2">
+            <div class="model-subtitle me-2" title="Subtitle">{{video.subtitle}}</div>
+            <div class="text-body-secondary model-author me-2" title="Author">
+                {{video.category || 'Uncategorized'}}
+            </div>
+        </div>
+        <p class="card-text model-summary light h-100-px">{{video.content}}</p>
+
+        <div class="d-flex justify-content-between align-items-center">
+            <div class="btn-group">
+                <a routerLink="edit/{{video.id}}" class="model-action-link me-2" title="Edit video">
+                    <i class="bi bi-pencil-square me-1"></i>Edit
+                </a>
+
+                <a routerLink="videos/play/{{video.id}}/{{video.title}}" class="model-action-link me-2"
+                    title="Edit video">
+                    <i class="bi bi-play me-1"></i>Play
+                </a>
+
+                <a (click)="deleteVideo(video.id)" class="model-action-link me-2" title="Edit video">
+                    <i class="bi bi-trash me-1"></i>Delete
+                </a>
+
+            </div>
+            <small class="text-body-secondary" title="Date Updated">{{video.dateUpdated | date:'shortDate'}}</small>
+        </div>
+    </div>
+
+</div>
+}

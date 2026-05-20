@@ -1,0 +1,15 @@
+.main-header {
+    padding: .5rem 1rem;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap !important;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--bs-body-bg);
+}
+
+@media (max-width: 992px) {
+    .main-header {
+        padding: .5rem;
+    }
+}

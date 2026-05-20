@@ -1,0 +1,6 @@
+whisper
+opencc
+Levenshtein
+logging
+torch
+argparse

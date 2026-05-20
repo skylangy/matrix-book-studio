@@ -1,0 +1,24 @@
+<mtx-banner imageUrl="/assets/images/banners/banner-5.png"></mtx-banner>
+
+<div class="container-fluid mt-2">
+    <div class="row">
+        @for (post of posts; track $index) {
+        <div class="col-md-4 col-sm-6">
+            <div class="card post-card mb-3 shadow-sm">
+                <img [src]="post.image | image" class="card-img-top" alt="{{post.title}}">
+                <div class="card-body">
+                    <a routerLink="/public/post/{{post.id}}">
+                        <h5 class="card-title">{{post.title}}</h5>
+                    </a>
+                    <p class="card-text text-secondary-emphasis small">{{post.content | summary: 200}}</p>
+
+                    <div class="d-flex justify-content-between">
+                        <div></div>
+                        <p class="small text-secondary">{{post.dateUpdated | date:'yyyy-MM-dd'}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        }
+    </div>
+</div>

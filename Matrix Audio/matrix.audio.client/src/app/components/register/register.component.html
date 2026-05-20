@@ -1,0 +1,76 @@
+<div class="login-host">
+    <mtx-split-layout extra="login-container">
+        <ng-container left>
+            <mtx-img-pane imgUrl="/assets/images/library.jpg"></mtx-img-pane>
+        </ng-container>
+
+        <ng-container right>
+            <div class="login-content">
+                <section class="border-bottom mb-4">
+                    <h5 class="title">{{'Register' | translate}} </h5>
+                    <p class="subtitle">
+                        {{'Create a new account' | translate}}
+                    </p>
+                </section>
+
+                <form [formGroup]=" dataForm" (ngSubmit)="register(dataForm.value)">
+                    <div class="mb-3">
+                        <label for="email" class="form-label">{{'Email address'| translate}}</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="bi bi-envelope"></i></span>
+                            <input type="email" class="form-control" id="email" formControlName="email"
+                                placeholder="your-name@email.com" required>
+                        </div>
+                        @if(check('email', 'required')){
+                        <div class="text-danger error">{{'Email is required.' | translate}}</div>
+                        }
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="name" class="form-label">{{'Display Name' | translate}}</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="bi bi-person"></i></span>
+                            <input type="text" class="form-control" id="name" formControlName="name"
+                                placeholder="{{'Your display name' | translate}}" required>
+                        </div>
+                        @if(check('email', 'required')){
+                        <div class="text-danger error">{{'Name is required.' | translate}}</div>
+                        }
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Password</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="bi bi-key"></i></span>
+                            <input type="password" class="form-control" id="password"
+                                placeholder="{{'Password' | translate}}" formControlName="password" required>
+                        </div>
+                        @if(check('password', 'required')){
+                        <div class="text-danger error">{{'Password is required.' | translate}}</div>
+                        }
+                    </div>
+
+
+                    @if(hasOperation){
+                    <div class="m-t-1">
+                        <mtx-alert [header]="operation.header!" [body]="operation.body!"
+                            [type]="operation.type!"></mtx-alert>
+                    </div>
+                    }
+
+                    <div class="d-flex justify-content-between ">
+                        <p class="mt-2 text-muted">
+                            {{'Already have an account?' | translate}} <a class="text-reset "
+                                [routerLink]="['/login']"><strong>{{'Log in' | translate}}</strong></a>
+                        </p>
+
+                        <div class="m-t-15">
+                            <button class="btn btn-primary shadow" type="submit" [disabled]="!dataForm.valid">{{'Create
+                                Account' | translate}}</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </ng-container>
+    </mtx-split-layout>
+</div>

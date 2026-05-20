@@ -1,0 +1,37 @@
+<div class="container p-2 px-5 mb-5">
+    <div class="py-5 text-center">
+        <h2>{{'Checkout'| translate}} </h2>
+        <p class="lead">{{'You are almost there! Review your order and get ready to enjoy your audiobooks.' |
+            translate}}</p>
+    </div>
+
+    <div class="row g-5">
+
+        <div class="col-md-5 col-lg-4 order-md-last">
+            <mtx-order-summary [showProceedButton]="false" [promo]="promo"></mtx-order-summary>
+        </div>
+
+        <div class="col-md-7 col-lg-8">
+            <form id="payment-form" class="payment-host">
+                <div id="payment-element">
+
+                </div>
+
+                @if(errorMessage) {
+                <div class="alert alert-danger mt-3" role="alert">
+                    {{errorMessage}}
+                </div>
+                }
+                <hr class="my-4">
+
+                <button class="w-100 btn btn-primary btn-lg" type="button" (click)="submit()">{{'Checkout' |
+                    translate}}
+
+                    @if(amount){
+                    <span class="amount">({{amount | currency}})</span>
+                    }
+                </button>
+            </form>
+        </div>
+    </div>
+</div>

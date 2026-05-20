@@ -1,0 +1,16 @@
+@if(model){
+<mtx-foldable-title title="Audio" subtitle="Configure audio settings for the video" [isFolded]="true">
+    <div class="row mb-3">
+        <div class="col-md-4">
+            <label for="introAudio" class="form-label">Intro Audio</label>
+            <mtx-video-resource-text name="introAudio" [resource]="model.introAudio" resourceType="audio"
+                (onSelectResource)="selectIntroAudio()"></mtx-video-resource-text>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <mtx-voice-selector orientation="horizontal" [(service)]="model.speechService!" [(language)]="model.language!"
+            [(voice)]="model.voiceName!"></mtx-voice-selector>
+    </div>
+</mtx-foldable-title>
+}

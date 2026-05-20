@@ -1,0 +1,17 @@
+<div class="artist-card {{cardSize}}">
+    <a routerLink="/public/author/{{artist?.id}}">
+        @defer (on viewport) {
+        <!-- <img src="{{artist?.image | avatar}}" (error)="onImgError($event)" class="shadow" alt="{{artist?.name}}"> -->
+        <img [lazyImage]="artist?.image" (error)="onImgError($event)" class="shadow" alt="{{artist?.name}}">
+        } @placeholder {
+        <div class="img-placeholder"></div>
+        }
+
+        <div class="card-body mt-3">
+            <h6 class="card-title text-center mt-2">
+                {{artist?.name}}
+                <span class="small">{{artist?.albumsCount}}</span>
+            </h6>
+        </div>
+    </a>
+</div>

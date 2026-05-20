@@ -1,0 +1,9 @@
+node_modules
+bin
+obj
+*.log
+*.md
+*.zip
+Dockerfile
+.dockerignore
+.vscode/

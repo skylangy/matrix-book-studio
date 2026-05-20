@@ -1,0 +1,53 @@
+{
+  "name": "matrix-book",
+  "version": "1.1.0",
+  "scripts": {
+    "ng": "ng",
+   "start": "ng serve",
+    "build": "ng build --configuration production",
+    "watch": "ng build --watch --configuration development",
+    "test": "ng test",
+
+    "start:windows": "ng serve --ssl --ssl-cert \"%APPDATA%\\ASP.NET\\https\\%npm_package_name%.pem\" --ssl-key \"%APPDATA%\\ASP.NET\\https\\%npm_package_name%.key\" --host=127.0.0.1 ",
+    "start:default": "ng serve --ssl --ssl-cert \"$HOME/.aspnet/https/${npm_package_name}.pem\" --ssl-key \"$HOME/.aspnet/https/${npm_package_name}.key\" --host=127.0.0.1"
+  },
+  "private": true,
+  "dependencies": {
+    "@angular/animations": "~20.0.1",
+    "@angular/common": "~20.0.1",
+    "@angular/compiler": "~20.0.1",
+    "@angular/core": "~20.0.1",
+    "@angular/forms": "~20.0.1",
+    "@angular/platform-browser": "~20.0.1",
+    "@angular/platform-browser-dynamic": "~20.0.1",
+    "@angular/router": "~20.0.1",
+    "@angular/cdk": "20.0.2",
+    "@microsoft/signalr": "8.0.7",
+    "bootstrap": "5.3.6",
+    "bootstrap-icons": "~1.13.1",
+    "highcharts": "12.2.0",
+    "highcharts-angular": "~4.0.0",
+    "monaco-editor": "0.52.2",
+    "ngx-infinite-scroll": "19.0.0",
+    "opencc-js": "~1.0.5",
+    "rxjs": "~7.8.2",
+    "tslib": "~2.8.1",
+    "zone.js": "~0.15.1"
+  },
+  "devDependencies": {
+    "@angular/build": "^20.0.1",
+    "@angular/cli": "~20.0.1",
+    "@angular/compiler-cli": "~20.0.1",
+    "@types/jasmine": "5.1.8",
+    "@types/natural": "6.0.1",
+    "@types/opencc-js": "1.0.3",
+    "jasmine-core": "5.7.1",
+    "karma": "~6.4.0",
+    "karma-chrome-launcher": "~3.2.0",
+    "karma-coverage": "~2.2.0",
+    "karma-jasmine": "~5.1.0",
+    "karma-jasmine-html-reporter": "2.1.0",
+    "run-script-os": "1.1.6",
+    "typescript": "~5.8.3"
+  }
+}

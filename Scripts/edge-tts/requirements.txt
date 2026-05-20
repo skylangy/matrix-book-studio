@@ -1,0 +1,6 @@
+flask==3.1.0
+edge-tts==7.0.0
+asyncio
+pydub==0.25.1
+gunicorn==23.0.0
+nest_asyncio==1.5.5

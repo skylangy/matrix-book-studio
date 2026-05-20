@@ -1,0 +1,13 @@
+<div class="list-group list-group-flush ">
+  @for (item of actions; track item) {
+    <button type="button" class="list-group-item list-group-item-action " (click)="execute(item)"
+      >
+      <div class="d-flex justify-content-between align-items-start">
+        <span>
+          <i class="bi bi-{{item.icon}} me-2"></i>
+          <span class="small">{{item.name}}</span>
+        </span>
+      </div>
+    </button>
+  }
+</div>

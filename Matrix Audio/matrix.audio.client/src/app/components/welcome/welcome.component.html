@@ -1,0 +1,56 @@
+<mtx-notification></mtx-notification>
+
+<mtx-post-slide> </mtx-post-slide>
+
+<div class="p-1">
+    <mtx-header-content header="{{'New Releases' | translate}}"
+        moreLinkUrl="/public/albums/recents/list/horizontal/Recents/{{pageSize}}/y">
+        <mtx-albums layout="horizontal" cardLayout="compact"></mtx-albums>
+    </mtx-header-content>
+
+    <mtx-header-content header="{{'Suggesttions' | translate}}"
+        moreLinkUrl="/public/albums/suggested/list/horizontal/Suggests/{{pageSize}}/y">
+        <mtx-albums layout="horizontal" cardLayout="compact" sourceType="suggested"></mtx-albums>
+    </mtx-header-content>
+
+    <mtx-header-content header="{{'Likes' | translate}}"
+        moreLinkUrl="/public/albums/likes/list/horizontal/Likes/{{pageSize}}/y">
+        <mtx-albums layout="horizontal" cardLayout="compact" sourceType="likes"></mtx-albums>
+    </mtx-header-content>
+
+    <mtx-header-content header="{{'Most Play This Week' | translate}}"
+        moreLinkUrl="/public/albums/recents/grid/compact/Most Play This Week/{{pageSize}}/y">
+        <mtx-albums layout="horizontal" cardLayout="compact" sourceType="playByWeek" [pageSize]="pageSize"></mtx-albums>
+    </mtx-header-content>
+
+    <mtx-header-content header="{{'Collections' | translate}}"
+        moreLinkUrl="/public/album-collections/recents/list/horizontal/Recents/{{pageSize}}/y">
+        <mtx-album-collections layout="horizontal" cardLayout="compact"></mtx-album-collections>
+    </mtx-header-content>
+
+    <mtx-header-content header="{{'New Authors' | translate}}"
+        moreLinkUrl="/public/artists/all/grid/medium/All Authors/1/{{pageSize}}">
+        <mtx-artists layout="horizontal"></mtx-artists>
+    </mtx-header-content>
+
+    <mtx-header-content header="{{'Popular Authors'| translate}}"
+        moreLinkUrl="/public/artists/all/grid/medium/All Authors/1/{{pageSize}}">
+        <mtx-artists layout="horizontal" sourceType="populars"></mtx-artists>
+    </mtx-header-content>
+
+
+    @if(isLoggedIn){
+    <mtx-header-content header="{{'My History' | translate}}"
+        moreLinkUrl="/public/albums/history/list/horizontal/My History/{{pageSize}}/y">
+        <mtx-albums layout="horizontal" cardLayout="compact" sourceType="history"
+            emptyMessage="{{'No play history found' | translate}}"></mtx-albums>
+    </mtx-header-content>
+
+    <mtx-header-content header="{{'My Favorites' | translate}}"
+        moreLinkUrl="/public/albums/favorites/list/horizontal/My Favorites/{{pageSize}}/y">
+        <mtx-albums layout="horizontal" cardLayout="compact" sourceType="favorites"
+            emptyMessage="{{'No favorite albums found' | translate}}"></mtx-albums>
+    </mtx-header-content>
+    }
+
+</div>

@@ -1,0 +1,101 @@
+<mtx-admin-container>
+    <mtx-header-content header="Edit {{model?.name}}" [icon]="icon">
+
+        @if(model){
+        <form [formGroup]="dataForm" (ngSubmit)="onSubmit()" class="py-3">
+            <div class="row border-bottom pb-3 mb-3">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        @if(model){
+                        <span class="text-secondary">Date created: {{model.dateCreated! | date:'yyyy-MM-dd'}}</span>
+                        }
+                    </div>
+
+                    <div>
+                        <button type="button" class="btn btn-outline-secondary" (click)="back()">Back</button>
+                        <button type="submit" class="btn btn-primary ms-2">Save</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col col-md-8">
+                    <div class="form-group mb-3">
+                        <label for="title" class="form-label fs-5">Name</label>
+                        <input id="title" type="text" formControlName="name" class="form-control" />
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label for="description" class="form-label fs-5">Description</label>
+                        <textarea id="description" formControlName="description" class="form-control"
+                            rows="8"></textarea>
+                    </div>
+
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <div class="mb-2 fs-5">Albums</div>
+                        <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal"
+                            data-bs-target="#exampleModal">
+                            <i class="bi bi-plus"></i> Add
+                        </button>
+                    </div>
+                    <ol class="list-group list-group-numbered mb-3" cdkDropList [cdkDropListData]="model.albums"
+                        (cdkDropListDropped)="drop($event)">
+                        @for (item of model.albums; track $index) {
+                        <li class="list-group-item d-flex justify-content-between align-items-center" cdkDrag>
+                            <div class="ms-2 me-auto"><span class="grippy"></span> {{item.title}}</div>
+                            <div class="text-muted text-secondary">
+                                <span>{{item.dateUpdated | date:'yyyy-MM-dd'}}</span>
+                                <button type="button" class="icon-button" title="Remove Album from collection"
+                                    (click)="removeAlbum(item)">
+                                    <i class="bi bi-trash"></i>
+                                </button>
+                            </div>
+                        </li>
+                        }
+                    </ol>
+                </div>
+
+                <div class="col col-md-4">
+                    <div class="mb-2">
+                        <label for="image" class="form-label">Splash</label>
+
+                        @if(model.image){
+                        <div class="card ">
+                            <img [src]="model.image | image" class="img-fluid rounded" alt="Splash" />
+                        </div>
+                        <div class="text-end">
+                            <button type="button" class="icon-button me-2" (click)="removeSplash()"
+                                title="Remove splash">
+                                <i class="bi bi-trash"></i>
+                            </button>
+                        </div>
+                        } @else {
+                        <mtx-file-uploader (onFileReady)="onFileReady($event)"></mtx-file-uploader>
+                        }
+                    </div>
+                </div>
+            </div>
+        </form>
+        }
+    </mtx-header-content>
+</mtx-admin-container>
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" data-bs-backdrop="static" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Albums</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <mtx-admin-album-selector (albumSelected)="albumSelected($event)"></mtx-admin-album-selector>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="addAlbums()">OK</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>

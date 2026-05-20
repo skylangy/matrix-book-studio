@@ -1,0 +1,53 @@
+<div class="statusbar">
+  <div class="lef-group">
+    @if (hasBook) {
+      <div class="statusbar-item">
+        {{book?.title}}
+        @if (isDirty) {
+          <span class="text-warning">* </span>
+        }
+      </div>
+    }
+    @if (hasBook) {
+      @for (warning of warnings; track warning) {
+        <div class="statusbar-item text-warning">
+          {{warning}}
+        </div>
+      }
+    }
+
+    @if (currentProgress) {
+      <div class="statusbar-item">
+        <span>
+          <i class="bi"
+          [ngClass]="{'text-success bi-check-square': currentProgress.success, 'text-warning bi-exclamation-square': !currentProgress.success}"></i>
+        </span>
+        <span class="ms-2">{{currentProgress.category}}, </span>
+        <span class="ms-2">{{currentProgress.description}}</span>
+        <span class="ms-2">{{((currentProgress.current ||0) / (currentProgress.total||100)) * 100 |
+        number:'1.0-0'}}%</span>
+      </div>
+    }
+  </div>
+
+  <div class="right-group">
+    @if (hasBook) {
+      <div class="statusbar-item"> {{chapterCount}} chapters</div>
+    }
+    @if (hasBook) {
+      <div class="statusbar-item"> {{chunkCount}} chunks</div>
+    }
+    @if (hasBook) {
+      <div class="statusbar-item"> {{textCount | number}} characters </div>
+    }
+    @if (hasBook) {
+      <div class="statusbar-item">
+        Updated at {{book?.dateUpdated | date: 'yyyy-MM-dd HH:mm:ss'}}
+      </div>
+    }
+    @if (!hasBook) {
+      <div class="statusbar-item">{{now | date: 'yyyy-MM-dd HH:mm:ss'}}</div>
+    }
+  </div>
+
+</div>

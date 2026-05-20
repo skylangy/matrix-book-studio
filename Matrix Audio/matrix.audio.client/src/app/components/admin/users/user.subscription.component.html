@@ -1,0 +1,92 @@
+<div class="mt-5">
+
+    <div class="row border-bottom mb-3">
+        <div class="d-flex justify-content-between align-items-center mb-2">
+            <div class="fs-5">
+                Subscription
+            </div>
+            <div>
+
+            </div>
+        </div>
+    </div>
+
+    @if(userSubscription){
+    <div class="row mb-3 border-bottom mb-3">
+        <div class="col-12">
+            <div class="mb-2 fs-6">Current Subscription</div>
+        </div>
+
+        <div class="col-md-3 col">
+            <label for="subName" class="form-label">Name</label>
+        </div>
+        <div class="col-md-9 col">
+            <div class="text-muted">{{userSubscription.name}}</div>
+        </div>
+
+        <div class="col-md-3 col">
+            <label for="subName" class="form-label">Level</label>
+        </div>
+        <div class="col-md-9 col">
+            <div class="text-muted">{{user?.level}}</div>
+        </div>
+
+        <div class="col-md-3 col">
+            <label for="subName" class="form-label">Start</label>
+        </div>
+        <div class="col-md-9 col">
+            <div class="text-muted">{{userSubscription.startDate | date}}</div>
+        </div>
+
+        <div class="col-md-3 col">
+            <label for="subName" class="form-label">End</label>
+        </div>
+        <div class="col-md-9 col">
+            <div class="text-muted">{{userSubscription.endDate| date}}</div>
+        </div>
+    </div>
+    }
+
+    <div class="row">
+        <div class="col-12">
+            <div class="mb-2 fs-6">Assing Subscription</div>
+        </div>
+
+        <div class="col-auto">
+            <label for="inputPassword6" class="col-form-label">Plan</label>
+        </div>
+        <div class="col">
+            <select class="form-select mb-3" [(ngModel)]="selectedPlan">
+                @for(plan of plans; track $index){
+                <option [value]="plan.id">{{plan.name}}</option>
+                }
+            </select>
+        </div>
+
+        <div class="col-auto">
+            <label for="inputPassword6" class="col-form-label">Period</label>
+        </div>
+        <div class="col ">
+            <select class="form-select mb-3" [(ngModel)]="selectedPeriod">
+                @for(period of periods; track $index){
+                <option [value]="period.value">{{period.name}}</option>
+                }
+            </select>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+
+                </div>
+                <div>
+                    <button type="button" class="btn btn-primary" (click)="assignSubscription()"
+                        [disabled]="!canAssign">Assign</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

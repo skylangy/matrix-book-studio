@@ -1,0 +1,84 @@
+<div class="container-fluid no-padding">
+    <div class="row p-3 border-bottom mt-2">
+        <div class="col-xxl-2 col-xl-3 col-lg-4 col-md-3 col-sm-4 col-12 text-center mb-3">
+            <div class="card">
+                <mtx-avatar [user]="user"></mtx-avatar>
+
+                <div class="card-body">
+                    <h4 class="card-title">{{user?.name}}</h4>
+                    @if(user?.level ){
+                    <h6 class="d-none">({{user?.level}})</h6>
+                    }
+                </div>
+
+                <ul class="list-group list-group-flush text-center">
+                    <li class="list-group-item">{{'Email' | translate}} {{user?.email }}</li>
+                    <li class="list-group-item">{{'Register at' | translate}} {{user?.dateCreated | date }}</li>
+                    <li class="list-group-item">{{'Last login' | translate}} {{user?.dateLastLogin| date }}</li>
+                    @if(subscription){
+                    <li class="list-group-item">{{'Current Subscription' | translate}}:
+                        <strong>{{subscription.name}}</strong>
+                    </li>
+                    <li class="list-group-item fw-lighter">{{'Start Date' | translate}}: {{subscription.startDate | date
+                        }} </li>
+                    <li class="list-group-item fw-lighter">{{'End Date' | translate}}: {{subscription.endDate | date}}
+                    </li>
+                    }
+                </ul>
+            </div>
+        </div>
+
+        <div class="col-xxl-10 col-xl-9 col-lg-8 col-md-9 col-sm-8 col-12 mb-3">
+            <h4>{{'Actions' | translate}}</h4>
+            <ul class="list-group">
+                <div class="list-group-item">
+                    <mtx-expandable title="{{'Reset Password'| translate}}"
+                        subtitle="{{'Reset your password'| translate}}">
+                        <mtx-reset-password></mtx-reset-password>
+                    </mtx-expandable>
+                </div>
+                <div class="list-group-item">
+                    <mtx-expandable title="{{'Upgrade Plan'| translate}}"
+                        subtitle="{{'Upgrade your suscription plan to have ore features' | translate}}"
+                        [isEnable]="canUpgradePlan">
+                        <div id="upgrade">
+                            <div class="mb-3">
+                                <label for="plan" class="form-label">{{'Plans you can upgrade to'| translate}}</label>
+                                <select class="form-select" id="plan" [(ngModel)]="upgradeToId">
+                                    @for(plan of plans; track plan){
+                                    <option value="{{plan.id}}">{{plan.name}}</option>
+                                    }
+                                </select>
+                            </div>
+                            <div class=" text-end">
+                                <button type="button" class="btn btn-primary" (click)="upgrade()"
+                                    [disabled]="upgradeToId === undefined">{{'Upgrade' | translate}}</button>
+                            </div>
+                        </div>
+                    </mtx-expandable>
+                </div>
+                <div class="list-group-item d-none">
+                    <mtx-expandable title="{{'Billing Information'| translate}}"
+                        subtitle="{{'Update your billing information'  | translate}}" [isEnable]="false">
+                        <form>
+                            <div class="mb-3">
+                                <label for="cardNumber" class="form-label">{{'Card Number' | translate}}</label>
+                                <input type="text" class="form-control" id="cardNumber">
+                            </div>
+                            <div class="mb-3">
+                                <label for="expirationDate" class="form-label">{{'Expiration date' | translate}}</label>
+                                <input type="text" class="form-control" id="expirationDate">
+                            </div>
+                        </form>
+                    </mtx-expandable>
+                </div>
+            </ul>
+        </div>
+    </div>
+
+    <div class="row p-3">
+        <div class="col-md-12">
+            <mtx-orders></mtx-orders>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,149 @@
+.model-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+    grid-gap: 10px;
+    padding: 1rem 0;
+
+    &.small-grid {
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        padding: .8rem 0;
+    }
+}
+
+.model-card {
+    height: 100%;
+
+    & .progress,
+    .progress-stacked {
+        --bs-progress-border-radius: 0;
+        --bs-progress-height: .25rem;
+    }
+
+    & .card-body {
+        overflow: hidden;
+        padding: .75rem;
+        display: flex;
+        flex-direction: column;
+    }
+
+    & .item-category {
+        height: 21px;
+        overflow: hidden;
+    }
+
+    & .model-status {
+        font-size: 0.9rem;
+
+        &.small {
+            font-size: 0.8rem;
+        }
+    }
+
+    & .model-title {
+        font-size: 1.25rem;
+        white-space: nowrap;
+        overflow: hidden;
+
+        &.small {
+            font-size: 1rem;
+            ;
+        }
+    }
+
+    & .model-subtitle {
+        font-size: .85rem;
+        white-space: nowrap;
+        min-height: 1rem;
+        overflow: hidden;
+    }
+
+    & .model-author {
+        font-size: 1rem;
+        text-wrap: nowrap;
+    }
+
+    & .model-date {
+        font-size: 0.8rem;
+    }
+
+    & .model-count {
+        font-size: 1rem;
+    }
+
+    & .model-action-link {
+        font-size: 0.9rem;
+        text-decoration: none;
+        white-space: nowrap;
+        color: var(--bs-secondary-text-emphasis);
+        cursor: pointer;
+
+        &:hover {
+            color: var(--primary-color);
+        }
+    }
+
+    & .model-summary {
+        font-size: 0.9rem;
+        overflow: hidden;
+        flex: 1 1 auto;
+
+        &.light {
+            font-weight: lighter;
+        }
+
+        &.h-100-px {
+            height: 100px;
+        }
+
+        &.small {
+            font-size: 0.875rem;
+        }
+    }
+}
+
+
+.model-card-horizontal {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+    & .model-title {
+        white-space: nowrap;
+        overflow: hidden;
+        font-size: 1rem;
+    }
+
+    & .card-actions {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    & .model-action-link {
+        font-size: 0.9rem;
+        text-decoration: none;
+        white-space: nowrap;
+        color: var(--bs-secondary-text-emphasis);
+        cursor: pointer;
+    }
+
+    & .model-date,
+    .model-category {
+        font-size: .875rem;
+    }
+
+    & .model-summary {
+        height: 180px;
+        overflow: hidden;
+        flex: 1 1 auto;
+        font-size: 1rem;
+
+        &.small {
+            font-size: 0.875rem;
+        }
+
+        &.light {
+            font-weight: lighter;
+        }
+    }
+}

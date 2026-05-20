@@ -1,0 +1,67 @@
+<mtx-admin-container>
+    <mtx-header-content header="Edit - {{model?.subject}}" [icon]="icon">
+
+        @if(model){
+        <form [formGroup]="dataForm" (ngSubmit)="onSubmit()" class="py-3">
+            <div class="row border-bottom pb-3 mb-3">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <span class="text-secondary">Date created: {{model.dateCreated! | date:'yyyy-MM-dd'}}</span>
+                    </div>
+
+                    <div>
+                        <button type="button" class="btn btn-outline-secondary" (click)="back()">Back</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col col-md-8">
+                    <div class="form-group mb-3">
+                        <label for="subject" class="form-label">Subject</label>
+                        <input id="subject" type="text" formControlName="subject" class="form-control" readonly />
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label for="content" class="form-label">Content</label>
+                        <textarea id="content" formControlName="content" class="form-control" rows="8"
+                            readonly></textarea>
+                    </div>
+
+                    <div class="text-end">
+                        <button type="button" class="btn btn-outline-secondary" (click)="back()">Reply</button>
+                    </div>
+                </div>
+
+                <div class="col col-md-4">
+                    @if(user?.imageId){
+                    <div class="card mb-3">
+                        <img [src]="avatar" class="img-fluid rounded" alt="avatar" />
+                    </div>
+                    }
+
+                    <ul class="list-group">
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <span>Name</span>
+                            <span> {{user?.name}}</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <span>Email</span>
+                            <span> {{user?.email}}</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <span>Register at</span>
+                            <span>{{user?.dateCreated | date}}</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <span>Books</span>
+                            <span>{{user?.readBooks}}</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </form>
+        }
+
+    </mtx-header-content>
+</mtx-admin-container>

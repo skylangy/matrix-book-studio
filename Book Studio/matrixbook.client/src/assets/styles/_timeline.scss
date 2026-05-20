@@ -1,0 +1,263 @@
+:root {
+    --bg-dark: #1e1e1e;
+    --track-bg: #2a2a2a;
+    --ruler-bg: #333;
+    --scrollbar-track: #333;
+    --scrollbar-thumb: #666;
+    --scrollbar-thumb-hover: #888;
+    --playhead-color: #ff4d4d;
+    --keyframe-color: #4da8ff;
+    --keyframe-hover: #66b8ff;
+    --clip-color: #4da8ff;
+    --color-audio: #007bff;
+    --color-image: #28a745;
+    --color-video: #004405;
+    --color-text: #ffc107;
+    --color-text-foreground: #000;
+    --number-color: #fff;
+    --left-space: 1.5rem;
+
+    --font-family: Arial, sans-serif;
+    --border-radius: 8px;
+    --track-height: 28px;
+    --playhead-width: 2px;
+    --keyframe-size: 8px;
+}
+
+// Container for the entire timeline
+.timeline-container {
+    width: 100%;
+    background-color: var(--bg-dark);
+    border-radius: var(--border-radius);
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    box-sizing: border-box;
+    font-family: var(--font-family);
+    user-select: none;
+
+    &::-webkit-scrollbar {
+        height: 8px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: var(--scrollbar-track);
+        border-radius: 4px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: var(--scrollbar-thumb);
+        border-radius: 4px;
+
+        &:hover {
+            background: var(--scrollbar-thumb-hover);
+        }
+    }
+}
+
+.timeline-tracks {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding-left: var(--left-space);
+
+    counter-reset: track-counter;
+}
+
+.timeline-track {
+    width: 100%;
+    height: var(--track-height);
+    background-color: var(--track-bg);
+    margin-bottom: 0.5rem;
+    margin-top: 0.5rem;
+    border-radius: 0.25rem;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    counter-increment: track-counter;
+
+    &::before {
+        content: counter(track-counter) ". ";
+        position: absolute;
+        left: -1rem;
+        top: 50%;
+        transform: translateY(-50%);
+        font-weight: bold;
+        z-index: 99;
+        color: var(--number-color, #333);
+    }
+}
+
+.timeline-element {
+    position: absolute;
+    height: 100%;
+    border-radius: 3px;
+    color: #fff;
+    padding: 2px 6px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+
+    &.audio {
+        background-color: var(--color-audio);
+
+        &.auto-duration {
+            border: 1px dashed #fff;
+        }
+    }
+
+    &.image {
+        background-color: var(--color-image);
+
+        &.auto-duration {
+            border: 1px dashed #fff;
+        }
+    }
+
+    &.video {
+        background-color: var(--color-video);
+
+        &.auto-duration {
+            border: 1px dashed #fff;
+        }
+    }
+
+    &.text {
+        background-color: var(--color-text);
+        color: var(--color-text-foreground);
+
+        &.auto-duration {
+            border: 1px dashed #fff;
+        }
+    }
+
+    &.combine {
+        background:
+            repeating-linear-gradient(to right,
+                var(--color-image) 5px,
+                var(--color-image) 10px,
+                var(--color-video) 10px,
+                var(--color-video) 20px),
+            linear-gradient(var(--color-audio) 100%, var(--color-audio) 100%);
+
+        background-size:
+            100% 60%,
+            100% 40%;
+
+        background-position:
+            top,
+            bottom;
+
+        background-repeat: no-repeat;
+
+        &.auto-duration {
+            border: 1px dashed #0ba400;
+        }
+    }
+}
+
+// Time ruler at the top
+.timeline-ruler {
+    width: 100%;
+    height: 16px;
+    background-color: var(--ruler-bg);
+    display: flex;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    padding-left: var(--left-space);
+
+    span {
+        width: 12px;
+        color: #fff;
+        padding-left: 4px;
+        margin-right: 16px;
+        font-size: 10px;
+        flex-shrink: 0;
+        text-align: left;
+        border-left: 1px solid var(--bs-border-color);
+    }
+}
+
+// Playhead (vertical line indicating current time)
+.timeline-playhead {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: var(--playhead-width);
+    height: 100%;
+    background-color: var(--playhead-color);
+    z-index: 20;
+    cursor: ew-resize;
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: -10px;
+        left: -5px;
+        width: 12px;
+        height: 12px;
+        background-color: var(--playhead-color);
+        border-radius: 50%;
+    }
+}
+
+// Keyframe markers
+.keyframe {
+    position: absolute;
+    top: 50%;
+    width: var(--keyframe-size);
+    height: var(--keyframe-size);
+    background-color: var(--keyframe-color);
+    border-radius: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    transition: background-color 0.2s;
+
+    &:hover {
+        background-color: var(--keyframe-hover);
+    }
+}
+
+// Clip or segment in the track
+.timeline-clip {
+    position: absolute;
+    height: 100%;
+    background-color: var(--clip-color);
+    border-radius: 4px;
+    cursor: move;
+    opacity: 0.8;
+    transition: opacity 0.2s;
+
+    &:hover {
+        opacity: 1;
+    }
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+    .timeline-container {
+        height: 120px;
+    }
+
+    .timeline-track {
+        height: 30px;
+    }
+
+    .timeline-ruler {
+        span {
+            font-size: 8px;
+            margin: 0 15px;
+        }
+    }
+
+    .keyframe {
+        width: 6px;
+        height: 6px;
+    }
+}

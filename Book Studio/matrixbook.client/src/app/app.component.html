@@ -1,0 +1,18 @@
+<main class="main-layout">
+  <mtx-compact-sidebar></mtx-compact-sidebar>
+
+  <div class="main-content">
+    <div class="content">
+      <router-outlet></router-outlet>
+    </div>
+
+    <mtx-main-statusbar></mtx-main-statusbar>
+  </div>
+
+  <mtx-modal #modalRef></mtx-modal>
+
+  <mtx-video-resource-selector-modal #resourceSelector></mtx-video-resource-selector-modal>
+
+  <mtx-notification></mtx-notification>
+
+</main>

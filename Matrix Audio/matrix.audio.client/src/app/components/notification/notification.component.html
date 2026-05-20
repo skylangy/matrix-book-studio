@@ -1,0 +1,9 @@
+@if (isVisible) {
+<div class="alert alert-warning alert-dismissible fade show no-radius no-margin" role="alert">
+    <h4 class="alert-heading">{{notification?.title}}</h4>
+
+    <div [innerHTML]="notification?.message"> </div>
+
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+}

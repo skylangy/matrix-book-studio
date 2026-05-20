@@ -1,0 +1,155 @@
+<div class="panes">
+
+  <ng-template #outline let-data="data">
+    <mtx-outline-pane [pane]="data"></mtx-outline-pane>
+  </ng-template>
+
+  <ng-template #validation let-data="data">
+    <mtx-validate-pane [pane]="data"></mtx-validate-pane>
+  </ng-template>
+
+  <ng-template #actions let-data="data">
+    <mtx-actions-pane [pane]="data"></mtx-actions-pane>
+  </ng-template>
+
+  <ng-template #properties let-data="data">
+    <mtx-book-property-pane [pane]="data"></mtx-book-property-pane>
+  </ng-template>
+
+  <ng-template #images let-data="data">
+    <mtx-images-pane [pane]="data"></mtx-images-pane>
+  </ng-template>
+
+  <ng-template #wav let-data="data">
+    <mtx-wav-pane [pane]="data"></mtx-wav-pane>
+  </ng-template>
+
+  <ng-template #mp3 let-data="data">
+    <mtx-mp3-pane [pane]="data"></mtx-mp3-pane>
+  </ng-template>
+
+  <ng-template #video let-data="data">
+    <mtx-video-pane [pane]="data"></mtx-video-pane>
+  </ng-template>
+
+  <ng-template #exportWav let-data="data">
+    <mtx-export-wav-pane [pane]="data"></mtx-export-wav-pane>
+  </ng-template>
+
+  <ng-template #exportMp3 let-data="data">
+    <mtx-export-mp3-pane [pane]="data"></mtx-export-mp3-pane>
+  </ng-template>
+
+  <ng-template #exportVideo let-data="data">
+    <mtx-export-video-pane [pane]="data"></mtx-export-video-pane>
+  </ng-template>
+
+  <ng-template #exportText let-data="data">
+    <mtx-export-text-pane [pane]="data"></mtx-export-text-pane>
+  </ng-template>
+
+  <ng-template #regexLib let-data="data">
+    <mtx-regex-pane [pane]="data"></mtx-regex-pane>
+  </ng-template>
+
+  <ng-template #logging let-data="data">
+    <mtx--log-pane [pane]="data"></mtx--log-pane>
+  </ng-template>
+
+
+  <ng-template #default let-data="data">
+    <div class="p-3">
+      <h5 class="card-title">{{data?.title}}</h5>
+      <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+      <a href="#" class="btn btn-primary">Come</a>
+    </div>
+  </ng-template>
+
+
+  @for (pane of panes; track pane) {
+  @if (getPaneActive(pane)) {
+  <mtx-tool-pane [title]="pane.title" [icon]="pane.icon" [context]="pane.context" (onClosed)="closePane(pane)">
+    <div>
+      @switch (pane.name) {
+      @case ('OutlinePane') {
+      <div>
+        <ng-container *ngTemplateOutlet="outline; context:{data: pane}"></ng-container>
+      </div>
+      }
+      @case ('ValidatePane') {
+      <div>
+        <ng-container *ngTemplateOutlet="validation; context:{data: pane}"></ng-container>
+      </div>
+      }
+      @case ('ActionsPane') {
+      <div>
+        <ng-container *ngTemplateOutlet="actions; context:{data: pane}"></ng-container>
+      </div>
+      }
+      @case ('BookPropertyPane') {
+      <div>
+        <ng-container *ngTemplateOutlet="properties; context:{data: pane}"></ng-container>
+      </div>
+      }
+      @case ('ImagesPane') {
+      <div>
+        <ng-container *ngTemplateOutlet="images; context:{data: pane}"></ng-container>
+      </div>
+      }
+      @case ('WavPane') {
+      <div>
+        <ng-container *ngTemplateOutlet="wav; context:{data: pane}"></ng-container>
+      </div>
+      }
+      @case ('Mp3Pane') {
+      <div>
+        <ng-container *ngTemplateOutlet="mp3; context:{data: pane}"></ng-container>
+      </div>
+      }
+      @case ('VideoPane') {
+      <div>
+        <ng-container *ngTemplateOutlet="video; context:{data: pane}"></ng-container>
+      </div>
+      }
+      @case ('ExportWavPane') {
+      <div>
+        <ng-container *ngTemplateOutlet="exportWav; context:{data: pane}"></ng-container>
+      </div>
+      }
+      @case ('ExportMp3Pane') {
+      <div>
+        <ng-container *ngTemplateOutlet="exportMp3; context:{data: pane}"></ng-container>
+      </div>
+      }
+      @case ('ExportVideoPane') {
+      <div>
+        <ng-container *ngTemplateOutlet="exportVideo; context:{data: pane}"></ng-container>
+      </div>
+      }
+      @case ('ExportTextPane') {
+      <div>
+        <ng-container *ngTemplateOutlet="exportText; context:{data: pane}"></ng-container>
+      </div>
+      }
+      @case ('RegexLibPane') {
+      <div>
+        <ng-container *ngTemplateOutlet="regexLib; context:{data: pane}"></ng-container>
+      </div>
+      }
+      @case ('LoggingPane') {
+      <div>
+        <ng-container *ngTemplateOutlet="logging; context:{data: pane}"></ng-container>
+      </div>
+      }
+      @default {
+      <div>
+        <h3 class="p-3">{{pane.title}}</h3>
+        <ng-container *ngTemplateOutlet="default; context:{data: pane}"></ng-container>
+      </div>
+      }
+      }
+    </div>
+  </mtx-tool-pane>
+  }
+  }
+</div>

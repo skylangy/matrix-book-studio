@@ -1,0 +1,72 @@
+<div class="container-fluid pt-2">
+    <div class="row">
+        <mtx-header-content header="{{'Search'| translate}}">
+            <div class="input-group">
+                <input class="form-control border-end-0 border" type="search" [(ngModel)]="searchText"
+                    (keydown.enter)="search()" placeholder="{{'What do you want to listen to?' | translate}}...">
+                <span class="input-group-append">
+                    <button class="btn btn-outline-secondary border-start-0 border rounded-0 rounded-end" type="button"
+                        (click)="search()">
+                        <i class="bi bi-search"></i>
+                    </button>
+                </span>
+            </div>
+        </mtx-header-content>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <mtx-header-content header="{{'Categories' | translate }}">
+                <mtx-categories></mtx-categories>
+            </mtx-header-content>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <mtx-header-content header="{{'Most Likes' | translate }}"
+                moreLinkUrl="/public/albums/likes/grid/compact/Most Likes/{{pageSize}}/y">
+                <mtx-albums layout="grid" cardLayout="compact" sourceType="likes" [pageSize]="pageSize"></mtx-albums>
+            </mtx-header-content>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <mtx-header-content header="{{'Most Play This Week' | translate}}"
+                moreLinkUrl="/public/albums/recents/grid/compact/Most Play This Week/{{pageSize}}/y">
+                <mtx-albums layout="grid" cardLayout="compact" sourceType="playByWeek"
+                    [pageSize]="pageSize"></mtx-albums>
+            </mtx-header-content>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <mtx-header-content header="{{'Most Play This Month' | translate}}"
+                moreLinkUrl="/public/albums/recents/grid/compact/Most Play This Month/{{pageSize}}/y">
+                <mtx-albums layout="grid" cardLayout="compact" sourceType="playByMonth"
+                    [pageSize]="pageSize"></mtx-albums>
+            </mtx-header-content>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <mtx-header-content header="{{'Most Play This Year' | translate}}"
+                moreLinkUrl="/public/albums/recents/grid/compact/Most Play This Year/{{pageSize}}/y">
+                <mtx-albums layout="grid" cardLayout="compact" sourceType="playByYear"
+                    [pageSize]="pageSize"></mtx-albums>
+            </mtx-header-content>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <mtx-header-content header="{{'Popular Authors' | translate }}"
+                moreLinkUrl="/public/artists/all/grid/medium/All Authors/1/{{pageSize}}">
+                <mtx-artists layout="horizontal" sourceType="populars"></mtx-artists>
+            </mtx-header-content>
+        </div>
+    </div>
+</div>

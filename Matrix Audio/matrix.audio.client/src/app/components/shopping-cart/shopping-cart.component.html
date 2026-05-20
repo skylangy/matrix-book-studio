@@ -1,0 +1,79 @@
+<div class="container p-2 px-5 mb-5">
+    <main>
+        <div class="py-5 text-center border-bottom">
+            <h2> <i class="bi bi-cart"></i> {{'Shopping Cart' | translate}} </h2>
+            <p class="lead">{{'Your cart is filled with great choices! Take a moment to review your selections and
+                prepare
+                for an enriching listening experience with your chosen audiobooks. Once you are ready, proceed to
+                checkout to secure your titles and embark on your auditory adventure.' | translate}}</p>
+        </div>
+
+        <div class="row g-5 mt-3">
+            <div class="col-12 col-md-8">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">{{'Product' | translate}}</th>
+                            <th scope="col">{{'Price' | translate}}</th>
+                            <th scope="col">{{'Quantity' | translate}}</th>
+                            <th scope="col">{{'Discount' | translate}}</th>
+                            <th scope="col">{{'Total' | translate}}</th>
+                            <th scope="col">{{'Total After Discount' | translate}} </th>
+                            <th scope="col">{{'Actions' | translate}}</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr *ngFor="let item of cartItems">
+                            <td class="align-middle">
+                                <div>{{ item.productName }}</div>
+                                <div>
+                                    <small class="text-muted">{{ item.description }}</small>
+                                </div>
+                            </td>
+                            <td class="align-middle">{{ item.price | currency }}</td>
+                            <td class="align-middle">
+                                {{ item.quantity }}
+                            </td>
+                            <td class="align-middle">
+                                {{ item.discount }}
+                            </td>
+                            <td class="align-middle text-decoration-line-through">{{ item.total | currency }}</td>
+                            <td class="align-middle">{{ item.totalAfterDiscount | currency }}</td>
+                            <td class="align-middle">
+                                <button class="btn btn-secondary btn-sm" (click)="removeItem(item)"
+                                    title="Remove item from cart">
+                                    <i class="bi bi-trash"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+            <div class="col-12 col-md-4">
+                <mtx-order-summary [promo]="promo"></mtx-order-summary>
+
+                <div class="card p-3 mt-3">
+                    @if(promoMessage){
+                    <div class="alert alert-warning" role="alert">
+                        {{ promoMessage }}
+                    </div>
+                    }
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="{{'Promo code'| translate}}"
+                            [disabled]="!canInputPromoCode" [(ngModel)]="promoCode">
+                        <button type="submit" class="btn btn-secondary" [disabled]="!canRedeem"
+                            (click)="redeemPromoCode()">{{'Redeem'| translate}}</button>
+                        @if(promo){
+                        <button type="submit" class="btn btn-secondary" (click)="clearPromo()"
+                            title="{{'Clear promo code' | translate}}">
+                            <i class="bi bi-x-octagon"></i>
+                        </button>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>

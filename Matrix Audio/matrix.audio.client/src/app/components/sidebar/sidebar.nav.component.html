@@ -1,0 +1,14 @@
+<ul class="btn-toggle-nav list-unstyled fw-normal pb-1 ">
+    @for(item of navItems; track $index) {
+    @if(item.hasSeparator){
+    <li class="separator"></li>
+    }
+
+    <li class="nav-item">
+        <a routerLink="{{item.route}}" routerLinkActive="active" class="rounded nav-link" title="{{item.name}}">
+            <i [class]="'nav-icon bi bi-' + item.icon"></i> <span class="nav-label">{{item.name}}</span>
+        </a>
+    </li>
+
+    }
+</ul>

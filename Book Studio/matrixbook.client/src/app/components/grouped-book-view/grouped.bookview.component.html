@@ -1,0 +1,26 @@
+@if (group?.isVisible) {
+<div>
+  <a class="group-header pb-2 border-bottom mt-2" data-bs-toggle="collapse" [href]="'#group-'+group?.name"
+    [ngClass]="{'border-bottom-3 border-secondary': group?.isExpanded, 'border-bottom-1 border-secondary-subtle ': !group?.isExpanded}"
+    [attr.aria-expanded]="group?.isExpanded" [attr.aria-controls]="'group-' + group?.name" (click)="toggleState()">
+    <h3 id="status-group">
+      {{ group?.name }}
+      <small class="ms-2">({{ group?.count }})</small>
+    </h3>
+
+    <div class="me-2">
+      @if (group?.isExpanded) {
+      <i class="bi bi-chevron-double-up"></i>
+      } @else {
+      <i class="bi bi-chevron-double-down"></i>
+      }
+    </div>
+  </a>
+
+  <div class="flex-grow-1" [ngClass]="{'collapse': !group?.isExpanded, 'show': group?.isExpanded}"
+    [id]="'group-' + group?.name">
+    <mtx-paged-books [books]="group?.books" [sortBy]="sortBy" [thenSortBy]="thenBy" [sortOrder]="sortOrder"
+      (scrollToEnd)="loadNexPage($event)" (bookFinished)="onBookFinished($event)"></mtx-paged-books>
+  </div>
+</div>
+}

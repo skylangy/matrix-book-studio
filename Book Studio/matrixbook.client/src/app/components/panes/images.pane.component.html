@@ -1,0 +1,36 @@
+<div class="container pt-2">
+  <div class="d-flex justify-content-between align-items-center mb-2 border-bottom">
+    <label class="">Book Images</label>
+    <button class="btn btn-sm" (click)="toggleUpload()">
+      <i class="bi bi-cloud-arrow-up"></i>
+    </button>
+  </div>
+
+  <div>
+    @for (image of images; track image) {
+      <div class="image-card ">
+        <img [src]="image.fullUrl" class="card-img-top border rounded" alt="">
+        <div class="d-flex justify-content-between mt-1">
+          <div>
+            {{image.name}}
+          </div>
+          <button class="btn btn-sm" (click)="deleteImage(image)">
+            <i class="bi bi-trash"></i>
+          </button>
+        </div>
+      </div>
+    }
+  </div>
+
+  @if (showUpload) {
+    <div>
+      <mtx-file-uploader (onFileReady)="onFileReady($event)"></mtx-file-uploader>
+      <div class="mt-3 d-flex justify-content-between px-3">
+        <div></div>
+        <button type="button" class="btn btn-primary btn-sm" (click)="upload()"
+        [disabled]="!canUpload()">Upload</button>
+      </div>
+    </div>
+  }
+
+</div>

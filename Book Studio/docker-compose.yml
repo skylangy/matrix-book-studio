@@ -1,0 +1,24 @@
+
+services:
+  matrixstudio:
+    container_name: matrixstudio
+    image: matrix.studio/latest
+    ports:
+      - "${HOST_PORT}:${CONTAINER_PORT}"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=${ASPNETCORE_ENVIRONMENT}
+      - ASPNETCORE_URLS=${ASPNETCORE_URLS}
+      - RAVENDB_URL=${RAVENDB_URL}
+      - REDIS_URL=${REDIS_URL}
+      - NVIDIA_VISIBLE_DEVICES=all
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              capabilities: [gpu]
+    volumes:
+      - "${BOOKS_LOCATION}:/app/books"
+      - "${USERPROFILE}/.ssh:/home/appuser/.ssh:ro"
+    restart: always
+

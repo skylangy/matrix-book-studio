@@ -1,0 +1,29 @@
+<div class="container pt-2">
+    <div class="row">
+        <mtx-header-content header="Search">
+            <div class="input-group">
+                <input class="form-control border-end-0 border" type="search"
+                    placeholder="What do you want to listen to?">
+                <span class="input-group-append">
+                    <button class="btn btn-outline-secondary border-start-0 border rounded-0 rounded-end" type="button">
+                        <i class="bi bi-search"></i>
+                    </button>
+                </span>
+            </div>
+        </mtx-header-content>
+    </div>
+    <div class="row">
+        <mtx-header-content header="Categories">
+            <mtx-categories></mtx-categories>
+        </mtx-header-content>
+
+        <mtx-header-content header="Albums">
+            <mtx-albums layout="list" cardLayout="compact"></mtx-albums>
+        </mtx-header-content>
+
+        <mtx-header-content header="Authors">
+            <mtx-persons> </mtx-persons>
+        </mtx-header-content>
+
+    </div>
+</div>

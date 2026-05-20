@@ -1,0 +1,20 @@
+<div class="card book-action-card">
+  <div class="card-body">
+    <h5 class="card-title"> <i class="bi bi-{{action?.icon}}"></i> {{action?.name}}</h5>
+    <p class="card-text text-body-secondary samll">{{action?.description}}</p>
+
+    <div class=" text-end">
+      @if (action?.route) {
+      <a [routerLink]="action?.route" class="btn btn-{{action?.color}} btn-sm">
+        <span class="ms-2 me-2">{{action?.label}}</span>
+      </a>
+      }
+
+      @if (action?.func) {
+      <a class="btn btn-{{action?.color}} hand btn-sm" (click)="execute()">
+        <span class="ms-2 me-2">{{action?.label}}</span>
+      </a>
+      }
+    </div>
+  </div>
+</div>

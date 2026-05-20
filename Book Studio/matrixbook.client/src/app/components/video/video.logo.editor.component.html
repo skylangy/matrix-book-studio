@@ -1,0 +1,44 @@
+@if(model && model.logo) {
+<mtx-foldable-title title="Logo" subtitle="Configure logo settings for the video" [isFolded]="true">
+    <section>
+        <div class="row mb-3">
+            <div class="col-md-4">
+                <label for="logoImage" class="form-label">Logo Image</label>
+                <mtx-video-resource-text name="logoImage" [resource]="model.logo.image" resourceType="image"
+                    (onSelectResource)="selectLogoImage()"></mtx-video-resource-text>
+            </div>
+            <div class="col-md-4">
+                <label for="logoText" class="form-label">Logo Text</label>
+                <input type="text" class="form-control" id="logoText" name="logoText" [(ngModel)]="model.logo.text">
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-md-4">
+                <label for="logoFont" class="form-label">Font</label>
+                <!-- <input type="text" class="form-control" id="logoFont" name="logoFont" [(ngModel)]="model.logo.fontFamily"> -->
+                <select class="form-select" id="logoFont" name="logoFont" [(ngModel)]="model.logo.fontFamily">
+                    @for (font of supportedFonts; track font.name) {
+                    <option [value]="font.family">{{font.name}}</option>
+                    }
+                </select>
+            </div>
+
+            <div class="col-md-4">
+                <label for="logoFontSize" class="form-label">Font Size</label>
+                <input type="number" class="form-control" id="logoFontSize" name="logoFontSize"
+                    [(ngModel)]="model.logo.fontSize">
+            </div>
+            <div class="col-md-4">
+                <label for="flagHideBook" class="form-label">Style</label>
+                <div class="">
+                    <div class="form-check form-switch mt-2">
+                        <input class="form-check-input" type="checkbox" role="switch" id="flagHideBook"
+                            [(ngModel)]="model.logo.shadow">
+                        <label class="form-check-label" for="flagHideBook">Show Shadow </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</mtx-foldable-title>
+}

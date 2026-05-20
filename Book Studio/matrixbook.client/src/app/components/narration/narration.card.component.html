@@ -1,0 +1,63 @@
+<div class="card model-card shadow-sm">
+    @if (hasImage) {
+    @defer(on viewport){
+    <a routerLink="edit/{{model.id}}" routerLinkActive="router-link-active" rel="noopener noreferrer"
+        title="Edit Video">
+        <img class="card-img-top video-thumbnail" src="" alt="{{model.title}}" (error)="handleImageError($event)">
+    </a>
+    } @placeholder {
+    <div></div>
+    }
+    } @else {
+    <a target="_blank" rel="noopener noreferrer" title="Edit Narration">
+        <svg class="bd-placeholder-img card-img-top video-thumbnail" width="100%" viewBox="0 0 384 216"
+            xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail"
+            preserveAspectRatio="xMidYMid slice" focusable="false">
+            <title class="">{{model.title}}</title>
+            <rect width="100%" height="100%" fill="#55595c"></rect>
+            <text x="50%" y="50%" fill="#eceeef" dy=".3em">{{model.title}}</text>
+        </svg>
+    </a>
+    }
+
+    <div class="card-body">
+        <div>
+            <div class="d-flex justify-content-between">
+                <div class="model-status small" [title]="model.status">{{model.status}}</div>
+
+                <div class="text-body-secondary model-date" title="Date Created">{{model.dateCreated |
+                    date:'shortDate'}}
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-between">
+                <div class="model-title small me-2" [title]="model.title">{{model.title}}</div>
+                <div class="d-flex">
+                    <div class="text-body-secondary model-author me-2 mt-1" title="Author">
+                    </div>
+                    <div class="text-body-secondary model-count mt-1" title="Text Count"></div>
+                </div>
+            </div>
+
+            <div class="text-body-secondary model-author me-2" title="Author">
+                {{model.category || 'Uncategorized'}}
+            </div>
+        </div>
+
+        <p class="card-text model-summary small h-min-60 mt-2">{{summary}}</p>
+
+        <div class="d-flex justify-content-between align-items-center">
+            <div class="btn-group">
+                <a routerLink="edit/{{model.id}}" class="model-action-link me-2" title="Edit Narration">
+                    <i class="bi bi-pencil-square me-1"></i>Edit
+                </a>
+
+                <a (click)="deleteModel(model.id)" class="model-action-link me-2" title="Delete Narration">
+                    <i class="bi bi-trash me-1"></i>Delete
+                </a>
+
+            </div>
+            <small class="text-body-secondary" title="Date Updated">{{model.dateUpdated | date:'shortDate'}}</small>
+        </div>
+    </div>
+</div>

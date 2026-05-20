@@ -1,0 +1,142 @@
+@if(orientation === 'vertical') {
+<div class="dropdown w-100 mb-3">
+  <label for="serviceSelector" class="form-label">Speech Services</label>
+  <button id="serviceSelector" type="button" class="btn btn-outline-secondary w-100 rounded" data-bs-toggle="dropdown"
+    aria-expanded="false" data-bs-auto-close="true">
+    <div class="d-flex justify-content-between">
+      <label class="text-start ">
+        {{selectedService?.name}}
+      </label>
+      <span class="dropdown-toggle"></span>
+    </div>
+  </button>
+  <ul class="dropdown-menu w-100">
+    @if(speechConfig?.services ) {
+    @for (item of speechConfig?.services; track item) {
+    <li>
+      <a class="dropdown-item hand" (click)="setService(item)">{{item.name}}</a>
+    </li>
+    }
+    }
+  </ul>
+</div>
+
+<div class="dropdown w-100 mb-3">
+  <label for="languageSelector" class="form-label">Languages</label>
+  <button id="languageSelector" type="button" class="btn btn-outline-secondary w-100 rounded" data-bs-toggle="dropdown"
+    aria-expanded="false" data-bs-auto-close="true">
+    <div class="d-flex justify-content-between">
+      <label class="text-start ">
+        {{selectedLanguage?.name}}
+      </label>
+      <span class="dropdown-toggle"></span>
+    </div>
+  </button>
+  @if(langulages) {
+  <ul class="dropdown-menu w-100">
+    @for (item of langulages; track item) {
+    <li>
+      <a class="dropdown-item hand" (click)="selectLanguage(item)">{{item.name}}</a>
+    </li>
+    }
+  </ul>
+  }
+</div>
+
+<div class="dropdown w-100  mb-3">
+  <label for="voiceSelector" class="form-label">Voices</label>
+
+  <button id="voiceSelector" type="button" class="btn btn-outline-secondary w-100 rounded" data-bs-toggle="dropdown"
+    aria-expanded="false" data-bs-auto-close="true">
+    <div class="d-flex justify-content-between">
+      <label class="text-start ">
+        <i class="bi bi-{{selectedVoice?.tag}} me-2"></i>{{selectedVoice?.name}}
+      </label>
+      <span class="dropdown-toggle"></span>
+    </div>
+  </button>
+  @if(selectedLanguage?.voices){
+  <ul class="dropdown-menu w-100">
+    @for (item of selectedLanguage?.voices; track item) {
+    <li>
+      <a class="dropdown-item hand" (click)="selectVoice(item)">
+        <i class="bi bi-{{item.tag}} me-2"></i>{{item.name}}
+      </a>
+    </li>
+    }
+  </ul>
+  }
+</div>
+} @else {
+<div class="d-flex flex-row gap-4">
+  <div class="dropdown ">
+    <label for="serviceSelector" class="form-label">Speech Services</label>
+    <button id="serviceSelector" type="button" class="btn btn-outline-secondary w-100 rounded" data-bs-toggle="dropdown"
+      aria-expanded="false" data-bs-auto-close="true">
+      <div class="d-flex justify-content-between">
+        <label class="text-start ">
+          {{selectedService?.name}}
+        </label>
+        <span class="dropdown-toggle"></span>
+      </div>
+    </button>
+    <ul class="dropdown-menu w-100">
+      @if(speechConfig?.services ) {
+      @for (item of speechConfig?.services; track item) {
+      <li>
+        <a class="dropdown-item hand" (click)="setService(item)">{{item.name}}</a>
+      </li>
+      }
+      }
+    </ul>
+  </div>
+
+
+  <div class="dropdown">
+    <label for="languageSelector" class="form-label">Languages</label>
+    <button id="languageSelector" type="button" class="btn btn-outline-secondary w-100 rounded"
+      data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="true">
+      <div class="d-flex justify-content-between">
+        <label class="text-start ">
+          {{selectedLanguage?.name}}
+        </label>
+        <span class="dropdown-toggle"></span>
+      </div>
+    </button>
+    @if(langulages) {
+    <ul class="dropdown-menu w-100">
+      @for (item of langulages; track item) {
+      <li>
+        <a class="dropdown-item hand" (click)="selectLanguage(item)">{{item.name}}</a>
+      </li>
+      }
+    </ul>
+    }
+  </div>
+
+  <div class="dropdown">
+    <label for="voiceSelector" class="form-label">Voices</label>
+
+    <button id="voiceSelector" type="button" class="btn btn-outline-secondary w-100 rounded" data-bs-toggle="dropdown"
+      aria-expanded="false" data-bs-auto-close="true">
+      <div class="d-flex justify-content-between">
+        <label class="text-start ">
+          <i class="bi bi-{{selectedVoice?.tag}} me-2"></i>{{selectedVoice?.name}}
+        </label>
+        <span class="dropdown-toggle"></span>
+      </div>
+    </button>
+    @if(selectedLanguage?.voices){
+    <ul class="dropdown-menu w-100">
+      @for (item of selectedLanguage?.voices; track item) {
+      <li>
+        <a class="dropdown-item hand" (click)="selectVoice(item)">
+          <i class="bi bi-{{item.tag}} me-2"></i>{{item.name}}
+        </a>
+      </li>
+      }
+    </ul>
+    }
+  </div>
+</div>
+}

@@ -1,0 +1,6 @@
+ebooklib
+beautifulsoup4
+chardet
+PyMuPDF
+mobi
+opencc

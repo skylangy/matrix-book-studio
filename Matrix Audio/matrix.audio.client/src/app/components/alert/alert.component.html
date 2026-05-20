@@ -1,0 +1,11 @@
+<div [class]="buildClass()" role="alert">
+    @if(showClose) {
+    <button type="button" class="close-btn" data-dismiss="alert" aria-label="Close">
+    </button>
+    }
+
+    @if(header){
+    <h4 class="alert-heading">{{header}}</h4>
+    }
+    <div [innerHTML]="body"></div>
+</div>

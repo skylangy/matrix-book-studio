@@ -1,0 +1,55 @@
+<mtx-banner imageUrl="/assets/images/banners/banner-4.png"></mtx-banner>
+
+<div class="container border-bottom">
+    <div class="row">
+        <div class="col">
+            <mtx-header-content header="{{'Settings' | translate }}"
+                subHeader="{{'Adjust setting for your comfortable' | translate}}">
+                <ul class="list-group list-group-flush border-bottom">
+
+                    <div class="list-group-item list-group-item-action">
+                        <mtx-checkbox label="{{'Receive email when there is new content' | translate}}"
+                            [(isChecked)]="receiveEmailNotification"></mtx-checkbox>
+                    </div>
+
+                    <div class="list-group-item list-group-item-action">
+                        <div class="d-flex justify-content-between">
+                            <label for="languages" class="form-label mt-2">{{'Language' | translate}}</label>
+
+                            <div>
+                                <select id="languages" class="form-select min-size-200px"
+                                    aria-label="Select your language" [(ngModel)]="language">
+                                    @for(item of languages; track $index){
+                                    <option value="{{item.value}}" [disabled]="!item.enabled">{{item.name}}</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="list-group-item list-group-item-action">
+                        <div class="d-flex justify-content-between">
+                            <label for="themes" class="form-label mt-2">{{'Theme' | translate}}</label>
+
+                            <div>
+                                <select id="themes" class="form-select min-size-200px" aria-label="Select your theme"
+                                    [(ngModel)]="theme">
+                                    @for(item of themes; track $index){
+                                    <option value="{{item.value}}" [disabled]="!item.enabled">{{item.name}}</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </ul>
+            </mtx-header-content>
+        </div>
+    </div>
+    <div class="row mb-3 mt-3 min-size-200px">
+        <div class="col">
+            <div class="d-flex justify-content-end me-3">
+                <button type="button" class="btn btn-primary" (click)="save()">{{'Save' | translate }}</button>
+            </div>
+        </div>
+    </div>
+</div>

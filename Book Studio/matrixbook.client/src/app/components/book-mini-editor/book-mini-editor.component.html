@@ -1,0 +1,36 @@
+<div class="container">
+    @if(book){
+    <div class="row">
+        <div class="col-12 border-bottom">
+            <div class="d-flex justify-content-between mb-2">
+                <div class="book-title me-2" [title]="book.title">{{book.title}}</div>
+                <div class="text-body-secondary book-author me-2 mt-1" title="Author">
+                    {{book.author}}</div>
+            </div>
+        </div>
+        <div class="col-12 mt-2">
+            <p [attr.id]="book.id + 'category'" class="form-label  mb-2">Category</p>
+            <mtx-category-editor [id]="book.id!" [(category)]="category"></mtx-category-editor>
+        </div>
+        <div class="col-12 mt-2">
+            <p [attr.id]="book.id + 'tags'" class="form-label mb-2">Tags</p>
+            <mtx-tag-editor [id]="book.id!" [(tag)]="tag"></mtx-tag-editor>
+        </div>
+        <div class="col-12 mt-3 mb-2 text-end">
+            <button class="btn btn-primary btn-sm" (click)="save()">
+                <i class="bi bi-floppy me-1"></i> Save
+            </button>
+
+            <button class="btn btn-secondary btn-sm ms-2" (click)="cancel()">
+                Cancel
+            </button>
+        </div>
+    </div>
+    } @else {
+    <div class="container">
+        <div class="alert alert-warning" role="alert">
+            No book associated!
+        </div>
+    </div>
+    }
+</div>

@@ -1,0 +1,24 @@
+# Local development infrastructure (no custom matrix.studio image required).
+# Start: docker compose -f docker-compose.dev.yml up -d
+# Requires Docker Desktop to be running.
+
+services:
+  ravendb:
+    image: ravendb/ravendb:6.2-latest
+    container_name: matrix-ravendb
+    ports:
+      - "8080:8080"
+    environment:
+      RAVEN_Setup_Mode: None
+      RAVEN_Security_UnsecuredAccessAllowed: PublicNetwork
+    volumes:
+      - ravendb-data:/var/lib/ravendb/data
+
+  redis:
+    image: redis:7-alpine
+    container_name: matrix-redis
+    ports:
+      - "6379:6379"
+
+volumes:
+  ravendb-data:

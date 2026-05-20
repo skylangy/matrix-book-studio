@@ -1,0 +1,100 @@
+<div class="container pt-2">
+    <div class="d-flex justify-content-between align-items-center mb-2 border-bottom">
+        <label class="">Book Properties</label>
+        <button class="btn" (click)="save()">
+            <i class="bi bi-floppy"></i>
+        </button>
+    </div>
+
+    @if(bookHasImage){
+    <div class="row mb-1">
+        <div class="col-12">
+            <img [src]="bookImage" class="img-fluid img-thumbnail" alt="Book Cover">
+        </div>
+    </div>
+    }
+
+    <div class="row gy-3">
+        <div class="col-12">
+            <mtx-rank [rank]="book?.rank" (rankChange)="setRank($event)"></mtx-rank>
+        </div>
+        <div class="col-12">
+            <label for="bookTitle" class="form-label">Title</label>
+            <div class="input-group">
+                <input type="text" class="form-control" id="bookTitle" placeholder="Book title" [(ngModel)]="title"
+                    (paste)="onPasteTitle($event)">
+                <button class="btn btn-outline-secondary" type="button" id="copy-name" title="Copy Book Title"
+                    (click)="copyBookTitle()">
+                    <i class="bi bi-clipboard"></i>
+                </button>
+            </div>
+            <div class="invalid-feedback">
+                Book name is required.
+            </div>
+        </div>
+        <div class="col-12">
+            <label for="bookSubtitle" class="form-label">Subtitle</label>
+            <div class="input-group">
+                <input type="text" class="form-control" id="bookSubtitle" placeholder="Book subtitle"
+                    [(ngModel)]="subtitle">
+                <button class="btn btn-outline-secondary" type="button" id="copy-subtitle" title="Copy Book Subtitle"
+                    (click)="copyBookSubtitle()">
+                    <i class="bi bi-clipboard"></i>
+                </button>
+            </div>
+        </div>
+        <div class="col-12">
+            <label for="author" class="form-label">Author</label>
+            <div class="input-group">
+                <input type="text" class="form-control" id="author" placeholder="Author" [(ngModel)]="author"
+                    (paste)="onPasteAuthor($event)">
+                <button class="btn btn-outline-secondary" type="button" id="select-author" title="Select Author"
+                    (click)="copyBookAuthor()">
+                    <i class="bi bi-person-plus"></i>
+                </button>
+                <button class="btn btn-outline-secondary" type="button" id="copy-author" title="Copy Author"
+                    (click)="copyBookAuthor()">
+                    <i class="bi bi-clipboard"></i>
+                </button>
+            </div>
+            <div class="invalid-feedback">
+            </div>
+        </div>
+        <div class="col-12">
+            <label for="year" class="form-label">Year</label>
+            <input type="text" class="form-control" id="year" placeholder="Year" [(ngModel)]="year">
+            <div class="invalid-feedback">
+            </div>
+        </div>
+
+        <div class="col-12">
+            <label for="year" class="form-label">Category</label>
+            <mtx-category-editor [(categoryIds)]="categoryIds"></mtx-category-editor>
+        </div>
+
+        <div class="col-12">
+            <label for="tags" class="form-label">Tags</label>
+            <mtx-tag-editor [(tag)]="tag"></mtx-tag-editor>
+        </div>
+
+        <div class="col-12">
+            <label for="summary" class="form-label">Summary</label>
+            <textarea class="form-control" id="summary" rows="10" [(ngModel)]="summary"
+                placeholder="Summary of the book"></textarea>
+            <div class="invalid-feedback">
+            </div>
+        </div>
+
+        <div class="col-12 mb-3">
+            <mtx-voice-selector [(service)]="speechService" [(language)]="language"
+                [(voice)]="voiceName"></mtx-voice-selector>
+        </div>
+
+        <div class="col-12 mb-3">
+            <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" role="switch" id="flagHideBook" [(ngModel)]="hide">
+                <label class="form-check-label" for="flagHideBook">Hide Book</label>
+            </div>
+        </div>
+    </div>
+</div>

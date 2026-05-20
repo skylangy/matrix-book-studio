@@ -1,0 +1,61 @@
+<mtx-admin-container>
+    <mtx-header-content header="Edit - {{model?.code}}" [icon]="icon">
+
+        @if(model){
+        <form [formGroup]="dataForm" (ngSubmit)="onSubmit()" class="py-3">
+            <div class="row border-bottom pb-3 mb-3">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <span class="text-secondary">Date created: {{model.dateCreated! | date:'yyyy-MM-dd'}}</span>
+                    </div>
+
+                    <div>
+                        <button type="button" class="btn btn-outline-secondary" (click)="back()">Back</button>
+                        <button type="submit" class="btn btn-primary ms-2">Save</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col col-md-8">
+                    <div class="form-group mb-3">
+                        <label for="code" class="form-label">Code</label>
+                        <input id="code" type="text" formControlName="code" class="form-control" />
+                    </div>
+
+
+                    <div class="row mb-3">
+                        <div class="form-group col">
+                            <label for="discountType" class="form-label">Discount Type</label>
+                            <select id="discountType" formControlName="discountType" class="form-select">
+                                @for (type of discountTypes; track $index) {
+                                <option [value]="type.value">{{type.name}}</option>
+                                }
+                            </select>
+                        </div>
+
+                        <div class="form-group col">
+                            <label for="discount" class="form-label">Discount</label>
+                            <input id="discount" type="text" formControlName="discount" class="form-control" />
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col col-md-4">
+                    <div class="form-group mb-3">
+                        <label for="validFrom" class="form-label">Valid From</label>
+                        <input id="validFrom" type="date" formControlName="validFrom" class="form-control" />
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label for="validTo" class="form-label">Valid To</label>
+                        <input id="validTo" type="date" formControlName="validTo" class="form-control" />
+                    </div>
+                </div>
+            </div>
+        </form>
+        }
+
+    </mtx-header-content>
+</mtx-admin-container>

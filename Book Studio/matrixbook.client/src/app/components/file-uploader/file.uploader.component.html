@@ -1,0 +1,26 @@
+<div class="container mt-3">
+  @if (!hasImages) {
+    <div class="upload-file-card p-3" (dragover)="onDragOver($event)" (drop)="onDrop($event)">
+      <h5 class="card-title">Drag and Drop Files</h5>
+      <p class="card-text">Or click to select files</p>
+      <input type="file" class="form-control-file text-center" [accept]="acceptTypes"
+        (change)="onFileSelected($event)">
+      </div>
+    }
+
+    @if (hasImages) {
+      <div>
+        @for (image of images; track image) {
+          <div class="image-card">
+            <img [src]="image" class="card-img-top border rounded" alt="">
+            <div class="d-flex justify-content-between mt-1">
+              <div></div>
+              <button class="btn btn-sm" (click)="deleteImage(image)">
+                <i class="bi bi-trash"></i>
+              </button>
+            </div>
+          </div>
+        }
+      </div>
+    }
+  </div>

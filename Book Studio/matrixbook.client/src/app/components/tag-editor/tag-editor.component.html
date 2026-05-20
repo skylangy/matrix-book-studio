@@ -1,0 +1,28 @@
+<div class="tag-editor">
+    <div class="tags">
+        @for (tag of tagValues; track $index) {
+        <span class="badge text-bg-{{color}}">
+            {{tag}}
+            <span data-role="remove" title="Remove" (click)="removeTag(tag)"></span>
+        </span>
+        }
+    </div>
+    <div class="input-host">
+        <input type="text" [attr.id]="id + tag" [placeholder]="placeholder" [(ngModel)]="editingTag"
+            (keyup)="inputKeyup($event)" (blur)="onInputBlur()" />
+
+        @if(suggestions.length > 0) {
+        <a class="btn btn-dropdown dropdown-toggle" href="#" role="button" data-bs-toggle="collapse"
+            data-bs-target="#suggestions" aria-expanded="false" aria-controls="suggestions">
+        </a>
+        }
+    </div>
+
+    <div class="collapse max-height-200 overflow-y-auto mt-1" id="suggestions">
+        <ul class="list-group list-group-flush">
+            @for (item of suggestions; track $index) {
+            <li><a class="list-group-item cursor-pointer" (click)="addTagValue(item)">{{item}}</a></li>
+            }
+        </ul>
+    </div>
+</div>

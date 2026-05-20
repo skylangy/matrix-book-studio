@@ -1,0 +1,55 @@
+<div class="main-conent">
+    <mtx-header title="Narrations" subtitle="Manage narrations" [background]="bannerImage"></mtx-header>
+
+    <section class="workarea">
+        <div class="d-flex justify-content-between mb-2">
+            <div>
+                <h3>{{title}}</h3>
+            </div>
+
+            <div class="d-flex align-items-baseline">
+                <div class="d-flex align-items-baseline me-2">
+                    <div class="btn-group me-2" role="group" aria-label="default">
+                        <button type="button" class="btn btn-secondary btn-sm" data-bs-toggle="button"
+                            (click)="createNewNarration()" title="Create Short Video">
+                            <i class="bi bi-plus-circle"></i>
+                        </button>
+                    </div>
+                    <select class="form-select w-200" aria-label="Groups">
+                        <option selected>Bible</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <input class="form-control" [ngClass]="{'bg-warning-subtle': filter !== ''}" list="authors"
+                        id="exampleDataList" placeholder="Search..." [(ngModel)]="filter">
+                    @if (filter !== '') {
+                    <button class="btn btn-outline-secondary" type="button" (click)="filter = ''">
+                        <i class="bi bi-x"></i>
+                    </button>
+                    }
+
+                    <span class="input-group-text">
+                        <i class="bi bi-search"></i>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        @if(isLoading()) {
+        <mtx-loading></mtx-loading>
+        }
+        @else{
+        <div class="book-editor">
+            <div class="container-fluid">
+                <div class="model-grid small-grid">
+                    @for(model of models(); track $index) {
+                    <mtx-narration-card [model]="model" (deleted)="onNarrationDeleted($event)"></mtx-narration-card>
+                    }
+                </div>
+            </div>
+        </div>
+        }
+    </section>
+</div>

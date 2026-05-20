@@ -1,0 +1,20 @@
+<div class="main-conent">
+  <mtx-header [title]="title" [subtitle]="subtitle" [background]="bannerImage"></mtx-header>
+
+  <section class="workarea">
+    <div class="d-flex justify-content-between mb-2">
+      <div>
+        <h3>{{title}}</h3>
+      </div>
+
+      <div>
+        <button class="btn btn-outline-secondary" type="button" (click)="save()">
+          <i class="bi bi-floppy"></i>
+        </button>
+      </div>
+    </div>
+    @for (group of groupedOptions; track group) {
+      <mtx-setting-group [group]="group"></mtx-setting-group>
+    }
+  </section>
+</div>

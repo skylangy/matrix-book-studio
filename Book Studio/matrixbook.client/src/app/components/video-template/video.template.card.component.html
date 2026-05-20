@@ -1,0 +1,47 @@
+<div class="card model-card shadow-sm ">
+    @if (hasImage) {
+    @defer(on viewport){
+    <a routerLink="edit/{{model.id}}" routerLinkActive="router-link-active" rel="noopener noreferrer"
+        title="Edit Video">
+        <img class="card-img-top video-thumbnail" [src]="image" alt="{{model.name}}" (error)="handleImageError($event)">
+    </a>
+    } @placeholder {
+    <div></div>
+    }
+    } @else {
+    <a target="_blank" rel="noopener noreferrer" title="Edit Video">
+        <svg class="bd-placeholder-img card-img-top video-thumbnail" width="100%" viewBox="0 0 384 216"
+            xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail"
+            preserveAspectRatio="xMidYMid slice" focusable="false">
+            <title>{{model.name}}</title>
+            <rect width="100%" height="100%" fill="#55595c"></rect>
+            <text x="50%" y="50%" fill="#eceeef" dy=".3em">{{model.name}}</text>
+        </svg>
+    </a>
+    }
+
+    <div class="card-body">
+        <div class="d-flex justify-content-between">
+            <div class="model-title small" [title]="model.name">{{model.name}}</div>
+
+            <div class="text-body-secondary model-date" title="Date Created">{{model.dateCreated | date}}
+            </div>
+        </div>
+
+        <p class="card-text model-summary light h-100-px">{{model.description}}</p>
+
+        <div class="d-flex justify-content-between align-items-center">
+            <div class="btn-group">
+                <a routerLink="edit/{{model.id}}" class="model-action-link me-2" title="Edit Template">
+                    <i class="bi bi-pencil-square me-1"></i>Edit
+                </a>
+
+                <a (click)="deleteTemplate(model.id)" class="model-action-link me-2" title="Delete Template">
+                    <i class="bi bi-trash me-1"></i>Delete
+                </a>
+
+            </div>
+            <small class="text-body-secondary" title="Date Updated">{{model.dateUpdated | date:'shortDate'}}</small>
+        </div>
+    </div>
+</div>

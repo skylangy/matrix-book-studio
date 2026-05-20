@@ -1,0 +1,12 @@
+<nav>
+    <ul class="pagination">
+        <li class="page-item" [class.disabled]="!canGoPrev">
+            <a class="page-link" (click)="prevPage()"><i class="bi bi-chevron-double-left"></i></a>
+        </li>
+
+        <li class="page-item">
+            <a class="page-link" (click)="nextPage()"><i class="bi bi-chevron-double-right"></i>
+            </a>
+        </li>
+    </ul>
+</nav>

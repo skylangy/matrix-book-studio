@@ -1,0 +1,15 @@
+<div class="card pane" [ngClass]="{'h-100': scrollBody}">
+    <div class="card-header py-1">
+        <div class="d-flex justify-content-between align-items-center">
+            <div><i class="bi bi-{{icon}} me-2"></i> {{title}}</div>
+            @if (closable) {
+            <button type="button" class="btn-close" aria-label="Close" (click)="close()"></button>
+            } @else {
+            <span class="text-muted"></span>
+            }
+        </div>
+    </div>
+    <div class="card-body" [ngClass]="{'scroll-area': scrollBody}">
+        <ng-content></ng-content>
+    </div>
+</div>

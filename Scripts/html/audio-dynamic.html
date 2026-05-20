@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Audio Element Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+
+        #audioContainer {
+            margin-top: 20px;
+        }
+
+        button {
+            margin: 5px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Dynamic Audio Element Example</h1>
+    <p>Click the button to dynamically create an audio element:</p>
+
+    <!-- Buttons for Interaction -->
+    <div>
+        <button onclick="createAudio()">Create Audio</button>
+        <button onclick="playAudio()">Play</button>
+        <button onclick="pauseAudio()">Pause</button>
+        <button onclick="stopAudio()">Stop</button>
+
+        <button onclick="playAnother()">Play another</button>
+    </div>
+
+    <!-- Container for the Audio Element -->
+    <div id="audioContainer"></div>
+
+    <script>
+        let audio; // Variable to hold the audio element
+
+        // Function to create the audio element dynamically
+        function createAudio() {
+            if (!audio) {
+                // Create a new audio element
+                audio = new Audio(); // document.createElement('audio');
+                audio.id = 'dynamicAudio';
+                audio.controls = true;
+
+                // Set the source for the audio element
+                const source = document.createElement('source');
+                source.src = 'http://38.175.181.78/api/v1/album/stream/episode/c45bccea-81ba-4833-80b1-b1cf4c5f679b';
+                source.type = 'audio/mpeg';
+                audio.appendChild(source);
+
+                // Add the audio element to the container
+                document.getElementById('audioContainer').appendChild(audio);
+
+                console.log('Audio element created');
+            } else {
+                console.log('Audio element already exists');
+            }
+        }
+
+        function playAnother() {
+            const source = document.createElement('source');
+            source.src = 'http://38.175.181.78/api/v1/album/stream/episode/e576c68d-c5de-42ef-9ed0-ce747b2862ad';
+            source.type = 'audio/mpeg';
+
+            console.log(source.src);
+            audio.replaceChildren(source);
+            audio.load();
+        }
+
+        // Function to play the audio
+        function playAudio() {
+            if (audio) {
+                audio.play();
+            } else {
+                alert('Please create the audio element first');
+            }
+        }
+
+        // Function to pause the audio
+        function pauseAudio() {
+            if (audio) {
+                audio.pause();
+            } else {
+                alert('Please create the audio element first');
+            }
+        }
+
+        // Function to stop the audio
+        function stopAudio() {
+            if (audio) {
+                audio.pause();
+                audio.currentTime = 0; // Reset to the beginning
+            } else {
+                alert('Please create the audio element first');
+            }
+        }
+    </script>
+</body>
+
+</html>

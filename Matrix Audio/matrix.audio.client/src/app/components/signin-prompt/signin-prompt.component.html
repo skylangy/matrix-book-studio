@@ -1,0 +1,20 @@
+<div class="container">
+    @if(isMiniMode) {
+    <div class="alert alert-info" role="alert">
+        <a class="fw-bold" href="/login">Sign In</a> to gain more access.
+    </div>
+    } @else {
+
+    <div class="alert alert-info" role="alert">
+        <h4 class="alert-heading">Sign in required</h4>
+        <p>Please log in to complete this operation. Click "Sign In" below, or "Sing Up" create a new account if you
+            don't have
+            one.</p>
+        <hr>
+        <p class="mb-0">
+            <a class="fw-bold" href="/login">Sign In</a> or
+            <a class="text-decoration-none" href="/register">Sign Up</a>
+        </p>
+    </div>
+    }
+</div>

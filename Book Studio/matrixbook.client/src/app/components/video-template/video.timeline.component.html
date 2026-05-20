@@ -1,0 +1,10 @@
+<div class="timeline-container">
+    <div class="timeline-ruler" id="ruler"></div>
+    <mtx-video-timeline-ruler></mtx-video-timeline-ruler>
+    <div class="timeline-tracks">
+        @for (track of videoTemplate.tracks; track $index) {
+        <mtx-video-timeline-track [track]="track" [timelineDuration]="maxTrackDuration"
+            (elementSelected)="onElementSelected($event)"></mtx-video-timeline-track>
+        }
+    </div>
+</div>

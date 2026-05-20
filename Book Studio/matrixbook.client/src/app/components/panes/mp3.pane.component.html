@@ -1,0 +1,19 @@
+<div class="pt-2 ps-2 pe-2 border-bottom">
+  <div class="d-flex justify-content-between align-items-center">
+    <label class="">MP3 Files ({{files.length}})</label>
+    <button class="btn btn-sm" (click)="refresh()">
+      <i class="bi bi-arrow-repeat"></i>
+    </button>
+  </div>
+</div>
+
+<div class="list-group list-group-flush">
+  @for (item of files; track item) {
+    <div class="list-group-item list-group-item-action ">
+      <div class="d-flex justify-content-between align-items-start">
+        <span class="small">{{item.name}}</span>
+        <span class="text-count badge rounded-pill text-bg-secondary">{{item.size | fileSize}}</span>
+      </div>
+    </div>
+  }
+</div>

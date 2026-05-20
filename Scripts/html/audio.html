@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audio Element Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+
+        audio {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Audio Element Example</h1>
+    <p>Play an audio file using the HTML <code>audio</code> element:</p>
+
+    <!-- Audio Element -->
+    <audio id="audioPlayer" controls>
+        <source src="http://38.175.181.78/api/v1/album/stream/episode/c45bccea-81ba-4833-80b1-b1cf4c5f679b"
+            type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <!-- Interaction Buttons -->
+    <div style="margin-top: 20px;">
+        <button onclick="playAudio()">Play</button>
+        <button onclick="pauseAudio()">Pause</button>
+        <button onclick="stopAudio()">Stop</button>
+    </div>
+
+    <script>
+        // Get the audio element
+        const audio = document.getElementById('audioPlayer');
+
+        // Play the audio
+        function playAudio() {
+            audio.play();
+        }
+
+        // Pause the audio
+        function pauseAudio() {
+            audio.pause();
+        }
+
+        // Stop the audio
+        function stopAudio() {
+            audio.pause();
+            audio.currentTime = 0; // Reset playback to the start
+        }
+    </script>
+</body>
+
+</html>

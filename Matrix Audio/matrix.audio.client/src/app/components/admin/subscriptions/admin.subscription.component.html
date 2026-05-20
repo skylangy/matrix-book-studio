@@ -1,0 +1,132 @@
+<mtx-admin-container>
+    <mtx-header-content header="Edit - {{model?.name}}" [icon]="icon">
+        @if(model){
+        <form [formGroup]="dataForm" (ngSubmit)="onSubmit()" class="py-3">
+            <div class="row border-bottom pb-3 mb-3">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <span class="text-secondary">Date created: {{model.dateCreated! | date:'yyyy-MM-dd'}}</span>
+                    </div>
+
+                    <div>
+                        <button type="button" class="btn btn-outline-secondary" (click)="back()">Back</button>
+                        <button type="submit" class="btn btn-primary ms-2">Save</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col col-md-8">
+                    <div class="form-group mb-3">
+                        <label for="name" class="form-label">Name</label>
+                        <input id="name" type="text" formControlName="name" class="form-control" />
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col">
+                            <div class="form-group mb-3">
+                                <label for="tier" class="form-label">Tier</label>
+                                <select id="tier" formControlName="tier" class="form-select">
+                                    @for (tier of tiers; track $index) {
+                                    <option [value]="tier.value">{{tier.name}}</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col">
+                            <div class="form-group mb-3">
+                                <label for="period" class="form-label">Period</label>
+
+                                <select id="period" formControlName="period" class="form-select">
+                                    @for (period of periods; track $index) {
+                                    <option [value]="period.value">{{period.name}}</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label for="description" class="form-label">Description</label>
+                        <textarea id="description" formControlName="description" class="form-control"
+                            rows="6"></textarea>
+                    </div>
+
+                    <div class="mb-2 fs-5">Features</div>
+                    <ul class="list-group mb-3">
+                        @for (item of model.features; track $index) {
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <span>{{item}}</span>
+                            <span>
+                                <button class="icon-button" title="Edit">
+                                    <i class="bi bi-pencil"></i>
+                                </button>
+                                <button class="icon-button ms-2" title="Delete"><i class="bi bi-trash"></i></button>
+                            </span>
+                        </li>
+                        }
+                    </ul>
+                </div>
+
+                <div class="col col-md-4">
+                    <div class="form-group mb-3">
+                        <label for="startDate" class="form-label">Start Date</label>
+                        <input id="startDate" type="date" formControlName="startDate" class="form-control" />
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label for="endDate" class="form-label">End Date</label>
+                        <input id="endDate" type="date" formControlName="endDate" class="form-control" />
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label for="monthlyRate" class="form-label">Monthly Rate</label>
+                        <div class="input-group">
+                            <span class="input-group-text">$</span>
+                            <input id="monthlyRate" type="text" formControlName="monthlyRate" class="form-control" />
+                        </div>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label for="discountType" class="form-label">Discount Type</label>
+                        <select id="discountType" formControlName="discountType" class="form-select">
+                            @for (type of discountTypes; track $index) {
+                            <option [value]="type.value">{{type.name}}</option>
+                            }
+                        </select>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label for="discountRate" class="form-label">Discount Rate</label>
+                        <input id="discountRate" type="text" formControlName="discountRate" class="form-control" />
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label for="discount" class="form-label">Discount</label>
+                        <input id="discount" type="text" formControlName="discount" class="form-control" />
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label for="total" class="form-label">Total</label>
+                        <div class="input-group">
+                            <span class="input-group-text">$</span>
+                            <input id="total" type="text" formControlName="total" class="form-control" />
+                        </div>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label for="totalAfterDiscount" class="form-label">Total After Discount</label>
+                        <div class="input-group">
+                            <span class="input-group-text">$</span>
+                            <input id="totalAfterDiscount" type="text" formControlName="totalAfterDiscount"
+                                class="form-control" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        }
+
+    </mtx-header-content>
+</mtx-admin-container>

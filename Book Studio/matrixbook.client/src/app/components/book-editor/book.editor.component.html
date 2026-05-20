@@ -1,0 +1,49 @@
+@if (!editorContext?.showPreview) {
+<div class="main-conent book-editor" #root>
+  @if (editorView) {
+  <div class="toolbar-area">
+    <mtx-ribbon [fileNavItems]="editorView.fileNavItems" [mainNavItems]="editorView.mainNav">
+      <div class="d-flex toolbar-book-info" more>
+        <i class="bi bi-fw bi-person"></i>
+        <span class="ms-1 me-3 cursor-pointer" appCopyOnClick>{{book?.author}}</span>
+
+        <i class="bi bi-fw bi-book"></i>
+        <span class="ms-1 cursor-pointer" appCopyOnClick>{{book?.title}}</span>
+      </div>
+    </mtx-ribbon>
+  </div>
+  }
+  <div #editorArea class="editor-area">
+    @if(editorView) {
+    <div #leftPaneArea class="left-pane-area">
+      <mtx-tool-panes [context]="editorContext" [panes]="editorView.leftPanes"
+        (paneClosed)="paneClosed($event)"></mtx-tool-panes>
+    </div>
+    }
+
+    <div #contentArea class="content-area">
+      <mtx-text-editor #editor [(ngModel)]="content" (onEditorReady)="onRawEditorReady($event)"></mtx-text-editor>
+    </div>
+
+    @if (editorView) {
+    <div #toolPaneArea class="toolpane-area">
+      <mtx-tool-panes [context]="editorContext" [panes]="editorView.rightPanes"
+        (paneClosed)="paneClosed($event)"></mtx-tool-panes>
+    </div>
+    }
+  </div>
+
+  @if (editorView) {
+  <div class="bottom-panes">
+    <mtx-tool-panes [context]="editorContext" [panes]="editorView.bottomPanes"
+      (paneClosed)="paneClosed($event)"></mtx-tool-panes>
+  </div>
+  }
+</div>
+}
+
+@if (editorContext?.showPreview) {
+<div id="preview" class="preview-area">
+  <mtx-book-preview [book]="book" [editorContext]="editorContext"></mtx-book-preview>
+</div>
+}

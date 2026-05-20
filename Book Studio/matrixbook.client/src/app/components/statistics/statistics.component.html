@@ -1,0 +1,67 @@
+<div class="main-conent">
+    <mtx-header [title]="title" [subtitle]="subtitle" [background]="bannerImage"></mtx-header>
+
+    <section class="workarea">
+        <div class="book-actions">
+            <div class="card book-action-card">
+                <div class="card-body">
+                    <h5 class="card-title"><i class="bi bi-book-half"></i> Books</h5>
+                    <p class="card-text">{{model?.bookCount | number}}</p>
+                </div>
+            </div>
+
+            <div class="card book-action-card">
+                <div class="card-body">
+                    <h5 class="card-title"><i class="bi bi-book-half"></i> Books Finished</h5>
+                    <p class="card-text">{{model?.finishedBookCount| number}}</p>
+                </div>
+            </div>
+
+            <div class="card book-action-card">
+                <div class="card-body">
+                    <h5 class="card-title"><i class="bi bi-book-half"></i> Books In Progress</h5>
+                    <p class="card-text">{{model?.inProgressBookCount | number}}</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="book-actions">
+            <div class="card book-action-card">
+                <div class="card-body">
+                    <h5 class="card-title"><i class="bi bi-journal-text"></i> Words</h5>
+                    <p class="card-text">{{model?.wordCount | number}}</p>
+                </div>
+            </div>
+
+            <div class="card book-action-card">
+                <div class="card-body">
+                    <h5 class="card-title"><i class="bi bi-check-square"></i> Finished Words</h5>
+                    <p class="card-text">{{model?.finishedWordCount| number}}</p>
+                </div>
+            </div>
+
+            <div class="card book-action-card">
+                <div class="card-body">
+                    <h5 class="card-title"><i class="bi bi-square"></i> In Progress Words</h5>
+                    <p class="card-text">{{model?.unfinishedWordCount| number}}</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="book-actions">
+            <div class="card book-action-card">
+                <div class="card-body">
+                    <h5 class="card-title"><i class="bi bi-people"></i> Authors</h5>
+                    <p class="card-text">{{model?.authorCount | number}}</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <div class="chart-host highcharts-dark">
+        <highcharts-chart [Highcharts]="Highcharts" [options]="chartOptions" [(update)]="updateFlag"
+            style="width: 100%; display: block"></highcharts-chart>
+    </div>
+</div>

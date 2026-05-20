@@ -1,0 +1,16 @@
+<form [formGroup]="dataForm" novalidate (ngSubmit)="onSubmit(dataForm.value)">
+    <div class="container">
+        <div class="row">
+            <div class="col-8">
+                <div class="input-group input-group-outline">
+                    <input type="text" class="form-control mb-sm-0" placeholder="{{'Email Here' | translate}}..."
+                        formControlName="email">
+                </div>
+            </div>
+            <div class="col-4 ps-0">
+                <button type="submit" class="btn btn-primary mb-0 h-100 " [disabled]="!dataForm.valid">{{'Subscribe' |
+                    translate}}</button>
+            </div>
+        </div>
+    </div>
+</form>

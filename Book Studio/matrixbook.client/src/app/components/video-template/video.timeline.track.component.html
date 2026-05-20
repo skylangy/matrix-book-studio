@@ -1,0 +1,11 @@
+<div class="timeline-track">
+    @for(element of track.elements; track $index) {
+    <div class="timeline-element" [ngClass]="getElementClass(element)" [ngStyle]="{
+                 'left.px': element.start * pixelsPerSecond,
+                 'width.px': element.duration * pixelsPerSecond,
+                 'opacity': element.alpha
+               }" (click)="selectElement(element)">
+        {{element.name}} {{ element.type | titlecase }}
+    </div>
+    }
+</div>

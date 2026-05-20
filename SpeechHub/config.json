@@ -1,0 +1,4 @@
+{
+    "default_speech_service": "kokoro",
+    "default_transcribe_service": "whisper"
+}

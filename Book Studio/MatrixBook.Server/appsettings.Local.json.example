@@ -1,0 +1,29 @@
+{
+  "AppConfiguration": {
+    "BooksLocation": "E:\\matrix-book-studio\\books",
+    "HostBooksLocation": "E:\\matrix-book-studio\\books",
+    "VideoRootFolder": "E:\\matrix-book-studio\\videos",
+    "DbUrl": "http://localhost:8080",
+    "DbName": "MatrixBook",
+    "UseGpu": false
+  },
+  "EdgeSynthesizerConfig": {
+    "Endpoint": "http://localhost:8989"
+  },
+  "ScriptConfig": {
+    "SubtitleScriptPath": "E:\\matrix-book-studio\\matrix-book-studio-main\\Scripts\\srt\\subtitle.py",
+    "ExtractBookContentScriptPath": "E:\\matrix-book-studio\\matrix-book-studio-main\\Scripts\\pdf\\extractor.py"
+  },
+  "AzureSynthesizerConfig": {
+    "Subscriptions": []
+  },
+  "SpeechConfiguration": {
+    "Services": [
+      {
+        "Name": "Edge",
+        "Endpoint": "http://localhost:8989",
+        "Subscriptions": []
+      }
+    ]
+  }
+}

@@ -1,0 +1,66 @@
+<mtx-admin-container>
+    <mtx-header-content header="Edit - {{model?.title}}" [icon]="icon">
+
+        @if(model){
+        <form [formGroup]="dataForm" (ngSubmit)="onSubmit()" class="py-3">
+
+            <div class="row border-bottom pb-3 mb-3">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        @if(model){
+                        <span class="text-secondary">Date created: {{model.dateCreated! | date:'yyyy-MM-dd'}}</span>
+                        }
+                    </div>
+
+                    <div>
+                        <button type="button" class="btn btn-outline-secondary" (click)="back()">Back</button>
+                        <button type="submit" class="btn btn-primary ms-2">Save</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col col-md-8">
+                    <div class="form-group mb-3">
+                        <label for="title" class="form-label">Title</label>
+                        <input id="title" type="text" formControlName="title" class="form-control" />
+                    </div>
+
+                    <div class="form-group ">
+                        <label for="content" class="form-label">Content</label>
+                        <textarea id="content" formControlName="content" class="form-control" rows="8"></textarea>
+                    </div>
+
+                </div>
+                <div class="col col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Book list</h5>
+                            <p class="card-text">Insert new book list of last 30 days</p>
+                            <button class="btn btn-primary" (click)="insertBookList()">Insert</button>
+                        </div>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label for="image" class="form-label">Splash</label>
+
+                        @if(model.image){
+                        <div class="card ">
+                            <img [src]="model.image | image" class="img-fluid rounded" alt="Splash" />
+                        </div>
+                        <div class="text-end">
+                            <button type="button" class="icon-button me-2" (click)="removeSplash()"
+                                title="Remove splash">
+                                <i class="bi bi-trash"></i>
+                            </button>
+                        </div>
+                        } @else {
+                        <mtx-file-uploader (onFileReady)="onFileReady($event)"></mtx-file-uploader>
+                        }
+                    </div>
+                </div>
+            </div>
+        </form>
+        }
+    </mtx-header-content>
+</mtx-admin-container>

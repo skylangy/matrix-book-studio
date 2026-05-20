@@ -1,0 +1,39 @@
+@if(isLoading){
+<mtx-loading [style]="loadingStyle"></mtx-loading>
+} @else {
+<div class="episode-grid">
+    <div class="banner">
+        @if (album?.imageWideSplash) {
+        <img class="album-image" src="{{album?.imageWideSplash|image}}" alt="{{episode?.title}}">
+        }
+    </div>
+    <div class="info">
+        <h3 class="title">{{episode?.title}}</h3>
+        <div class="d-flex justify-content-between align-items-center">
+            <div>
+                <a routerLink="/public/album/{{episode?.albumId}}">{{episode?.albumTitle}}</a> -
+                <a routerLink="/public/author/{{episode?.artistId}}">{{episode?.artistName}}</a>
+            </div>
+            <span class="text-muted small">{{episode?.dateUpdated | date:'yyyy-MM-dd'}}</span>
+        </div>
+
+        <div class="d-flex justify-content-between align-items-center">
+            <div class="me-3">
+                <div class="text-muted">{{'Duration' | translate}}: {{duration | toTime}}</div>
+            </div>
+            <div class="episode-controls">
+                @for (item of episodeActions; track item.name) {
+                <button class="icon-button {{item.size}} align-self-center" title="{{item.name}}"
+                    (click)="item.action(episode!)" [disabled]="!item.isEnable(0)">
+                    <i class="bi bi-{{item.getIcon(episode!)}}"></i>
+                </button>
+                }
+            </div>
+        </div>
+    </div>
+
+    <div class="content" #episodeContent>
+        <div [innerHtml]="episode?.content | toHtml"></div>
+    </div>
+</div>
+}

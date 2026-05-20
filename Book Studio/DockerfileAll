@@ -1,0 +1,56 @@
+# Build stage
+FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
+WORKDIR /src
+# Install Node.js and build tools (for building Angular client from server project)
+RUN apt-get update && \
+    apt-get install -y curl build-essential python3 && \
+    curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && \
+    apt-get install -y nodejs && \
+    node -v && npm -v && \
+    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+COPY ["MatrixBook.Server/MatrixBook.Server.csproj", "MatrixBook.Server/"]
+RUN dotnet restore "MatrixBook.Server/MatrixBook.Server.csproj"
+COPY . .
+WORKDIR "/src/MatrixBook.Server"
+# Clean npm cache and force install before publish (if needed by MSBuild)
+RUN cd ../matrixbook.client && npm cache clean --force && npm install --force && cd ../MatrixBook.Server
+RUN dotnet publish -c Release -o /app/publish
+
+# Runtime stage
+FROM nvidia/cuda:12.3.1-runtime-ubuntu20.04 AS final
+
+RUN apt-get update && apt-get install -y \
+    libmp3lame0 \
+    openssh-client \
+    rsync \
+    curl \
+    xz-utils \
+    ca-certificates && \
+    rm -rf /var/lib/apt/lists/*
+
+# Install .NET ASP.NET Core Runtime 9.0 (includes Microsoft.AspNetCore.App)
+RUN curl -fsSL https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb -o packages-microsoft-prod.deb && \
+    dpkg -i packages-microsoft-prod.deb && \
+    apt-get update && \
+    apt-get install -y aspnetcore-runtime-9.0 && \
+    rm -rf /var/lib/apt/lists/*
+
+# Install FFmpeg manually (prebuilt, GPU-enabled)
+RUN curl -L -o /tmp/ffmpeg.tar.xz https://github.com/BtbN/FFmpeg-Builds/releases/download/autobuild-2025-05-27-14-04/ffmpeg-n6.1.2-30-gb8fe1bc38e-linux64-gpl-shared-6.1.tar.xz && \
+    mkdir -p /opt/ffmpeg && \
+    tar -xf /tmp/ffmpeg.tar.xz --strip-components=1 -C /opt/ffmpeg && \
+    ln -s /opt/ffmpeg/bin/ffmpeg /usr/local/bin/ffmpeg && \
+    ln -s /opt/ffmpeg/bin/ffprobe /usr/local/bin/ffprobe && \
+    rm /tmp/ffmpeg.tar.xz
+
+ENV LD_LIBRARY_PATH=/opt/ffmpeg/lib:$LD_LIBRARY_PATH
+
+WORKDIR /app
+COPY --from=build /app/publish .
+
+RUN useradd -m appuser && chown -R appuser:appuser /app
+# USER appuser
+USER root
+
+ENTRYPOINT ["./MatrixBook.Server"]

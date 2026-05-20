@@ -1,0 +1,79 @@
+<div class="author-card">
+    <div class="left">
+        <div class="user-card">
+            @defer(on viewport){
+            <img [src]="author | authorImage" class="avatar shadow" alt="{{author?.name}}" (click)="edit()"
+                (load)="imageLoaded()">
+            } @placeholder {
+            <div class="card-img-top"></div>
+            }
+
+            <div class="date">
+                {{author?.dateCreated | date}}
+            </div>
+        </div>
+    </div>
+
+    <div class="content">
+        <div class="main">
+            <div class="info">
+                <div class="info-header">
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <h6> {{author?.name}}</h6>
+                        </div>
+
+                        <div>
+                            <span class="fs-6">
+                                <i class="bi bi-book"></i> <span class="text-muted ms-1">{{author?.books}}</span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info-body">
+                    {{author?.description}}
+                </div>
+                <div class="info-footer">
+
+                </div>
+            </div>
+        </div>
+
+        <div class="main-more">
+            <div class="info">
+                <h6 class="info-header">{{author?.name}}</h6>
+                <div class="info-body">
+                    {{author?.description}}
+                </div>
+                <div class="info-footer">
+                    <div class="d-flex justify-content-end">
+                        <div class="me-3">
+                            <a class="link-secondary hand" (click)="edit()" title="Edit author">
+                                <i class="bi bi-pencil fs-5"></i>
+                            </a>
+                        </div>
+
+                        <div class="me-3">
+                            <a class="hand link-secondary" (click)="open()" title="Open Folder">
+                                <i class="bi bi-folder fs-5"></i>
+                            </a>
+                        </div>
+
+                        <div class="me-3">
+                            <a class="hand link-secondary" (click)="sync()" title="Sync to library">
+                                <i class="bi bi-collection fs-5"></i>
+                            </a>
+                        </div>
+
+                        <div class="">
+                            <a class="hand link-secondary" (click)="remove()" title="Remove author">
+                                <i class="bi bi-trash fs-5"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

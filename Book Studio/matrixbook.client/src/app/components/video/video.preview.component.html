@@ -1,0 +1,20 @@
+@if(model){
+<div [backgroundImage]="previewImage" class="banner-image mb-3 video-preview shadow ">
+    <div class="overlay d-flex flex-column justify-content-start">
+        <div class="date-text mb-2">{{model.name}}</div>
+        <div class="mb-1 mt-1 text-muted small">{{model.subtitle}}</div>
+        <h5 class="mb-4">{{model.title}}</h5>
+
+        <div class="verse-text mb-5">{{model.content}}</div>
+
+        <div class="bottom-note">{{model.bottomNote}}</div>
+
+        @if(model.logo){
+        <div class="logo-text d-flex flex-column align-items-center text-center">
+            <img src="{{logoImage}}" alt="Logo">
+            <div>{{model.logo.text}}</div>
+        </div>
+        }
+    </div>
+</div>
+}

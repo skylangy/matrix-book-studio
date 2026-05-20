@@ -1,0 +1,51 @@
+<div class="ribbon">
+  <div class="d-flex justify-content-between align-items-center">
+    <ul class="nav nav-tabs" id="ribbonTab" role="tablist">
+      <li class="nav-item">
+        <div class="dropdown">
+          <button id="fileMenu" class="nav-link" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            File
+          </button>
+          <ul class="dropdown-menu dropdown-menu-dark shadow" aria-labelledby="fileMenu">
+            @for (item of fileNavItems; track item.name) {
+            <li>
+              @if (!item.isSeparator) {
+              <a class="dropdown-item hand" [routerLink]="item.route" (click)="item?.action()">
+                <i class="bi bi-fw bi-{{item.icon}}"></i>
+                {{item.text}}
+              </a>
+              }
+              @if (item.isSeparator) {
+              <hr class="dropdown-divider">
+              }
+            </li>
+            }
+          </ul>
+        </div>
+      </li>
+
+      @for (item of mainNavItems; track item.title) {
+      <li class="nav-item">
+        <button class="nav-link" [attr.id]="item.title" [attr.data-bs-target]="item.target"
+          [ngClass]="{'active': item.isActive}" type="button" role="tab" data-bs-toggle="tab">
+          <span>{{item.title}}</span>
+          <span class="indicator"></span>
+        </button>
+      </li>
+      }
+    </ul>
+
+    <div>
+      <ng-content select=[more]></ng-content>
+    </div>
+  </div>
+
+  <div class="tab-content ribbon-content" id="ribbonTabContent">
+    @for (item of mainNavItems; track item.title) {
+    <div class="tab-pane fade show" [attr.id]="item.target?.substring(1)" role="tabpanel"
+      [attr.aria-labelledby]="item.target?.substring(1)" [ngClass]="{'active': item.isActive}">
+      <mtx-toolbar [navItems]="item.items" [name]="item.title"></mtx-toolbar>
+    </div>
+    }
+  </div>
+</div>

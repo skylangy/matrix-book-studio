@@ -1,0 +1,16 @@
+<h5 class="mt-5 border-bottom pb-3">{{group?.groupName}}</h5>
+<div class="container settings">
+  <div class="row">
+    @for (item of group?.items; track item) {
+    <div class="list-group-item list-group-item-action py-2">
+      <div class="d-flex justify-content-between">
+        <label for="languages" class="form-label mt-2">{{item.displayName}}</label>
+
+        <div>
+          <input type="number" class="form-control" [id]="item.name" [(ngModel)]="item.value">
+        </div>
+      </div>
+    </div>
+    }
+  </div>
+</div>

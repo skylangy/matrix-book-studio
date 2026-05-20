@@ -1,0 +1,179 @@
+.video-meta-editor-host {
+    overflow-y: auto;
+    height: 100%;
+}
+
+.video-meta-editor {
+    background-color: var(--dark-background);
+    height: auto;
+}
+
+.video-editor {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.video-editor-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8);
+    pointer-events: auto;
+    z-index: 9999;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+
+    &.active {
+        opacity: 1;
+    }
+}
+
+.export-status {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.video-preview {
+    container-type: inline-size;
+    container-name: card;
+
+    .bg-cover {
+        background-size: cover;
+        background-position: center;
+        height: 100vh;
+    }
+
+    .overlay {
+        background-color: rgba(0, 0, 0, 0.4);
+        color: #fff;
+        padding: 2rem;
+        height: 100%;
+        position: relative;
+    }
+
+    & .verse-text {
+        white-space: pre-wrap;
+        // font-size: 2rem;
+        font-size: clamp(1rem, 5cqw, 2rem);
+        margin-top: 1rem;
+        font-family: 'FZQiTi-S14s', 'KaiTi', 'Microsoft YaHei', serif;
+    }
+
+    .date-text {
+        font-size: 1.2rem;
+        color: #dcdcdc;
+    }
+
+    .bottom-note {
+        position: absolute;
+        bottom: 3rem;
+        left: 0;
+        width: 100%;
+        font-style: italic;
+        font-size: 1rem;
+        color: #ddd;
+        text-align: center;
+    }
+
+    .logo-text {
+        position: absolute;
+        top: 1.5rem;
+        right: 1.5rem;
+        font-size: 1.1rem;
+        font-family: 'SimSun', serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        font-family: 'FZQiTi-S14s', 'Microsoft YaHei';
+    }
+
+    .logo-text img {
+        height: 48px;
+    }
+}
+
+.resource-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 1rem;
+    max-height: 600px;
+    overflow-y: auto;
+    padding: .5rem;
+
+    .thumbnail {
+        border: var(--bs-border-width) solid var(--bs-border-color);
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        padding: .5rem;
+
+        & img {
+            max-width: 100%;
+            max-height: 120px;
+        }
+
+        &:hover {
+            background-color: var(--dark-background);
+        }
+
+        &.selected {
+            border-color: var(--bs-primary);
+            background-color: var(--dark-background);
+        }
+    }
+}
+
+.modal-body {
+    &.no-padding {
+        padding: 0;
+    }
+}
+
+.resource-layout {
+    display: flex;
+    min-height: 400px;
+
+    & .left {
+        flex: 3;
+        overflow-y: auto;
+        padding: .5rem;
+
+        & .folders {
+            width: 160px;
+        }
+    }
+
+    & .right {
+        flex: 1;
+        padding: .5rem;
+    }
+}
+
+.music-icon {
+    font-size: 4rem;
+}
+
+.preview-box {
+    padding: .5rem;
+    height: 100%;
+}
+
+.h-auto {
+    height: auto;
+}
+
+.aspect-box-9x16 {
+    aspect-ratio: 9 / 16;
+    width: 100%;
+}
+
+.aspect-box-16x9 {
+    aspect-ratio: 16 / 9;
+    width: 100%;
+}

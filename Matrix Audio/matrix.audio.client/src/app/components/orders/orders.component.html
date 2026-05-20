@@ -1,0 +1,44 @@
+@if(hasOrders){
+<div class="d-flex justify-content-between align-items-center  mb-2">
+    <h5 class="card-title">{{'My Orders' | translate}}</h5>
+</div>
+
+<div>
+    <table class="table table-striped table-hover table-responsive">
+        <thead class="table-dark">
+            <tr>
+                <th>{{'Order ID' | translate}}</th>
+                <th>{{'Status' | translate}}</th>
+                <th>{{'Product' | translate}}</th>
+                <th>{{'Price' | translate}}</th>
+                <th>{{'Date' | translate}}</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @for(order of orders; track $index){
+            <tr>
+                <td>{{ order.orderNumber }}</td>
+                <td>{{ order.orderStatus }}</td>
+                <td>{{ order.productName }}</td>
+                <td>{{ order.total | currency }}</td>
+                <td>{{ order.dateCreated | date:'yyyy-MM-dd'}}</td>
+                <td>
+                    @if(order.orderStatus.toLowerCase() === 'failed'){
+                    <button class="btn btn-secondary btn-sm" (click)="removeOrder(order.orderId)" title="Remove order">
+                        <i class="bi bi-trash"></i>
+                    </button>
+                    }
+
+                    @if(order.orderStatus.toLowerCase() === 'pending'){
+                    <button class="btn btn-secondary btn-sm" (click)="cancelOrder(order.orderId)" title="Cancel order">
+                        <i class="bi bi-cart-x"></i>
+                    </button>
+                    }
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>
+}

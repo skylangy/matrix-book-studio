@@ -1,0 +1,69 @@
+<mtx-admin-container>
+    <mtx-header-content header="Album Collections" [icon]="icon">
+
+        <div class="d-flex justify-content-between align-items-center mt-3 pb-3 border-bottom ">
+            <div class="d-flex">
+                <div class="input-group">
+                    <input class="form-control border-end-0 border" type="search" [(ngModel)]="searchText"
+                        (keydown.enter)="search()" placeholder="Find an album collection">
+                    <span class="input-group-append">
+                        <button class="btn btn-outline-secondary border-start-0 border rounded-0 rounded-end"
+                            type="button" (click)="search()" [disabled]="!canSearch">
+                            <i class="bi bi-search"></i>
+                        </button>
+                    </span>
+                </div>
+            </div>
+
+            <div>
+                @for(action of actions; track action) {
+                <button type="button" class="icon-button lg-x me-2" title="{{action.name}}" (click)="action?.action()">
+                    <i class="bi bi-{{action.icon}}"></i>
+                </button>
+                }
+
+            </div>
+        </div>
+
+        @if(isLoading) {
+        <mtx-loading></mtx-loading>
+        } @else {
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Count</th>
+                    <th>Created</th>
+                    <th>Updated</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (item of items; track item.id) {
+                <tr>
+                    <td><a [routerLink]="['/control-tower/edit/album/collection', item.id]">{{item.name}}</a></td>
+                    <td>{{ item.count }}</td>
+
+                    <td>{{ item.dateCreated | date:'shortDate' }}</td>
+                    <td>{{ item.dateUpdated| date:'shortDate' }}</td>
+                    <td>
+                        <button class="icon-button" title="Edit"
+                            [routerLink]="['/control-tower/edit/album/collection', item.id]">
+                            <i class="bi bi-pencil"></i>
+                        </button>
+                        <button class="icon-button ms-2" title="Delete">
+                            <i class="bi bi-trash"></i>
+                        </button>
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+
+        <div class="d-flex justify-content-between">
+            <div></div>
+            <mtx-admin-pager [canGoPrev]="canGoPrev" (next)="nextPage()" (prev)="prevPage()"></mtx-admin-pager>
+        </div>
+        }
+    </mtx-header-content>
+</mtx-admin-container>

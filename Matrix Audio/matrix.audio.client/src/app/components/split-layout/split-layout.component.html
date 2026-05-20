@@ -1,0 +1,10 @@
+<div [class]="buildClass()">
+    <div class="row g-0">
+        <div [class]="buildLeft()">
+            <ng-content select=[left]></ng-content>
+        </div>
+        <div [class]="buildRight()">
+            <ng-content select=[right]></ng-content>
+        </div>
+    </div>
+</div>

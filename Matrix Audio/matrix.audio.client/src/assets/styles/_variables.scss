@@ -1,0 +1,42 @@
+:root {
+    --book-card-height: 250px;
+
+    --height-header: 60px;
+    --height-footer: 84px;
+    --width-sidebar: 240px;
+
+    --header-height: 64px;
+
+    --app-button-height: 70px;
+    --app-button-margin-y: 180px;
+    --app-bar-padding: 0.25rem;
+
+    --person-size-sm: 72px;
+    --person-size: 96px;
+    --person-size-lg: 128px;
+
+    --scrollbar-width: 8px;
+
+    --xx-lg-avatar: 256px;
+    --x-lg-avatar: 192px;
+    --lg-avatar: 128px;
+    --md-avatar: 96px;
+    --sm-avatar: 64px;
+    --x-sm-avatar: 48px;
+    --xx-sm-avatar: 32px;
+    --xxx-sm-avatar: 24px;
+    --xxxx-sm-avatar: 16px;
+
+    --child-card: #fff --scrollbar-track-border: rgba(#515050, 0.40);
+    --scrollbar-track-bg: var(--bs-body-bg);
+    --scrollbar-thumb-bg: rgba(#919499, 0.50);
+    --scrollbar-thumb-bg-hover: rgba(#E5EEFF, 0.08);
+    --scrollbar-thumb-bg-active: #7a808b;
+
+}
+
+[data-bs-theme=dark] {
+    --scrollbar-track-border: rgba(#000000, 0.40);
+    --scrollbar-thumb-bg: #343a40;
+    --scrollbar-thumb-bg-hover: #41464b;
+}

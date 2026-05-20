@@ -1,0 +1,64 @@
+<div class="main-conent">
+  <mtx-header title="Books" subtitle="Books grouped by status" [background]="bannerImage"></mtx-header>
+
+  <section class="workarea">
+    <div class="d-flex justify-content-between mb-2">
+      <div>
+        <h3>{{title}}</h3>
+      </div>
+
+      <div class="d-flex align-items-baseline">
+        <div class="d-flex align-items-baseline me-2">
+          <h6 class="text-nowrap me-2">Sort by</h6>
+          <div class="btn-group me-2" role="group" aria-label="Sort By">
+            @for (item of sortBys; track item.field) {
+            <button type="button" class="btn btn-secondary btn-sm" [ngClass]="{'active': item.isEnable}"
+              (click)="setSortBy(item)">{{item.title}}</button>
+            }
+          </div>
+          <p class="d-block text-nowrap me-2">Then by</p>
+          <div class="btn-group me-2" role="group" aria-label="Then By">
+            @for (item of thenBys; track item.field) {
+            <button type="button" class="btn btn-secondary btn-sm" [ngClass]="{'active': item.isEnable}"
+              (click)="setThenBy(item)">{{item.title}}</button>
+            }
+          </div>
+
+          <div class="btn-group me-2" role="group" aria-label="Then By">
+            <button type="button" class="btn btn-secondary btn-sm" data-bs-toggle="button"
+              [attr.aria-pressed]="showNoImageBooks" [ngClass]="{'active': showNoImageBooks}"
+              (click)="toggleNoImageBooks()" title="Show books without images"><i class="bi bi-card-image"></i></button>
+          </div>
+        </div>
+        <div class="input-group">
+          <input class="form-control" [ngClass]="{'bg-warning-subtle': filter !== ''}" list="authors"
+            id="exampleDataList" placeholder="Search..." [(ngModel)]="filter">
+          @if (filter !== '') {
+          <button class="btn btn-outline-secondary" type="button" (click)="filter = ''">
+            <i class="bi bi-x"></i>
+          </button>
+          }
+
+          <span class="input-group-text">
+            <i class="bi bi-search"></i>
+          </span>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="p-3">
+    @if(isLoading()) {
+    <mtx-loading></mtx-loading>
+    }
+    @else{
+
+    @for (group of groupInfos(); track trackByGroupId(group)) {
+    @if(group.isVisible) {
+    <mtx-grouped-books [group]="group" (readyToLoadNextPage)="loadNextPage($event)"
+      (bookFinished)="loadBooks()"></mtx-grouped-books>
+    } }
+    }
+  </div>
+</div>

@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<lexicon xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.w3.org/2005/01/pronunciation-lexicon http://www.w3.org/TR/2007/CR-pronunciation-lexicon-20071212/pls.xsd" version="1.0" alphabet="sapi" xml:lang="zh-CN" xmlns="http://www.w3.org/2005/01/pronunciation-lexicon">
+	<lexeme>
+		<grapheme>大夫</grapheme>
+		<phoneme>dai 4 fu 1</phoneme>
+	</lexeme>
+	<lexeme>
+		<grapheme>哪儿</grapheme>
+		<phoneme>na 3 er</phoneme>
+	</lexeme>
+	<lexeme>
+		<grapheme>了之</grapheme>
+		<phoneme>liao 3 zhi 1</phoneme>
+	</lexeme>
+	<lexeme>
+		<grapheme>重重的</grapheme>
+		<phoneme>zhong 4 zhong 4 de</phoneme>
+	</lexeme>
+	<lexeme>
+		<grapheme>重列</grapheme>
+		<phoneme>cong 2 lie 4</phoneme>
+	</lexeme>
+
+	<lexeme>
+		<grapheme>还给</grapheme>
+		<phoneme>huan 2 gei 3</phoneme>
+	</lexeme>
+	<lexeme>
+		<grapheme>杀着</grapheme>
+		<phoneme>sha 1 zhao 1</phoneme>
+	</lexeme>
+	
+	<lexeme>
+		<grapheme>小姑娘</grapheme>
+		<phoneme>xiao 3 gu 1 niang 2</phoneme>
+	</lexeme>
+	<lexeme>
+		<grapheme>小腹</grapheme>
+		<phoneme>xiao 3 fu 3</phoneme>
+	</lexeme>
+	<lexeme>
+		<grapheme>了得</grapheme>
+		<phoneme>liao 3 de 2</phoneme>
+	</lexeme>
+	<lexeme>
+		<grapheme>姊姊</grapheme>
+		<phoneme>jie 3 jie 4</phoneme>
+	</lexeme>
+	<lexeme>
+		<grapheme>师姊</grapheme>
+		<phoneme>shi 1 jie 3</phoneme>
+	</lexeme>
+	<lexeme>
+		<grapheme>任我行</grapheme>
+		<phoneme>ren 4 wo 3 xing 2</phoneme>
+	</lexeme>
+	<lexeme>
+		<grapheme>还剑</grapheme>
+		<phoneme>huan 2 jian 4</phoneme>
+	</lexeme>
+	<lexeme>
+		<grapheme>藏灵上人</grapheme>
+		<phoneme>Zhang 4 ling 2 shang 4 ren 2</phoneme>
+	</lexeme>
+	<lexeme>
+		<grapheme>藏经阁</grapheme>
+		<phoneme>cang 2 jing 1 ge 2</phoneme>
+	</lexeme>
+</lexicon>

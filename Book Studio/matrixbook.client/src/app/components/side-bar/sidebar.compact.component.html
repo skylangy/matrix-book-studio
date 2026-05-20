@@ -1,0 +1,53 @@
+<div class="d-flex flex-column flex-shrink-0 bg-body-tertiary sidebar-compact-container">
+  <a href="/" class="d-block p-3 link-body-emphasis text-decoration-none" data-bs-toggle="tooltip"
+    data-bs-placement="right" data-bs-original-title="Icon-only">
+    <i class="bi bi-book me-2 logo-size"></i>
+    <span class="visually-hidden">Icon-only</span>
+  </a>
+
+  <ul class="nav nav-pills nav-flush flex-column mb-auto text-center sidebar-compact">
+    @for (item of mainNavItems; track item) {
+    <li class="nav-item">
+      <a [routerLink]="item.route" class="nav-link border-bottom rounded-0" aria-current="page" data-bs-toggle="tooltip"
+        data-bs-placement="right" [attr.aria-label]="item.text" [title]="item.text"
+        [attr.data-bs-original-title]="item.text" routerLinkActive="active" (click)="navItemClicked(item)">
+        <i class="bi bi-{{item.icon}} " role="img"></i>
+      </a>
+    </li>
+    }
+  </ul>
+
+  <ul class="nav nav-pills flex-column sidebar-compact">
+    @for (item of secondaryNavItems; track item) {
+    <li>
+      <a [routerLink]="item.route" class="nav-link border-bottom rounded-0" aria-current="page" data-bs-toggle="tooltip"
+        data-bs-placement="right" [attr.aria-label]="item.text" [attr.data-bs-original-title]="item.text"
+        routerLinkActive="active" (click)="navItemClicked(item)">
+        <i class="bi bi-{{item.icon}} " role="img"></i>
+      </a>
+    </li>
+    }
+  </ul>
+
+  <div class="dropdown border-top">
+    <a href="#" class="d-flex align-items-center justify-content-center p-3 link-body-emphasis text-decoration-none "
+      data-bs-toggle="dropdown" aria-expanded="false">
+      <img src="./assets/images/avatars/default.png" alt="mdo" width="24" height="24" class="rounded-circle">
+    </a>
+    <ul class="dropdown-menu text-small shadow">
+      <li><a class="dropdown-item" routerLink="/new">New Book</a></li>
+      <li><a class="dropdown-item" routerLink="/settings">Settings</a></li>
+      <li>
+        <hr class="dropdown-divider">
+      </li>
+      <li><a class="dropdown-item hand" (click)="exportFinishedBookContent()">Export Text Content</a></li>
+      <li><a class="dropdown-item hand" (click)="generateMetadata()">Generate Metadata</a></li>
+      <li><a class="dropdown-item hand" (click)="syncAuthors()">Sync Authors</a></li>
+      <li><a class="dropdown-item hand" (click)="syncFinishedBooks()">Sync Finished Books</a></li>
+      <li>
+        <hr class="dropdown-divider">
+      </li>
+      <li><a class="dropdown-item" href="#">Sign out</a></li>
+    </ul>
+  </div>
+</div>

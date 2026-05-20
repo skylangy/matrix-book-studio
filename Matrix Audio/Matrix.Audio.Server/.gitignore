@@ -1,0 +1,6 @@
+Data/*
+!Data/
+wwwroot/*
+!wwwroot/
+.env
+appsettings.Production.json

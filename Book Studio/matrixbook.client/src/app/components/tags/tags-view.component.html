@@ -1,0 +1,57 @@
+<div class="main-conent">
+    <mtx-header title="Books" subtitle="Books grouped by tags" [background]="bannerImage"></mtx-header>
+
+    <section class="workarea">
+        <div class="d-flex justify-content-between mb-2">
+            <div>
+                <h3>{{title}}</h3>
+            </div>
+
+            <div class="d-flex">
+                <div class="input-group">
+                    <input class="form-control" list="tags" id="tagList" placeholder="Search..." [(ngModel)]="filter">
+                    <datalist id="tags">
+                        @for (author of groupInfos(); track author) {
+                        <option [value]="author.name"></option>
+                        }
+                    </datalist>
+                    @if (filter !== '') {
+                    <button class="btn btn-outline-secondary" type="button" (click)="filter = ''">
+                        <i class="bi bi-x"></i>
+                    </button>
+                    }
+                    <span class="input-group-text">
+                        <i class="bi bi-search"></i>
+                    </span>
+
+                </div>
+
+                <div class="btn-group ms-2" role="group" aria-label="filters">
+                    <button type="button" class="btn btn-secondary btn-sm" data-bs-toggle="button"
+                        [attr.aria-pressed]="inProgressOnly()" [ngClass]="{'active': inProgressOnly()}"
+                        (click)="toggleInProgressOnly()" title="Show books In Progress">
+                        <i class="bi bi-battery-half"></i>
+                    </button>
+                </div>
+
+                <div class="btn-group ms-2" role="group" aria-label="actions">
+                    <button type="button" class="btn btn-secondary" (click)="collapseAll()" title="Collapse All"> <i
+                            class="bi bi-arrows-collapse"></i>
+                    </button>
+                    <button type="button" class="btn btn-secondary" (click)="expandAll()" title="Expand All"> <i
+                            class="bi bi-arrows-expand"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="p-3">
+        @for (group of groupInfos(); track group) {
+        @if(group.isVisible) {
+        <mtx-grouped-books [group]="group" sortBy="author" thenBy="title" sortOrder="desc"
+            (readyToLoadNextPage)="loadNextPage($event)"></mtx-grouped-books>
+        }
+        }
+    </div>
+</div>

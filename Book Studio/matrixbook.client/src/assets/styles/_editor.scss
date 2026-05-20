@@ -1,0 +1,129 @@
+.model-editor-host {
+    overflow-y: auto;
+    height: 100%;
+}
+
+.scroll-area {
+    height: 100%;
+    overflow-y: auto;
+}
+
+.narration-block-editor {
+    display: flex;
+    flex-direction: column;
+
+    & textarea {
+        height: auto;
+        border-left: none;
+        border-right: none;
+        border-top: none;
+        border-radius: 0;
+        border-bottom: 1px solid var(--bs-border-color);
+    }
+
+    & .textarea {
+        border-radius: var(--bs-border-radius);
+        border: 1px solid var(--bs-border-color);
+    }
+
+    &.left {
+        width: 75%;
+        margin-right: auto;
+
+        & .textarea {
+            border-left: 6px solid var(--bs-primary);
+        }
+    }
+
+    &.right {
+        width: 75%;
+        margin-left: auto;
+
+        & .textarea {
+            border-left: 6px solid var(--bs-success);
+
+        }
+
+        & textarea {
+            &:focus {
+                border-color: var(--bs-success);
+                outline: none;
+                box-shadow: 0 0 0 0.2rem rgba(25, 135, 84, 0.25);
+            }
+        }
+
+        &:focus {
+            border-color: var(--bs-success);
+            outline: none;
+            box-shadow: 0 0 0 0.2rem rgba(25, 135, 84, 0.25);
+        }
+    }
+
+    & .action-link {
+        font-size: 0.9rem;
+        text-decoration: none;
+        white-space: nowrap;
+        color: var(--bs-secondary-text-emphasis);
+        cursor: pointer;
+
+        &:hover {
+            color: var(--primary-color);
+        }
+    }
+}
+
+// .timeline-container {
+//     position: relative;
+//     width: 100%;
+//     overflow-x: auto;
+//     background-color: #1e1e1e;
+//     border-top: 1px solid #444;
+//     border-bottom: 1px solid #444;
+//     height: 200px;
+// }
+
+// .timeline-track {
+//     position: relative;
+//     height: 40px;
+//     border-bottom: 1px solid #333;
+//     margin-bottom: 4px;
+// }
+
+
+
+
+// .timeline-grid {
+//     position: absolute;
+//     top: 0;
+//     bottom: 0;
+//     width: 100%;
+//     pointer-events: none;
+//     background-image: linear-gradient(to right, #444 1px, transparent 1px);
+//     background-size: 100px 100%;
+//     z-index: 0;
+// }
+
+// .timeline-time-labels {
+//     display: flex;
+//     font-size: 10px;
+//     color: #aaa;
+//     padding: 2px 4px;
+//     background-color: #222;
+//     border-bottom: 1px solid #444;
+// }
+
+// .timeline-time-label {
+//     width: 100px;
+//     text-align: center;
+//     flex-shrink: 0;
+// }
+
+// .timeline-tracks {
+//     display: flex;
+//     flex-direction: column;
+
+//     &.audio {
+//         order: 999;
+//         /* Ensure it's always last */
+//     }
+// }

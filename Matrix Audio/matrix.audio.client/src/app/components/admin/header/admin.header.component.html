@@ -1,0 +1,39 @@
+<div class="main-header">
+    <ul class="nav me-lg-auto mb-2 mb-md-0">
+        @for(navItem of navigationItems; track $index) {
+        <li><a [routerLink]="navItem.route" routerLinkActive="active"
+                class="nav-link px-2 link-body-emphasis">{{navItem.name}}</a></li>
+        }
+    </ul>
+
+    <div class="d-flex">
+        <div class=" me-lg-3 d-none d-md-block">
+            <!-- <input type="search" class="form-control" placeholder="Search..." aria-label="Search"
+                [(ngModel)]="searchText" (keydown.enter)="search()"> -->
+        </div>
+
+        <div class="dropdown text-end">
+            <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                <img [src]="avatar" [alt]="userName" width="32" height="32" class="rounded-circle">
+            </a>
+            <ul class="dropdown-menu text-small ">
+                <li><span class="dropdown-item-text text-decoration-none cursor-default">{{userName}}</span></li>
+                <li>
+                    <hr class="dropdown-divider">
+                </li>
+                @for (item of accountNavigationItems; track $index) {
+                @if(item.hasSeparator){
+                <li>
+                    <hr class="dropdown-divider">
+                </li>
+                }
+                <li>
+                    <a class="dropdown-item text-decoration-none" routerLinkActive="active"
+                        routerLink="{{item.route}}">{{item.name}}</a>
+                </li>
+                }
+            </ul>
+        </div>
+    </div>
+</div>

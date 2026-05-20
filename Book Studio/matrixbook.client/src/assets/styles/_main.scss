@@ -1,0 +1,169 @@
+html,
+body,
+main,
+app-root,
+.h-100 {
+    height: -webkit-fill-available;
+}
+
+main {
+    max-height: 100vh;
+    overflow: hidden;
+}
+
+.scrollarea {
+    overflow-y: auto;
+}
+
+app-root {
+    display: block;
+}
+
+.logo-size {
+    font-size: 2rem;
+}
+
+.main-conent {
+    height: 100%;
+    margin: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    position: relative;
+
+    & .workarea {
+        padding: 1rem;
+    }
+
+    & .modal {
+        display: block;
+    }
+}
+
+.banner {
+    height: 200px;
+    padding: 1rem;
+}
+
+.header {
+    height: 200px;
+    padding: 1rem;
+}
+
+.bi-fw {
+    width: 1.28571429em;
+    text-align: center;
+    display: inline-block;
+}
+
+.hand {
+    cursor: pointer;
+}
+
+.modal-footer {
+    & .btn {
+        min-width: 72px;
+    }
+}
+
+.btn-sm-xs {
+    height: 24px;
+
+    &.btn-sm {
+        padding: .125rem;
+    }
+}
+
+.loading-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    & .spinner-border {
+        width: 4rem;
+        height: 4rem;
+    }
+}
+
+.max-height-200 {
+    max-height: 200px;
+}
+
+.min-height-200 {
+    min-height: 200px;
+}
+
+.min-height-400 {
+    min-height: 400px;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.settings {
+    & .list-group-item {
+        border-bottom: solid 1px var(--bs-border-color);
+        padding: .25rem 0rem;
+    }
+}
+
+.icon-button {
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    outline: none;
+    box-sizing: content-box;
+    width: 1em;
+    height: 1em;
+    padding: 0.5rem 0.25rem 0.5rem 0.25rem;
+
+    &:hover {
+        background-color: var(--bs-border-color);
+    }
+
+    &:disabled {
+        cursor: default;
+        color: var(--bs-gray-600);
+        opacity: var(--bs-opacity-disabled, 0.65);
+
+        &:hover {
+            background-color: transparent;
+        }
+    }
+
+    &.lg-xl {
+        font-size: 4em;
+        width: 4em;
+        height: 4em;
+    }
+
+    &.lg-xxx {
+        font-size: 2em;
+        width: 2em;
+        height: 2em;
+    }
+
+    &.lg-xx {
+        font-size: 1.5em;
+        width: 1.5em;
+        height: 1.5em;
+    }
+
+    &.lg-x {
+        font-size: 1.25em;
+        width: 1.25em;
+        height: 1.25em;
+    }
+
+    &.lg {
+        font-size: 1.125em;
+        width: 1.125em;
+        height: 1.125em;
+    }
+
+    &.sm {
+        font-size: .875em;
+        width: .875em;
+        height: .875em;
+    }
+}

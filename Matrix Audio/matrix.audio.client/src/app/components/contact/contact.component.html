@@ -1,0 +1,64 @@
+<mtx-banner imageUrl="/assets/images/banners/banner-2.png"></mtx-banner>
+
+<div class="container mt-3">
+    @if(isLoggedIn){
+    <h2>{{'Contact Us' | translate}}</h2>
+    <form [formGroup]="dataForm" novalidate (ngSubmit)="send(dataForm.value)">
+        <div class="mb-3">
+            <label for="subject" class="form-label">Subject</label>
+            <input type="text" class="form-control" id="subject"
+                placeholder="{{'Subject' | translate}} ({{'minimum length 10 chars' | translate}})"
+                formControlName="subject">
+        </div>
+
+        <div class="mb-3">
+            <label for="message" class="form-label">{{'Message' | translate}}</label>
+            <textarea class="form-control" id="message" rows="5" formControlName="content"
+                placeholder="{{'What do you want us know?' | translate}} ({{'minimum length 50 chars, maximum length 500 chars' | translate}})"
+                required></textarea>
+        </div>
+
+        <div class="d-flex justify-content-between">
+            <small class="text-muted">{{'Characters left'| translate}}: {{ 500 - (dataForm.get('content')?.value?.length
+                || 0) }}</small>
+
+            <button type="submit" class="btn btn-primary" [disabled]="!dataForm.valid">{{'Send' | translate}}</button>
+        </div>
+    </form>
+    } @else {
+    <mtx-signin-prompt></mtx-signin-prompt>
+    }
+
+    @if(hasFaqs){
+    <div class="row mt-5">
+        <div class="col">
+            <h2>{{'FAQs' | translate}}</h2>
+        </div>
+    </div>
+
+    <div class="row mt-2 mb-4">
+        <div class="col-12">
+            <div class="accordion" id="faqs">
+                @for (item of faqs; track $index) {
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                            [attr.data-bs-target]="'#' + item.id" aria-expanded="false" [attr.aria-controls]="item.id">
+                            {{item.question}}
+                        </button>
+                    </h2>
+                    <div id="{{item.id}}" class="accordion-collapse collapse" data-bs-parent="#faqs">
+                        <div class="accordion-body">
+                            <p>{{item.answer}}</p>
+                            <div class="text-end">
+                                <small class="text-muted"> {{item.dateCreated | date:'yyyy-MM-dd' }}</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                }
+            </div>
+        </div>
+    </div>
+    }
+</div>

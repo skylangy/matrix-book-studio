@@ -1,0 +1,31 @@
+<div class="preview-container">
+  <div class="preview-header">
+    <div> <span class="me-2">{{book?.title}}</span>
+    <small class="me-2">Chapter {{book?.chapterCount}}</small>
+    <small>Chunk {{book?.chunkCount}}</small>
+  </div>
+  <button type="button" class="btn-close" aria-label="Close" (click)="close()"></button>
+</div>
+
+<div class="preview-body">
+  @for (chapter of book?.chapters; track chapter) {
+    <div>
+      <h5 class="chapter-title text-info">
+        <span>{{chapter?.title}}</span>
+        <small class="text-count">[{{chapter.chunks?.length}}] chunks, ({{chapter.textCount | number}})
+        characters</small>
+      </h5>
+      <div class="chapter-content">
+        @for (chunk of chapter.chunks; track chunk) {
+          <div class="chunk-content">
+            <div innerHTML="  {{chunk.content | textToHtml}}"></div>
+            <div class="chunk-footer">
+              <small>({{chunk.textCount | number}}) characters</small>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  }
+</div>
+</div>

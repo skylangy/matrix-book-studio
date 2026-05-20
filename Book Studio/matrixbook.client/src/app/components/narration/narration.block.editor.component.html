@@ -1,0 +1,12 @@
+<div class="narration-block-editor mb-3 mt-2" [ngClass]="{'right': isEven, 'left': !isEven}">
+    <div class="textarea">
+        <textarea id="narrationBlockContent-{{model.id}}" [(ngModel)]="model.content" class="form-control p-2"
+            (focus)="onSelected()"></textarea>
+        <div class="d-flex justify-content-end my-2 me-2 content-length ">
+            <a class="action-link me-2" title="Edit video" title="Delete Block" (click)="onDeleted()">
+                <i class="bi bi-trash me-1"></i>Delete
+            </a>
+            <span class="text-muted small">{{ model.content?.length || 0 }} </span>
+        </div>
+    </div>
+</div>

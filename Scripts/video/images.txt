@@ -1,0 +1,24 @@
+file 'I:\Source\封面\红楼梦\video\image_ (10).jpeg'
+duration 5.0
+file 'I:\Source\封面\红楼梦\video\image_ (11).jpeg'
+duration 5.0
+file 'I:\Source\封面\红楼梦\video\image_ (12).jpeg'
+duration 5.0
+file 'I:\Source\封面\红楼梦\video\image_ (2).jpeg'
+duration 5.0
+file 'I:\Source\封面\红楼梦\video\image_ (3).jpeg'
+duration 5.0
+file 'I:\Source\封面\红楼梦\video\image_ (4).jpeg'
+duration 5.0
+file 'I:\Source\封面\红楼梦\video\image_ (5).jpeg'
+duration 5.0
+file 'I:\Source\封面\红楼梦\video\image_ (6).jpeg'
+duration 5.0
+file 'I:\Source\封面\红楼梦\video\image_ (7).jpeg'
+duration 5.0
+file 'I:\Source\封面\红楼梦\video\image_ (8).jpeg'
+duration 5.0
+file 'I:\Source\封面\红楼梦\video\image_ (9).jpeg'
+duration 5.0
+file 'I:\Source\封面\红楼梦\video\image_.jpeg'
+duration 5.0

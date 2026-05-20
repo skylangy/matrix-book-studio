@@ -1,0 +1,70 @@
+<div class="main-conent">
+
+    <mtx-header title="Import" subtitle="Import a book"></mtx-header>
+
+    <section class="workarea">
+
+        <ng-template #bookInfoTemplate let-context>
+            <div class="p-a-1">
+                <div id="book-info">
+                    <div class="mb-3 row">
+                        <h3>Book Information</h3>
+                        <p></p>
+                    </div>
+                    <div class="mb-3 row">
+                        <label for="bookName" class="col-sm-2 col-form-label">Name</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="bookName" value="">
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label for="author" class="col-sm-2 col-form-label">Author</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" id="author">
+                        </div>
+                        <label for="category" class="col-sm-2 col-form-label">Category</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" id="category">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <label class="col-sm-2 col-form-label">Splash</label>
+                    </div>
+                    <mtx-file-uploader></mtx-file-uploader>
+                </div>
+            </div>
+        </ng-template>
+
+        <ng-template #bookContentTemplate let-context>
+            <div class="p-a-1">
+                <div id="upload-file">
+                    <div class="row">
+                        <label for="book-file" class="col-sm-2 col-form-label">Book File</label>
+                    </div>
+                    <mtx-file-uploader></mtx-file-uploader>
+                </div>
+            </div>
+        </ng-template>
+
+        <ng-template #bookReviewTemplate let-context>
+            <div class="p-a-1">
+                <div id="finish">
+
+                </div>
+            </div>
+        </ng-template>
+
+        <mtx-wizard (finished)="create()">
+            <mtx-wizard-item [context]="bookInfo" [template]="bookInfoTemplate">
+
+            </mtx-wizard-item>
+            <mtx-wizard-item [context]="bookContent" [template]="bookContentTemplate">
+
+            </mtx-wizard-item>
+            <mtx-wizard-item [context]="bookReview" [template]="bookReviewTemplate">
+
+            </mtx-wizard-item>
+        </mtx-wizard>
+    </section>
+</div>

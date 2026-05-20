@@ -1,0 +1,6 @@
+<div class="rank-display">
+  @for (star of [1, 2, 3, 4, 5]; track star; let i = $index) {
+    <span class="star" [class.filled]="i < rank!"
+    (click)="setRank(star)">&#9733;</span>
+  }
+</div>

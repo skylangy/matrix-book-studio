@@ -1,0 +1,47 @@
+<div class="sidenav">
+    <a href="/" class="sidenav-header">
+        @if(logoUrl){
+        <img [src]="logoUrl" alt="{{appName}}" class="app-logo">
+        } @else {
+        <span class="bi bi-music-note logo"></span>
+        }
+        <span class="app-name">{{appName}}</span>
+    </a>
+
+    <ul class="sidenav-body">
+        <li class="mb-1">
+            <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse"
+                data-bs-target="#home-collapse" aria-expanded="true">
+                <i class="bi bi-house"></i> {{'Home' | translate}}
+            </button>
+            <div class="collapse show" id="home-collapse">
+                <mtx-sidebar-nav [navItems]="appNavigationItems"></mtx-sidebar-nav>
+            </div>
+        </li>
+
+        <li class="border-top my-3"></li>
+
+        @if(isLoggedIn){
+        <li class="mb-1">
+            <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse"
+                data-bs-target="#account-collapse" aria-expanded="true">
+                <i class="bi bi-person-circle"></i> {{'My Account' | translate}}
+            </button>
+            <div class="collapse show" id="account-collapse">
+                <mtx-sidebar-nav [navItems]="accountNavigationItems"></mtx-sidebar-nav>
+            </div>
+        </li>
+        }
+        @else {
+        <li class="mb-1">
+            <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse"
+                data-bs-target="#account-collapse" aria-expanded="true">
+                <i class="bi bi-person-circle"></i> {{'Account' | translate}}
+            </button>
+            <div class="collapse show" id="account-collapse">
+                <mtx-sidebar-nav [navItems]="logInOutNavigationItems"></mtx-sidebar-nav>
+            </div>
+        </li>
+        }
+    </ul>
+</div>

@@ -1,0 +1,48 @@
+<div class="card">
+    <div class="card-body">
+        <div class="d-flex justify-content-between align-items-center  mb-2">
+            <h5 class="card-title">{{'Order Summary' | translate}}</h5>
+
+            <span class="badge bg-primary rounded-pill">{{itemCount}}</span>
+        </div>
+
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+                {{'Subtotal' | translate}} <span class="float-end">{{ subtotal | currency }}</span>
+            </li>
+            <li class="list-group-item">
+                {{'Tax' | translate}} <span class="float-end">{{ tax | currency }}</span>
+            </li>
+            <li class="list-group-item">
+                {{'Processing fee'| translate}} <span class="float-end">{{ processingFee | currency }}</span>
+            </li>
+            @if(promo){
+            <li class="list-group-item ">
+                {{'Promo Discount'| translate}}
+
+                @if(promo.discountType === 'percentage'){
+                <span class="text-success float-end">{{promoDiscount}}%</span>
+                } @else {
+                <span class="text-success float-end">{{promoDiscount | currency}}</span>
+                }
+            </li>
+            }
+            <li class="list-group-item">
+                <strong>{{'Total'| translate}}</strong> <span class="float-end">{{ total | currency }}</span>
+            </li>
+
+            @if(promo){
+            <li class="list-group-item text-muted fw-light align-middle">
+                <small class="">{{'Promo Code' | translate}}</small>
+                <small class="float-end mt-1">{{ promo.code }}</small>
+            </li>
+            }
+
+        </ul>
+        @if(showProceedButton){
+        <button [routerLink]="proceedRoute" class="btn btn-primary mt-3 w-100" [disabled]="itemCount === 0">
+            {{proceedLabel}}
+        </button>
+        }
+    </div>
+</div>

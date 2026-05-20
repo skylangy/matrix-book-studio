@@ -1,0 +1,34 @@
+<div class="container-fluid pt-2">
+    @if(isLoggedIn){
+    <div class="row">
+        <mtx-header-content header="{{'My Play Plan' | translate}}">
+            <mtx-albums layout="grid" cardLayout="compact" sourceType="playlist"
+                emptyMessage="{{'No album added to the plan' | translate}}"
+                [showRemoveFromPlaylist]="true"></mtx-albums>
+        </mtx-header-content>
+    </div>
+
+    <div class="row">
+        <mtx-header-content header="{{'My Play History' | translate}}">
+            <mtx-albums layout="horizontal" cardLayout="compact" sourceType="history"
+                emptyMessage="{{'No play history found' | translate}}"></mtx-albums>
+        </mtx-header-content>
+    </div>
+
+    <div class="row">
+        <mtx-header-content header="{{'My Favorites' | translate}}">
+            <mtx-albums layout="horizontal" cardLayout="compact" sourceType="favorites"
+                emptyMessage="{{'No favorite album found' | translate}}" [showUnfavorite]="true"></mtx-albums>
+        </mtx-header-content>
+    </div>
+
+    <div class="row">
+        <mtx-header-content header="{{'My Downloads' | translate}}">
+            <mtx-albums layout="horizontal" cardLayout="compact" sourceType="downloads"
+                emptyMessage="{{'No downloaded album found'| translate}}"></mtx-albums>
+        </mtx-header-content>
+    </div>
+    } @else {
+    <mtx-signin-prompt></mtx-signin-prompt>
+    }
+</div>

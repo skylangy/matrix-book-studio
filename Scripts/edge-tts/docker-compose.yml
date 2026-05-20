@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  matrix-edge-tts:
+    image: 192.168.7.218:8961/matrix-edge-tts-api:latest
+    expose:
+      - "8000"
+    environment:
+      - PORT=8000
+    restart: unless-stopped
+
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "8989:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - matrix-edge-tts

@@ -1,0 +1,45 @@
+<div id="postCarousel" class="album-carousel carousel slide mb-6" data-bs-ride="carousel">
+    <!-- data-bs-ride="false"-->
+    @if(showIndicators ){
+    <div class="carousel-indicators">
+        @for (post of posts; track $index) {
+        <button type="button" data-bs-target="#postCarousel" [ngClass]="{'active': $index==0}"
+            [attr.data-bs-slide-to]="$index" [attr.aria-current]="$index==0" [attr.aria-label]="post.id"></button>
+        }
+    </div>
+    }
+
+    <div class="carousel-inner">
+        @for (post of posts; track $index) {
+        <div class="carousel-item " [ngClass]="{'active': $index==0}">
+            <img src="{{post?.image| image}}" class="image-blur" alt="{{post.title}}" defaultFallback>
+            <div class="container">
+                <div class="carousel-caption text-start text-light">
+                    <a routerLink="/public/post/{{post.id}}">
+                        <h1>{{post.title}}</h1>
+                    </a>
+                    <p class="opacity-75 p-3" [innerHTML]="post.content | summary: 200 | toHtml "></p>
+
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="text-body-secondary me-2 small">
+
+                        </div>
+                        <div class="text-body-secondary small">{{post.dateCreated | date:'yyyy-MM-dd'}} </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        }
+    </div>
+
+    @if(showControls){
+    <button class="carousel-control-prev" type="button" data-bs-target="#postCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#postCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+    }
+</div>

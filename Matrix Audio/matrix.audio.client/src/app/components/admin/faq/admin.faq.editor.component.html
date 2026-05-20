@@ -1,0 +1,57 @@
+<mtx-admin-container>
+    <mtx-header-content header="Edit - {{model?.question}}" [icon]="icon">
+
+        @if(model){
+        <form [formGroup]="dataForm" (ngSubmit)="onSubmit()" class="py-3">
+            <div class="row border-bottom pb-3 mb-3">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <span class="text-secondary">Date created: {{model.dateCreated! | date:'yyyy-MM-dd'}}</span>
+                    </div>
+
+                    <div>
+                        <button type="button" class="btn btn-outline-secondary" (click)="back()">Back</button>
+                        <button type="submit" class="btn btn-primary ms-2">Save</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col col-md-8">
+                    <div class="form-group mb-3">
+                        <label for="question" class="form-label">Question</label>
+                        <input id="question" type="text" formControlName="question" class="form-control" />
+                    </div>
+
+                    <div class="form-group ">
+                        <label for="answer" class="form-label">Answer</label>
+                        <textarea id="answer" formControlName="answer" class="form-control" rows="8"></textarea>
+                    </div>
+                </div>
+
+                <div class="col col-md-4">
+                    <div class="form-group mb-3">
+                        <label for="category" class="form-label">Category</label>
+                        <input id="category" type="text" formControlName="category" class="form-control" />
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label for="tags" class="form-label">Tag</label>
+                        <input id="tags" type="text" formControlName="tags" class="form-control" />
+                    </div>
+                </div>
+            </div>
+        </form>
+        } @else {
+        <div class="alert alert-danger mt-5" role="alert">
+            <h4 class="alert-heading">Not found</h4>
+            <p>The FAQ with given id is not found, it might be deleted. </p>
+            <hr>
+            <div class="text-end">
+                <button type="button" class="btn btn-outline-primary " (click)="back()">Back</button>
+            </div>
+        </div>
+        }
+
+    </mtx-header-content>
+</mtx-admin-container>

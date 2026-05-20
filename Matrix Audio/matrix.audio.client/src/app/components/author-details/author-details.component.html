@@ -1,0 +1,20 @@
+<div class="container-fluid no-padding album-details">
+    <div class="row p-3 border-bottom">
+        <div class="col-lg-4 col-12 text-center">
+            <img [src]="author?.image | avatar" alt="{{author?.name}}" class="rounded-circle shadow author-avatar-full">
+            <h2 class="fw-normal mt-3">{{author?.name}}</h2>
+        </div>
+
+        <div class="col-lg-8 col-12 ">
+            <p class="text-start mt-3 details" [innerHTML]="author?.description | toHtml"></p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <mtx-header-content header="{{'Albums' | translate}}">
+                <mtx-albums layout="list" cardLayout="horizontal" [albums]="author?.albums" sourceType=""></mtx-albums>
+            </mtx-header-content>
+        </div>
+    </div>
+</div>

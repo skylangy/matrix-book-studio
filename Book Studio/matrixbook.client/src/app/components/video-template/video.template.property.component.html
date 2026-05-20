@@ -1,0 +1,97 @@
+<mtx-tool-pane title="Template Properties" [icon]="'bi bi-gear'" [closable]="false" [scrollBody]="true">
+    <div class="container my-1">
+        <form #form="ngForm">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+                <label class="">Title</label>
+                <button class="icon-button" type="submit" title="Save Settings">
+                    <i class="bi bi-floppy"></i>
+                </button>
+            </div>
+            <div class="mb-2">
+                <input type="text" class="form-control" [(ngModel)]="model.name" name="title" required />
+            </div>
+
+            <div class="mb-2">
+                <label class="form-label">Description</label>
+                <input type="text" class="form-control" [(ngModel)]="model.description" name="description" />
+            </div>
+
+            <div class="d-flex justify-content-between align-items-center mb-2 border-bottom pb-2">
+                <label class="">Properties</label>
+
+                <button class="icon-button" type="submit" title="Add Property" (click)="addProperty()">
+                    <i class="bi bi-file-plus"></i>
+                </button>
+            </div>
+
+            <div class="mb-3">
+                @for(prop of model.properties; track prop.id) {
+                <mtx-video-template-prop-editor [model]="prop"
+                    (remove)="removeProperty($event)"></mtx-video-template-prop-editor>
+                }
+            </div>
+
+        </form>
+    </div>
+
+    @if(element){
+    <div class="card mb-2 rounded-0 border-start-0 border-end-0 border-bottom-0">
+        <div class="card-header d-flex justify-content-between align-items-center rounded-0 border-bottom border-info">
+            <strong> <i class="bi bi-film"></i> Element Settings</strong>
+            <button class="icon-button" type="submit" title="Save Settings">
+                <i class="bi bi-floppy"></i>
+            </button>
+        </div>
+        <div class="card-body">
+            <div class="mb-2">
+                <label class="form-label">Name</label>
+                <input type="text" class="form-control" [(ngModel)]="element.name" name="name" required />
+            </div>
+            <div class="row mb-2">
+                <div class="col">
+                    <label class="form-label">Start</label>
+                    <input type="number" class="form-control" [(ngModel)]="element.start" name="start" required />
+                </div>
+                <div class="col">
+                    <label class="form-label">Duration</label>
+                    <input type="number" class="form-control" [(ngModel)]="element.duration" name="duration" required />
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col">
+                    <label class="form-label">Start Type</label>
+                    <select class="form-select" [(ngModel)]="element.startType" name="template">
+                        @for(type of startTypes; track type) {
+                        <option [value]="type">{{type}}</option>
+                        }
+                    </select>
+                </div>
+                <div class="col">
+                    <label class="form-label">Duration Type</label>
+                    <select class="form-select" [(ngModel)]="element.durationType" name="durationType">
+                        @for(type of durationTypes; track type) {
+                        <option [value]="type">{{type}}</option>
+                        }
+                    </select>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col">
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" role="switch" id="fadeInCheck"
+                            [(ngModel)]="element.fadeIn">
+                        <label class="form-check-label" for="fadeInCheck">Fade In</label>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" role="switch" id="fadeOutCheck"
+                            [(ngModel)]="element.fadeOut">
+                        <label class="form-check-label" for="fadeOutCheck">Fade Out</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    }
+</mtx-tool-pane>

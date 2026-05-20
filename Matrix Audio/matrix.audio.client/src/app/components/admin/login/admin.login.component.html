@@ -1,0 +1,71 @@
+<div class="login-host">
+    <mtx-split-layout extra="login-container">
+        <ng-container left>
+            <div class="banner">
+                <mtx-img-pane imgUrl="/assets/images/library.png"></mtx-img-pane>
+            </div>
+        </ng-container>
+
+        <ng-container right>
+            <div class="login-content">
+                <section class="border-bottom mb-4">
+                    <h5 class="title">{{'Log in to the tower' }} </h5>
+                    <p class="subtitle">
+                        {{'Welcome back' }}
+                    </p>
+                </section>
+
+                <form [formGroup]="dataForm" novalidate (ngSubmit)="login(dataForm.value)">
+                    <div class="mb-3">
+                        <label for="email" class="form-label">{{'Email address' }}</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="bi bi-envelope"></i></span>
+                            <input type="email" class="form-control" id="email" formControlName="email"
+                                autocomplete="username" placeholder="your-name@email.com" required>
+                        </div>
+                        @if(check('email', 'required')) {
+                        <div class="text-danger error">{{'Email is required.' }}</div>
+                        }
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="password" class="form-label">{{'Password' }}</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="bi bi-key"></i></span>
+                            <input type="password" class="form-control" id="password" autocomplete="current-password"
+                                placeholder="{{'Password' }}" formControlName="password" required>
+                        </div>
+                        @if(check('password', 'required')){
+                        <div class="text-danger error">{{'Password is required.' }}</div>
+                        }
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="token" class="form-label">{{'Token'}}</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="bi bi-alt"></i></span>
+                            <input type="password" class="form-control" id="token" autocomplete="current-password"
+                                placeholder="{{'Token' }}" formControlName="token" required>
+                        </div>
+                        @if(check('token', 'required')){
+                        <div class="text-danger error">{{'Token is required.' }}</div>
+                        }
+                    </div>
+
+                    @if(hasOperation){
+                    <div class="mb-3 ">
+                        <mtx-alert [header]="operation.header!" [body]="operation.body!"
+                            [type]="operation.type!"></mtx-alert>
+                    </div>
+                    }
+
+                    <div class="mt-2 text-end">
+                        <button class="btn btn-primary shadow" type="submit" [disabled]="!dataForm.valid">
+                            {{'Log in'}}
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </ng-container>
+    </mtx-split-layout>
+</div>

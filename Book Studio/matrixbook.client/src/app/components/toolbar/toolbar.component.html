@@ -1,0 +1,14 @@
+<div class="btn-group me-2" role="group" [attr.aria-label]="name">
+  @for (item of navItems; track item.name) {
+  @if (!item.isSeparator) {
+  <button type="button" class="btn" [routerLink]="item.route" [ngClass]="{'active': item.isActive}"
+    (click)="navClicked(item)">
+    <i class="bi bi-{{item.icon}}"></i>
+    {{item.text}}
+  </button>
+  }
+  @if (item.isSeparator) {
+  <span class="separator"></span>
+  }
+  }
+</div>

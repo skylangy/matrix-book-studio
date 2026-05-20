@@ -1,0 +1,57 @@
+.appbar {
+    display: none;
+    border-top: var(--bs-border-width) solid var(--bs-border-color);
+    background-color: var(--bs-body-bg);
+    backdrop-filter: blur(24px);
+
+    & .appbar-buttons {
+        display: flex;
+        height: var(--app-button-height);
+        align-items: center;
+        width: 100%;
+        justify-content: space-evenly;
+
+        & .appbar-button {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            padding: var(--app-bar-padding);
+            background: transparent;
+            border: 0;
+            outline: 0;
+            font-size: .8rem;
+            height: 100%;
+            width: 100%;
+            text-align: center;
+
+            & .button-content {
+                display: flex;
+                flex-direction: column;
+                flex: 1;
+            }
+
+            & .icon {
+                font-size: 1.5rem;
+            }
+
+            &:hover {
+                background: var(--bg-light);
+            }
+
+            &:active,
+            &.active {
+                background: var(--bs-border-color);
+            }
+        }
+    }
+}
+
+@media (max-width: 767.98px) {
+    :root {
+        --app-bar-padding: .5rem .25rem 1.25rem .25rem;
+    }
+
+    .appbar {
+        display: block;
+    }
+}

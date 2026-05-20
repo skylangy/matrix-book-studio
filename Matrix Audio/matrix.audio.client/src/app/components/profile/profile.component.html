@@ -1,0 +1,57 @@
+<div class="container-fluid no-padding">
+    <div class="row p-3 border-bottom mt-2">
+        <div class="col-xxl-2 col-xl-3 col-lg-4 col-md-3 col-sm-4 col-12 text-center mb-3">
+            <div class="card">
+                <mtx-avatar [user]="user"></mtx-avatar>
+
+                <div class="card-body">
+                    <h4 class="card-title">{{user?.name}}</h4>
+                    @if(user?.level ){
+                    <h6 class="d-none">({{user?.level}})</h6>
+                    }
+                </div>
+
+                <ul class="list-group list-group-flush text-center">
+                    <li class="list-group-item ">{{'Register at' | translate}} <b>{{user?.dateCreated | date
+                            :'yyyy-MM-dd'}}</b></li>
+                    <li class="list-group-item">{{'Read' | translate}} {{user?.readBooks}} {{'books' | translate}}</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="col-xxl-10 col-xl-9 col-lg-8 col-md-9 col-sm-8 col-12 mb-3">
+            <div class="mb-3">
+                <label for="emailInput" class="form-label">{{'Email address' | translate}}</label>
+                <input type="email" class="form-control" id="emailInput" placeholder="name@example.com" readonly
+                    disabled [(ngModel)]="email">
+            </div>
+
+            <div class="mb-3">
+                <label for="alias" class="form-label">{{'Display Name' | translate}}</label>
+                <input type="text" class="form-control" id="alias" placeholder="Alias" [(ngModel)]="displayName">
+            </div>
+
+            <div class="mb-3">
+                <label for="firstName" class="form-label">{{'First name' | translate}}</label>
+                <input type="text" class="form-control" id="firstName" placeholder="{{'First Name' | translate}}"
+                    [(ngModel)]="firstName">
+            </div>
+
+            <div class="mb-3">
+                <label for="lastName" class="form-label">{{'Last name' | translate}}</label>
+                <input type="text" class="form-control" id="lastName" placeholder="{{'Last Name' | translate}}"
+                    [(ngModel)]="lastName">
+            </div>
+
+            <div class="mb-3">
+                <label for="bio" class="form-label">{{'Bio' | translate}}</label>
+                <textarea id="bio" class="form-control" rows="3"
+                    placeholder="{{'Write something about yourself' | translate}}" [(ngModel)]="bio"></textarea>
+            </div>
+
+            <div class="mb-3 text-end">
+                <button type="button" class="btn btn-primary" (click)="save()">{{'Save' | translate}}</button>
+            </div>
+        </div>
+    </div>
+</div>

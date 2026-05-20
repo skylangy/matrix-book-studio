@@ -1,0 +1,119 @@
+@if(episode){
+<div class="player vertical">
+
+    @if(isCompact){
+    <div class="compact-player">
+        <div class="info-row">
+            <a class="album-info" [routerLink]="epipsodeUrl">
+                <img [src]="episode.album?.imageSquareSplash | image" class="flex-shrink-0 me-3 album-avatar"
+                    [alt]="episode.title">
+                <div>
+                    <h6 class="album-name">
+                        <div class="scroll-name" [ngClass]="{'scroll': audioPlayer.isPlaying}">{{episode.title}}</div>
+                    </h6>
+                    <h6 class="album-author">
+                        <span> {{episode.artistName}}</span>
+                        <span class="progress-label">{{audioPlayer.currentPosition | toTime}}</span>
+                        <span class="progress-label">{{audioPlayer.duration | toTime}}</span>
+                    </h6>
+                </div>
+            </a>
+            <div class="player-controls">
+                <button class="player-button sm" [disabled]="!audioPlayer.canGoPrev" (click)="playPrevious()"
+                    title="Previous">
+                    <i class="bi bi-chevron-bar-left"></i>
+                </button>
+                <mtx-toggle-button offStatusIcon="bi bi-play" onStatusIcon="bi bi-pause text-success-emphasis"
+                    buttonStyle="player-button " title="Play" [isOn]="audioPlayer.isPlaying"
+                    [isEnabled]="audioPlayer.canPlay" (statusChanged)="audioPlayer.playStatusChanged($event)">
+                </mtx-toggle-button>
+
+                <button class="player-button sm" [disabled]="!audioPlayer.canGoNext" (click)="playNext()">
+                    <i class="bi bi-chevron-bar-right" title="Next"></i>
+                </button>
+
+                <button class="player-button sm-x" title="Toggle Compact" (click)="toggleMode()">
+                    <i class="bi bi-{{modeIcon}}"></i>
+                </button>
+            </div>
+        </div>
+        <mtx-progress [progress]="progress" [height]="progressHeight"></mtx-progress>
+    </div>
+    } @else {
+    <a class="album-info" [routerLink]="epipsodeUrl">
+        <img [src]="episode.album?.imageSquareSplash | image" class="flex-shrink-0 me-2 album-avatar"
+            [alt]="episode.title">
+        <div class="flex-grow-1">
+            <h6 class="album-name">
+                <div class="scroll-name" [ngClass]="{'scroll': audioPlayer.isPlaying}">{{episode.title}}</div>
+            </h6>
+            <h6 class="album-author">{{episode.artistName}}</h6>
+        </div>
+    </a>
+
+    <div class="player-progress">
+        <span class="progress-label">{{audioPlayer.currentPosition | toTime}}</span>
+        <input type="range" class="form-range player-progress-bar" [(ngModel)]="audioPlayer.currentPosition"
+            [max]="audioPlayer.duration">
+        <span class="progress-label">{{audioPlayer.duration | toTime}}</span>
+    </div>
+
+    <div class="player-controls">
+        @if(allowRepeat){
+        <button class="player-button sm" [disabled]="!audioPlayer.canPlay" (click)="toggleRepeat()" title="Repeat">
+            <i class="bi bi-repeat"></i>
+        </button>
+        }
+        <button class="player-button sm" [disabled]="!audioPlayer.canGoPrev" (click)="playPrevious()" title="Previous">
+            <i class="bi bi-chevron-bar-left"></i>
+        </button>
+        <mtx-toggle-button offStatusIcon="bi bi-play" onStatusIcon="bi bi-pause text-success-emphasis"
+            buttonStyle="player-button lg" title="Play" [isOn]="audioPlayer.isPlaying" [isEnabled]="audioPlayer.canPlay"
+            (statusChanged)="audioPlayer.playStatusChanged($event)">
+        </mtx-toggle-button>
+
+        <button class="player-button sm" [disabled]="!audioPlayer.canGoNext" (click)="playNext()">
+            <i class="bi bi-chevron-bar-right" title="Next"></i>
+        </button>
+
+        @if(allowSleep){
+        <div class="dropdown">
+            <a id="sleepDropdown" href="#" class="btn btn-danger dropdown-toggle player-button sm"
+                data-bs-toggle="dropdown" aria-expanded="false" data-bs-boundary="body">
+                <i class="bi {{sleepIcon}}"></i>
+            </a>
+            <ul class="dropdown-menu shadow" aria-labelledby="sleepDropdown">
+                @for (item of playerSetting.sleepSettings; track $index) {
+                <li>
+                    <a class="dropdown-item text-decoration-none" (click)="setSleep(item)">
+                        <i class="bi bi-fw" [ngClass]="{'bi-check': item.selected}"></i> {{item.name}}
+                    </a>
+                </li>
+                }
+            </ul>
+        </div>
+        }
+
+        <div class="dropdown">
+            <a id="speedDropdown" href="#" class="btn btn-secondary dropdown-toggle player-button sm"
+                data-bs-toggle="dropdown" aria-expanded="false" data-bs-boundary="body">
+                <i class="bi {{speedIcon}}"></i>
+            </a>
+            <ul class="dropdown-menu shadow" aria-labelledby="speedDropdown">
+                @for (item of playerSetting.speedSettings; track $index) {
+                <li>
+                    <a class="dropdown-item text-decoration-none" (click)="setSpeed(item)">
+                        <i class="bi bi-fw" [ngClass]="{'bi-check': item.selected}"></i> {{item.name}}
+                    </a>
+                </li>
+                }
+            </ul>
+        </div>
+
+        <button class="player-button sm" title="Toggle Compact" (click)="toggleMode()">
+            <i class="bi bi-{{modeIcon}}"></i>
+        </button>
+    </div>
+    }
+</div>
+}

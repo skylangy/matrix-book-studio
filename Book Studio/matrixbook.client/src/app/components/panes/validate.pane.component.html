@@ -1,0 +1,143 @@
+<div class="accordion accordion-flush" id="validationResult">
+
+  <div class="accordion-item">
+    <h2 class="accordion-header">
+      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#accordion-errors"
+        aria-expanded="true" aria-controls="accordion-errors">
+        Errors ({{errors.length}})
+      </button>
+    </h2>
+    <div id="accordion-errors" class="accordion-collapse collapse show">
+      <div class="accordion-body">
+        @if (hasError()) {
+          <div>
+            <div class="d-flex w-100 justify-content-between border-bottom">
+              <div></div>
+              <button type="button" class="btn btn-dark" (click)="fixAllErros()">
+                Replace All <i class="bi bi-arrow-return-left"></i>
+              </button>
+            </div>
+            <div class="list-group list-group-flush no-padding">
+              @for (item of errors; track item) {
+                <div class="list-group-item">
+                  <div class="d-flex w-100 justify-content-between">
+                    <button type="button" class="btn btn-dark p-1" (click)="goToLine(item)">
+                      <span class="text-danger"> {{item.match}}</span>
+                      @if (item.suggestion && item.suggestion.trim().length > 0) {
+                        <span>-> </span>
+                      }
+                      <span class="text-success">{{item.suggestion}}</span>
+                    </button>
+                    <button type="button" class="btn btn-dark" (click)="replace(item)">
+                      <i class="bi bi-arrow-return-left"></i>
+                    </button>
+                  </div>
+                </div>
+              }
+            </div>
+          </div>
+        }
+
+        @if (!hasError()) {
+          <div class="alert alert-success" role="alert">
+            No errors found!
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion-item">
+    <h2 class="accordion-header">
+      <button class="accordion-button" type="button" data-bs-toggle="collapse"
+        data-bs-target="#accordion-warnings" aria-expanded="false" aria-controls="accordion-warnings">
+        Warnings ({{warnings.length}})
+      </button>
+    </h2>
+    <div id="accordion-warnings" class="accordion-collapse collapse">
+      <div class="accordion-body">
+        @if (hasWarning()) {
+          <div>
+            <div class="d-flex w-100 justify-content-between border-bottom">
+              <div></div>
+              <button type="button" class="btn btn-dark" (click)="fixAllWarnings()">
+                Replace All <i class="bi bi-arrow-return-left"></i>
+              </button>
+            </div>
+            <div class="list-group list-group-flush no-padding">
+              @for (item of warnings; track item) {
+                <div class="list-group-item">
+                  <div class="d-flex w-100 justify-content-between">
+                    <button type="button" class="btn btn-dark p-1 overflow-hidden" (click)="goToLine(item)">
+                      <span class="text-warning text-nowrap"> {{item.match}}</span>
+                      @if (item.suggestion && item.suggestion.trim().length > 0) {
+                        <span>-> </span>
+                      }
+                      <span class="text-success">{{item.suggestion}}</span>
+                    </button>
+                    <button type="button" class="btn btn-dark" (click)="replace(item)">
+                      <i class="bi bi-arrow-return-left"></i>
+                    </button>
+                  </div>
+                </div>
+              }
+            </div>
+          </div>
+        }
+
+        @if (!hasWarning()) {
+          <div class="alert alert-success" role="alert">
+            No warnings found!
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion-item">
+    <h2 class="accordion-header">
+      <button class="accordion-button" type="button" data-bs-toggle="collapse"
+        data-bs-target="#accordion-attentions" aria-expanded="false" aria-controls="accordion-attentions">
+        Attentions ({{attentions.length}})
+      </button>
+    </h2>
+    <div id="accordion-attentions" class="accordion-collapse collapse">
+      <div class="accordion-body">
+        @if (hasAttention()) {
+          <div>
+            <div class="d-flex w-100 justify-content-between border-bottom">
+              <div></div>
+              <button type="button" class="btn btn-dark" (click)="fixAllAttentions()">
+                Replace All <i class="bi bi-arrow-return-left"></i>
+              </button>
+            </div>
+            <div class="list-group list-group-flush no-padding">
+              @for (item of attentions; track item) {
+                <div class="list-group-item">
+                  <div class="d-flex w-100 justify-content-between">
+                    <button type="button" class="btn btn-dark p-1 overflow-hidden" (click)="goToLine(item)">
+                      <span class="text-warning text-nowrap"> {{item.match}}</span>
+                      @if (item.suggestion && item.suggestion.trim().length > 0) {
+                        <span>-> </span>
+                      }
+                      <span class="text-success">{{item.suggestion}}</span>
+                    </button>
+                    <button type="button" class="btn btn-dark" (click)="replace(item)">
+                      <i class="bi bi-arrow-return-left"></i>
+                    </button>
+                  </div>
+                </div>
+              }
+            </div>
+          </div>
+        }
+
+        @if (!hasAttention()) {
+          <div class="alert alert-success" role="alert">
+            No attentions found!
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+</div>

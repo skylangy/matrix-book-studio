@@ -1,0 +1,43 @@
+@if (showFilter) {
+<div class="d-flex justify-content-between mb-1 px-3">
+  <div>
+    <h3>{{ title }}</h3>
+  </div>
+  <div>
+    <div class="input-group">
+      <input class="form-control" list="authors" id="bookList" placeholder="Search..." [(ngModel)]="filter" />
+      <datalist id="authors">
+        @for (book of books; track book) {
+        <option [value]="book.title"></option>
+        }
+      </datalist>
+      @if (filter !== '') {
+      <button class="btn btn-outline-secondary" type="button" (click)="filter = ''">
+        <i class="bi bi-x"></i>
+      </button>
+      }
+      <button class="btn btn-outline-secondary bs-0" type="button" (click)="toggleHidden()">
+        <i class="bi bi-eye"></i>
+      </button>
+    </div>
+  </div>
+</div>
+}
+
+@if (hasBooks) {
+<div class="books">
+  @for (book of books | filter: filter; track trackBy(book)) {
+  @if (book.isVisible) {
+  @defer (on viewport) {
+  <mtx-book [book]="book" [authorColor]="getAuthorColor(book.author)" [cardConfig]="cardConfig"
+    (removeBookStarted)="onRemoveBook($event)" (bookLoaded)="bookLoaded($event)"></mtx-book>
+  } @placeholder {
+  <div class="card shadow-sm book-card book-card-placeholder">
+    <div class="card-body">
+      {{ book.title }}
+    </div>
+  </div>
+  }
+  } }
+</div>
+}

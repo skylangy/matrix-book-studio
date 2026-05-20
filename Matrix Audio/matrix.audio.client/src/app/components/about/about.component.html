@@ -1,0 +1,110 @@
+<mtx-banner imageUrl="/assets/images/banners/banner-1.png"></mtx-banner>
+
+<div class="container mb-3">
+    <div class="row align-items-center mt-3">
+        <div class="col-lg-6 offset-lg-1">
+            <div class="row justify-content-start">
+                <div class="col-md-6">
+                    <div class="info">
+                        <h4 class="d-flex align-items-center"><i class="bi bi-book fs-150 text-info me-2"></i>
+                            <span>{{'History' | translate}}</span>
+                        </h4>
+                        <p>{{'Discover the rich history that has shaped our journey and achievements.' | translate}}</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="info">
+                        <h4 class="d-flex align-items-center">
+                            <i class="bi bi-calendar-event fs-150 text-info me-2"></i>
+                            <span>{{'Events' | translate}}</span>
+                        </h4>
+                        <p>{{'Stay updated with our latest events and happenings around the globe.' | translate}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-start">
+                <div class="col-md-6">
+                    <div class="info">
+                        <h4 class="d-flex align-items-center">
+                            <i class="bi bi-people fs-150 text-info me-2"></i>
+                            <span>{{'People' | translate}}</span>
+                        </h4>
+                        <p>{{'Meet the incredible people who make our community vibrant and dynamic.' | translate}}</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="info">
+                        <h4 class="d-flex align-items-center">
+                            <i class="bi bi-files fs-150 text-info me-2"></i>
+                            <span>{{'Articles' | translate}}</span>
+                        </h4>
+                        <p>{{'Explore a wide range of articles written by experts and enthusiasts.' | translate}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 ms-auto mt-lg-0 mt-4">
+            <div class="card shadow">
+                <div class="card-header p-0 position-relative">
+                    <a class="d-block blur-shadow-image">
+                        <img src="/assets/images/audio book.png" alt="img-colored-shadow"
+                            class="img-fluid border-radius-lg">
+                    </a>
+                </div>
+                <div class="card-body text-center">
+                    <h5 class="font-weight-normal">
+                        <a href="javascript:;">Matrix Audio</a>
+                    </h5>
+                    <p id="about-matrix-audio" class="mb-0">
+                        {{'Welcome to Matrix Audio, your premier destination for high-quality, diverse audiobooks. Our
+                        mission is to provide readers with an extensive collection of audio content that caters to all
+                        tastes and preferences, ensuring a seamless and enriching listening experience.' | translate}}
+                    </p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row justify-content-center text-center mt-5">
+        <div class="col-md-3">
+            <h1 class=" text-info" id="state1" countto="5234">{{summary?.albumCount | number}}</h1>
+            <h5>{{'Books' | translate}}</h5>
+            <p>{{'A vast collection of books curated for your reading pleasure.' | translate}}</p>
+        </div>
+        <div class="col-md-3">
+            <h1 class=" text-info" id="state1" countto="5234">{{summary?.episodeCount | number}}</h1>
+            <h5>{{'Episodes' | translate}}</h5>
+            <p>{{'Engaging episodes that keep you hooked from start to finish.' | translate}}</p>
+        </div>
+        <div class="col-md-3">
+            <h1 class=" text-info">
+                <span id="state2" countto="3400">{{summary?.durationInHour?.toFixed(0) | number}}</span>+
+            </h1>
+            <h5>{{'Hours' | translate}}</h5>
+            <p>{{'Thousands of hours of content to explore and enjoy.' | translate}}</p>
+        </div>
+        <div class="col-md-3">
+            <h1 class=" text-info">{{summary?.authorCount | number}}</h1>
+            <h5>{{'Authors' | translate}}</h5>
+            <p>{{'Talented authors who bring stories to life.' | translate}}</p>
+        </div>
+    </div>
+
+    <div class="row mt-5 mb-5">
+        <div class="col-12 col-md-5 ms-auto mt-3">
+            <img src="/assets/images/macbook.png" alt="book" class="w-100">
+        </div>
+        <div class="col-md-6 m-auto">
+            <h4>{{'Be the first to see the news' | translate}}</h4>
+            <p class="mb-4">
+                {{'Subscribe with your email to get notification about new books, episods and articles.' | translate}}
+            </p>
+            <div class="row">
+                <mtx-email-subscribe></mtx-email-subscribe>
+            </div>
+        </div>
+    </div>
+
+    <div class="visually-hidden">{{ip}}</div>
+</div>

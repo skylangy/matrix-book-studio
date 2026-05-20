@@ -1,0 +1,13 @@
+@if(showResourceSelector){
+<div class="modal-backdrop fade show"></div>
+<div class="modal fade" id="videoResourceModal" [ngClass]="{'show': showResourceSelector}" tabindex="-1"
+    aria-labelledby="videoResourceModalLabel" data-bs-backdrop="static" aria-hidden="false" role="dialog">
+    <div class="modal-dialog modal-dialog-centered modal-xl ">
+        <div class="modal-content shadow-lg">
+            <mtx-video-resource-selector [resourceType]="resourceTypeToSelect"
+                (resourceSelected)="onResourceSelected($event)"
+                (closed)="closeResourceSelector()"></mtx-video-resource-selector>
+        </div>
+    </div>
+</div>
+}

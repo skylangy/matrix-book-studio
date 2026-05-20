@@ -1,0 +1,8 @@
+<div class="error-page">
+    <h1>Something went wrong!</h1>
+    <p>An unexpected error occurred.</p>
+    @if(errorMessage){
+    <pre>{{ errorMessage }}</pre>
+    }
+    <button (click)="goHome()">Go to Home</button>
+</div>

@@ -1,0 +1,30 @@
+:root {
+    --book-card-height: 260px;
+    --book-splash-width: 200px;
+    --book-splash-min-width: 180px;
+
+    --avatar-width: 96px;
+    --avatar-height: 96px;
+    --avatar-width-lg: 128px;
+    --avatar-height-lg: 128px;
+
+    --author-card-size: 300px;
+    --author-card-size-lg: 460px;
+
+    --author-card-width: 350px;
+    --author-card-height: 200px;
+
+    --author-card-width-lg: 450px;
+    --author-card-height-lg: 250px;
+    --author-card-avatar-size-lg: 128px;
+
+    --author-card-bg: #232a2b;
+    --author-card-bg-hover: linear-gradient(#3f3f3f, #282828);
+
+
+    --toolbar-background: #292929;
+    --toolbar-shadow: 0 0 2px rgba(0, 0, 0, 0.24), 0 2px 4px rgba(0, 0, 0, 0.28);
+    --toolbar-font-size: 0.875rem;
+
+    --dark-background: #1e1e1e;
+}

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        /* General styles */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f0f0f0;
+        }
+
+        .cards-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            height: 300px;
+        }
+
+        .card {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            width: 400px;
+            /* Adjusted for more text */
+            height: auto;
+            /* Allow height to adjust based on content */
+            background-color: #fff;
+            overflow: hidden;
+            position: relative;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Left section */
+        .left {
+            background-color: #3498db;
+            grid-column: 1 / 2;
+        }
+
+        /* Content section for main and main-more */
+        .content {
+            display: flex;
+            grid-column: 2 / 3;
+            position: relative;
+            overflow: hidden;
+            height: 100%;
+        }
+
+        /* Main section */
+        .main {
+            background-color: #2ecc71;
+            flex: 1;
+            transition: flex 0.5s ease;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+            box-sizing: border-box;
+            white-space: nowrap;
+            /* Prevent text wrapping */
+            text-overflow: ellipsis;
+            overflow: hidden;
+            /* Hide overflowed text */
+        }
+
+        /* Main-more section */
+        .main-more {
+            background-color: #e74c3c;
+            flex: 0;
+            transition: flex 0.5s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            box-sizing: border-box;
+            overflow: hidden;
+            /* Hide overflowed content when collapsed */
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        /* Hover behavior */
+        .card:hover .main {
+            flex: 0;
+            padding: 0;
+            /* Shrink */
+        }
+
+        .card:hover .main-more {
+            flex: 1;
+            padding: 10px;
+            /* Expand */
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="cards-container">
+        <div class="card">
+            <div class="left"></div>
+            <div class="content">
+                <div class="main">
+                    To make main shrink from left to right while main-more grows from left to right, we can use the
+                    flexbox layout inside the card container. We'll apply a flex property to both .main and .main-more
+                    to control their size dynamically. Here's the implementation:
+                </div>
+                <div class="main-more">
+                    This structure will ensure the desired functionality and appearance, even when there are many cards
+                    on the screen.
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+
+</html>

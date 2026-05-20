@@ -1,0 +1,14 @@
+.chart-host {
+    display: block;
+    width: 100%;
+    padding: 1.5rem;
+
+    & .highcharts-container {
+        width: 100%;
+    }
+
+    & .highcharts-root {
+        width: 100% !important;
+    }
+
+}

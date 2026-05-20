@@ -1,0 +1,30 @@
+<div class="input-group mb-2">
+    <input type="text" id="model-name-{{model.name}}" [(ngModel)]="model.name" aria-label="Name" class="form-control"
+        placeholder="Name">
+    @switch(model.type) {
+    @case ('Text') {
+    <input type="text" id="model-value-{{model.value}}" [(ngModel)]="model.value" aria-label="Value"
+        class="form-control" placeholder="Value">
+    }
+    @case ('Resource') {
+    <input type="text" id="model-value-{{model.value}}" aria-label="Value" class="form-control" placeholder="Value"
+        [(ngModel)]="model.value" readonly>
+    <button class="btn btn-outline-secondary" type="button" title="Select Resource" id="select-resource-{{model.name}}"
+        (click)="selectResource()">
+        <i class="bi bi-three-dots"></i>
+    </button>
+    }
+    }
+
+    <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+        aria-expanded="false"></button>
+    <ul class="dropdown-menu dropdown-menu-end">
+        @for (type of propertyTypes; track $index) {
+        <li><a class="dropdown-item" (click)="setType(type)">{{type}}</a></li>
+        }
+    </ul>
+    <button class="btn btn-outline-secondary rounded-end" type="button" title="Remove Property"
+        id="button-value-{{model.name}}" (click)="removeProperty()">
+        <i class="bi bi-trash"></i>
+    </button>
+</div>

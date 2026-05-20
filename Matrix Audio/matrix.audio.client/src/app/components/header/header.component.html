@@ -1,0 +1,78 @@
+<div class="main-header">
+    <ul class="nav me-lg-auto mb-md-0">
+        <li class="app-logo-container">
+            <a href="/" class="nav-link px-1 link-body-emphasis">
+                <img [src]="logoUrl" alt="logo" class="app-logo sm">
+            </a>
+        </li>
+        @for(navItem of headerNavigationItems; track $index) {
+        <li><a [routerLink]="navItem.route" routerLinkActive="active"
+                class="nav-link px-2 link-body-emphasis">{{navItem.name}}</a></li>
+        }
+    </ul>
+
+    <div class="d-flex">
+        <div class=" me-lg-3 d-none d-md-block">
+            <input type="search" class="form-control" placeholder="{{'Search' | translate}}..." aria-label="Search"
+                [(ngModel)]="searchText" (keydown.enter)="search()">
+        </div>
+
+        @if(isLoggedIn){
+        <a [routerLink]="['/public/shopping-cart']" class="d-block text-decoration-none mx-3" title="Shopping Cart">
+            <div class="fs-4 position-relative">
+                @if(cartCount > 0){
+                <i class="bi bi-cart-fill"></i>
+                <span
+                    class="position-absolute top-0 start-100 translate-middle badge badge-sm rounded-pill bg-danger mt-2">
+                    <small>{{cartCount}}</small>
+                    <span class="visually-hidden">Shopping cart</span>
+                </span>
+                }@else{
+                <i class="bi bi-cart"></i>
+                }
+            </div>
+        </a>
+        <div class="dropdown text-end">
+            <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                <img [src]="avatar" [alt]="userName" width="32" height="32" class="rounded-circle">
+            </a>
+            <ul class="dropdown-menu text-small ">
+                <li>
+                    <span class="dropdown-item-text text-decoration-none cursor-default d-flex align-items-center">
+                        <img [src]="avatar" [alt]="userName" width="32" height="32" class="rounded-circle">
+                        <span class="ms-2"> {{userName}}</span>
+                        <span class="small text-muted d-none">({{userLevel}})</span>
+                    </span>
+                </li>
+                <li>
+                    <hr class="dropdown-divider">
+                </li>
+                @for (item of accountNavigationItems; track $index) {
+                @if(item.hasSeparator){
+                <li>
+                    <hr class="dropdown-divider">
+                </li>
+                }
+                <li>
+                    <a class="dropdown-item text-decoration-none" routerLinkActive="active" routerLink="{{item.route}}">
+                        @if(item.icon){
+                        <i [class]="'nav-icon bi bi-' + item.icon"></i>
+                        }
+                        <span class="ms-2">{{item.name}}</span>
+                    </a>
+                </li>
+                }
+            </ul>
+        </div>
+        } @else{
+        <ul class="nav me-lg-auto mb-2 mb-md-0">
+            <li>
+                <a routerLink="/login" class="nav-link px-2 link-body-emphasis">
+                    <i class="nav-icon bi bi-door-open"></i> <span class="ms-2">Sign In</span>
+                </a>
+            </li>
+        </ul>
+        }
+    </div>
+</div>

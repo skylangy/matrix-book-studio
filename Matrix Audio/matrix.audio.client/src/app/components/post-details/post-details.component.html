@@ -1,0 +1,12 @@
+<div class="post-details">
+    <img [src]="post?.image | image" alt="{{post?.title}}" class="img-fluid">
+
+    <div class="post-view">
+        <h3 class="title">{{post?.title}}</h3>
+        <div class="meta">
+            <span class="date">{{post?.dateUpdated | date:'yyyy-MM-dd'}}</span>
+        </div>
+
+        <div class="content" [innerHTML]="post?.content | toHtml"></div>
+    </div>
+</div>

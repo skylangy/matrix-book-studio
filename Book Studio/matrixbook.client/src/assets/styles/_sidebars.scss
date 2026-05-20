@@ -1,0 +1,21 @@
+.sidebar {
+    & .bi {
+        font-size: 1.35rem;
+        margin-right: 0.5rem;
+    }
+}
+
+.sidebar-compact-container {
+    height: 100%;
+    width: 3.5rem;
+
+    & .logo-size {
+        font-size: 1.5rem;
+    }
+
+    & .sidebar-compact {
+        & .bi {
+            font-size: 1.35rem;
+        }
+    }
+}

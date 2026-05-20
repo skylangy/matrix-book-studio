@@ -1,0 +1,29 @@
+@if(model){
+<div class="main-conent book-editor" #root>
+    <div class="toolbar-area">
+        <mtx-ribbon [fileNavItems]="fileNavItems" [mainNavItems]="mainNav">
+        </mtx-ribbon>
+    </div>
+
+    <div class="editor-area py-3">
+        <div class="container-fluid">
+            <div class="row h-100">
+                <div class="col-md-9 scroll-area ">
+                    <div class="border shadow-sm p-3">
+
+                        <mtx-video-timeline [videoTemplate]="model"
+                            (elementSelected)="onElementSelected($event)"></mtx-video-timeline>
+                    </div>
+                </div>
+
+                <div class="col-md-3 h-100">
+                    <!-- <mtx-narration-property-pane [model]="model"
+                        [selectedBlock]="selectedBlock"></mtx-narration-property-pane> -->
+                    <mtx-video-template-property [model]="model"
+                        [element]="selectedElement"></mtx-video-template-property>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+}

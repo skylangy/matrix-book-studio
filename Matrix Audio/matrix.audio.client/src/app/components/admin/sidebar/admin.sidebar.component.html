@@ -1,0 +1,35 @@
+<div class="sidenav">
+    <a href="/admin" class="sidenav-header">
+        @if(logoUrl){
+        <img [src]="logoUrl" alt="{{appName}}" class="app-logo">
+        } @else {
+        <span class="bi bi-music-note logo"></span>
+        }
+        <span class="app-name">{{appName}}</span>
+    </a>
+
+    <ul class="sidenav-body">
+        <li class="mb-1">
+            <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse"
+                data-bs-target="#home-collapse" aria-expanded="true" title="Dashboard">
+                <i class="bi bi-speedometer2 nav-icon"></i> <span class="nav-label">Dashboard</span>
+            </button>
+            <div class="collapse show" id="home-collapse">
+                <mtx-sidebar-nav [navItems]="adminNavigationItems"></mtx-sidebar-nav>
+            </div>
+        </li>
+
+        <li class="border-top my-3"></li>
+
+        <li class="mb-1">
+            <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse"
+                data-bs-target="#account-collapse" aria-expanded="true" title="Settings">
+                <i class="bi bi-sliders nav-icon"></i> <span class="nav-label">Settings</span>
+            </button>
+            <div class="collapse show" id="account-collapse">
+                <mtx-sidebar-nav [navItems]="adminSettingsNavigationItems"></mtx-sidebar-nav>
+            </div>
+        </li>
+
+    </ul>
+</div>
