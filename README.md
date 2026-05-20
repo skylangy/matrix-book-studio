@@ -1,25 +1,25 @@
 # Matrix Book Studio
 
-全栈有声书 / 图书制作平台：支持图书管理、语音合成、影片合成与音频业务。
+A full-stack platform for audiobook and digital book production: library management, speech synthesis, video composition, and audio services.
 
-## 技术栈
+## Tech Stack
 
-| 模块 | 技术 |
-|------|------|
-| Book Studio 后端 | ASP.NET Core 9、SignalR、RavenDB |
-| Book Studio 前端 | Angular 20、Bootstrap、Highcharts、Monaco Editor |
-| Matrix Audio | .NET 9、Stripe 支付集成 |
-| 基础设施 | Docker（RavenDB、Redis）、Edge TTS 脚本 |
+| Area | Technologies |
+|------|----------------|
+| Book Studio backend | ASP.NET Core 9, SignalR, RavenDB |
+| Book Studio frontend | Angular 20, Bootstrap, Highcharts, Monaco Editor |
+| Matrix Audio | .NET 9, Stripe payments |
+| Infrastructure | Docker (RavenDB, Redis), Edge TTS scripts |
 
-## 功能概览
+## Features
 
-- **Book Studio**：图书库、章节编辑、Azure/Edge 语音合成、字幕与视频导出
-- **Matrix Audio**：音频服务、订阅与支付
-- **工具链**：PDF 提取、字幕脚本、库同步、系统托盘
+- **Book Studio** — Book library, chapter editing, Azure/Edge TTS, subtitles and video export
+- **Matrix Audio** — Audio services, subscriptions, and payments
+- **Tooling** — PDF extraction, subtitle scripts, library sync, system tray app
 
-## 本地运行
+## Run Locally
 
-详见 [LOCAL_SETUP.md](LOCAL_SETUP.md)。
+See [LOCAL_SETUP.md](LOCAL_SETUP.md).
 
 ```powershell
 cd "Book Studio"
@@ -28,18 +28,18 @@ cd MatrixBook.Server
 dotnet run --launch-profile https
 ```
 
-- API / Swagger：https://localhost:7110/swagger  
-- 前端（开发）：https://localhost:8090  
+- API / Swagger: https://localhost:7110/swagger  
+- Frontend (dev): https://localhost:8090  
 
-## 项目结构
+## Project Layout
 
 ```
-Book Studio/          # 主业务：Server + Angular Client
-Matrix Audio/         # 音频与支付服务
-Scripts/              # Python / 浏览器 / TTS 辅助脚本
-SpeechHub/            # 语音相关服务
+Book Studio/          # Core app: API server + Angular client
+Matrix Audio/         # Audio and payment services
+Scripts/              # Python, browser, and TTS helper scripts
+SpeechHub/            # Speech-related services
 ```
 
-## 配置说明
+## Configuration
 
-复制 `Book Studio/MatrixBook.Server/appsettings.Local.json.example` 为 `appsettings.Local.json`，按本机路径填写书籍目录与 API 密钥。示例配置见 `appsettings.example.json`。
+Copy `Book Studio/MatrixBook.Server/appsettings.Local.json.example` to `appsettings.Local.json` and set book paths and API keys for your machine. See `appsettings.example.json` for a template.
